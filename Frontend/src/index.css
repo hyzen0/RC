@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+}
+
+.navbar {
+  background-color: white;
+  box-shadow: 0px 2px 3px #292b2c34;
+}
+
+.navbar .navbar-nav .nav-item {
+  font-size: 1em;
+  font-weight: 500;
+}
+
+div .buttons {
+  border-radius: 50px;
+  border: 1px solid black;
+}
+div .buttons:hover {
+  transition: scale(1.1);
+  background-color: black;
+  color: white;
+}
+div .buttons:focus {
+  box-shadow: none;
+  outline: none;
+}
