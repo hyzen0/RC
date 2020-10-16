@@ -21,5 +21,8 @@
     "url": "https://github.com/hyzen0/RC/issues"
   },
   "homepage": "https://github.com/hyzen0/RC#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^2.0.5"
+  }
 }
