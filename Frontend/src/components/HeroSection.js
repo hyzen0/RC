@@ -4,11 +4,8 @@ const HeroSection = () => {
   return (
     <div className="container">
       <div className="row justify-content-center align-items-center">
-        <div className="col-md-6 mt-3 mb-3 order-2 order-sm-1">
-          <h3 className="text-center">
-            Welcome to the Books Section of
-            <br /> Right Companion
-          </h3>
+        <div className="col-md-6 mt-3 justify-content-center mb-3 order-2 order-sm-1">
+          <h2>Welcome to Right Companion</h2>
           <div className="text-center mb-3">
             <a
               href="#"
