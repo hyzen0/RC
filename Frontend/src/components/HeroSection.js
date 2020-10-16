@@ -1,5 +1,4 @@
 import React from "react";
-import { FcGoogle } from "react-icons/fc";
 
 const HeroSection = () => {
   return (
@@ -16,7 +15,7 @@ const HeroSection = () => {
               alt="google"
               className="btn shadow py-2 px-4 mt-3 buttons"
             >
-              <FcGoogle style={{ fontSize: "1.5em" }} /> Login With Google
+              Login
             </a>
           </div>
         </div>
