@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+const auth = require("./routes/api/auth");
+
 const bodyparser = require("body-parser");
 
 const app = express();
@@ -25,15 +27,13 @@ app.use((req, res, next) => {
   next();
 });
 
+//just for resting -> route
 app.get("/", (req, res) => {
   res.send("Working");
 });
 
-app.use("/api/", (req, res) => {
-  res.json({
-    hello: ["chris", "ben"],
-  });
-});
+//actual routes
+app.use("/api/auth", auth);
 
 const port = process.env.PORT || 5000;
 
