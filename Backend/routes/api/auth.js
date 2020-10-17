@@ -103,7 +103,13 @@ router.get(
   "/profile",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    console.log(req);
+    //console.log(req);
+    res.json({
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email,
+      profilepic: req.user.profilepic,
+    });
   }
 );
 
