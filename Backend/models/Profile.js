@@ -6,6 +6,10 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "myPerson",
   },
+  email: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = Profile = mongoose.model("myProfile", ProfileSchema);
