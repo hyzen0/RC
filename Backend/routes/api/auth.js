@@ -68,8 +68,24 @@ router.post("/login", (req, res) => {
         .compare(password, person.password)
         .then(isCorrect => {
           if (isCorrect) {
-            res.json({ authentiction: "Approved" });
+            //res.json({ authentiction: "Approved" });
             //use payload and create token for user
+            const payload = {
+              id: person.id,
+              name: person.name,
+              email: person.email,
+            };
+            jsonwt.sign(
+              payload,
+              key.secret,
+              { expiresIn: 3600 },
+              (err, token) => {
+                res.json({
+                  success: true,
+                  token: "Bearer" + token,
+                });
+              }
+            );
           } else {
             res.status(400).json({ passworderror: "Password is not correct" });
           }
