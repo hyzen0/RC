@@ -1,8 +1,16 @@
 const express = require("express");
+const mongoose = require("mongoose");
 
 const bodyparser = require("body-parser");
 
 const app = express();
+
+const db = require("./setup/myurl").mongoURL;
+
+mongoose
+  .connect(db)
+  .then(() => console.log("Connected"))
+  .catch(err => console.log(err));
 
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
@@ -29,4 +37,4 @@ app.use("/api/", (req, res) => {
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Running`));
+app.listen(port, () => console.log(`Running on ${port}`));
