@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const auth = require("./routes/api/auth");
+const profile = require("./routes/api/profile");
 
 const bodyparser = require("body-parser");
 
@@ -34,6 +35,7 @@ app.get("/", (req, res) => {
 
 //actual routes
 app.use("/api/auth", auth);
+app.use("/api/profile", profile);
 
 const port = process.env.PORT || 5000;
 
