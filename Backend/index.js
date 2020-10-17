@@ -1,15 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const passport = require("passport");
+const bodyparser = require("body-parser");
 
 const auth = require("./routes/api/auth");
 const profile = require("./routes/api/profile");
 
-const bodyparser = require("body-parser");
-
 const app = express();
 
 const db = require("./setup/myurl").mongoURL;
-
 mongoose
   .connect(db)
   .then(() => console.log("Connected"))
@@ -27,6 +26,12 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+//Passport middleware
+app.use(passport.initialize());
+
+//Config for JWT strategy
+require("./strategies/jsonwtStrategy")(passport);
 
 //just for resting -> route
 app.get("/", (req, res) => {

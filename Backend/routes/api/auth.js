@@ -95,4 +95,16 @@ router.post("/login", (req, res) => {
     .catch(err => console.log(err));
 });
 
+//@type GET
+//@route /api/auth/profile
+//@desc route for user profile
+//@access PRIVATE
+router.get(
+  "/profile",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    console.log(req);
+  }
+);
+
 module.exports = router;
