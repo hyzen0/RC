@@ -1,17 +1,18 @@
 import React from "react";
-import CardSection from "./components/CardSection";
-import HeroSection from "./components/HeroSection";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./components/Home";
 import Footer from "./layout/Footer";
-import Navbar from "./layout/Navbar";
+import Header from "./layout/Header";
 
 const App = () => {
   return (
-    <div>
-      <Navbar />
-      <HeroSection />
-      <CardSection />
+    <Router>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Home} />
+      </Switch>
       <Footer />
-    </div>
+    </Router>
   );
 };
 
