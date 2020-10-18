@@ -5,9 +5,13 @@ body {
   box-shadow: 0px 2px 3px #292b2c34;
 }
 .navbar-nav .nav-link {
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 500;
   padding: 0.5rem 0px;
+}
+
+div .modal-content {
+  border-radius: 10px;
 }
 
 div .buttons {
@@ -20,6 +24,24 @@ div .buttons:hover {
   color: white;
 }
 div .buttons:focus {
+  box-shadow: none;
+  outline: none;
+}
+label {
+  font-weight: 500;
+}
+
+input#email.form-control,
+input#password.form-control {
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  border-bottom: 2px solid lightgray;
+}
+input#email.form-control:focus,
+input#password.form-control:focus {
+  border: none;
+  border-bottom: 3px solid #4791db;
   box-shadow: none;
   outline: none;
 }
