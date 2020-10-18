@@ -6,7 +6,7 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "myPerson",
   },
-  email: {
+  username: {
     type: String,
     required: true,
   },

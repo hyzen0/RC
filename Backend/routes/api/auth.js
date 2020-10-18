@@ -60,9 +60,7 @@ router.post("/login", (req, res) => {
   Person.findOne({ email })
     .then(person => {
       if (!person) {
-        return res
-          .status(404)
-          .json({ emailerror: "User not found with this email" });
+        return res.status(404).json({ email: "Email not found" });
       }
       bcrypt
         .compare(password, person.password)
@@ -73,7 +71,7 @@ router.post("/login", (req, res) => {
             const payload = {
               id: person.id,
               name: person.name,
-              email: person.email,
+              username: person.username,
             };
             jsonwt.sign(
               payload,
