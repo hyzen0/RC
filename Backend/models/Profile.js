@@ -10,6 +10,16 @@ const ProfileSchema = new Schema({
     type: String,
     required: true,
   },
+  parent: [
+    {
+      relation: {
+        type: String,
+      },
+      state: {
+        type: String,
+      },
+    },
+  ],
 });
 
 module.exports = Profile = mongoose.model("myProfile", ProfileSchema);
