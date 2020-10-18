@@ -31,7 +31,7 @@ const Header = () => {
 
   return (
     <>
-      <Navbar color="light" light expand="sm" className="py-2">
+      <Navbar light expand="sm" className="py-2">
         <Container fluid className="px-3">
           <NavbarBrand href="/">Right Companion</NavbarBrand>
           {/* Navbar Toggle */}
