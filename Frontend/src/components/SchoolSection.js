@@ -4,7 +4,7 @@ import { Container, Row, Col } from "reactstrap";
 const SchoolSection = () => {
   return (
     <Container>
-      <Row className="py-4" style={{ minHeight: "60vh" }}>
+      <Row className="py-4" style={{ minHeight: "70vh" }}>
         <Col md={7} className="my-auto  order-2 order-md-1 pt-sm-2 ">
           <h3>Looking For Best School?</h3>
           <p className="text-muted" style={{ fontSize: "1.3em" }}>

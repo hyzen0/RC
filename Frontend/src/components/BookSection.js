@@ -5,7 +5,7 @@ const BookSection = () => {
   return (
     <section style={{ backgroundColor: "#F8F8FF" }}>
       <Container>
-        <Row className="py-4" style={{ minHeight: "60vh" }}>
+        <Row className="py-4" style={{ minHeight: "70vh" }}>
           <Col md={5}>
             <img
               src={require("../assets/cards.svg")}

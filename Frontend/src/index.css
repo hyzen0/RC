@@ -18,7 +18,7 @@ div .modal-content {
 }
 
 div .buttons {
-  border-radius: 5px;
+  border-radius: 2px;
   border: 1px solid black;
 }
 div .buttons:hover {
