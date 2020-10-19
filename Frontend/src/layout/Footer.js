@@ -1,58 +1,36 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
-import { MdLocalPhone, MdEmail, MdLocationOn } from "react-icons/md";
+import FooterLink from "./FooterLink";
+import FooterSocial from "./FooterSocial";
 
 const Footer = () => {
   return (
-    <section className="bg-dark">
+    <section style={{ backgroundColor: "#252835" }}>
       <Container fluid>
-        <Row className="px-4">
-          <Col md={4}>
+        <Row className="">
+          <Col
+            md={12}
+            className="text-center mx-auto d-md-flex align-items-center"
+          >
             <img
               src={require("../assets/logo.png")}
               alt="..."
-              className="img-fluid"
-              width="300"
-              height="300"
+              width="100"
+              height="100"
             />
-          </Col>
-          <Col md={4} className="pt-5">
-            <h3 className="font-weight-normal text-white mb-3">Contact</h3>
-            <p className="text-white mb-2">
-              <MdLocalPhone /> +246-542-550-5462
-            </p>
-            <p className="mb-2">
-              <a href="mailto:info@gmail.com" className="text-white">
-                <MdEmail /> info@gmail.com
-              </a>
-            </p>
-            <p className="text-white mb-2">
-              <MdLocationOn /> Street View
-            </p>
-          </Col>
-          <Col md={4} className="pt-5">
-            <h3 className=" font-weight-normal text-white mb-3">Links</h3>
-            <p className="mb-2">
-              <a href="/" className="text-white">
-                Home
-              </a>
-            </p>
-            <p className="mb-2">
-              <a href="/about" className="text-white">
-                About Us
-              </a>
-            </p>
-            <p className="mb-2">
-              <a href="/schools" className="text-white">
-                School List
-              </a>
-            </p>
+            <FooterLink />
+            <FooterSocial />
           </Col>
         </Row>
-        <Row class="row">
-          <Col md={12} className="mt-3">
-            <p className="text-center text-white">
-              © Copyright 2020 Right Companion Pvt. Ltd. - All rights reserved.{" "}
+        <hr
+          style={{ backgroundColor: "white", margin: "0 auto" }}
+          width="70%"
+        />
+        <Row>
+          <Col md={12} className="text-center">
+            <p className="mt-1 mb-2 text-white">
+              © 2020 Right Companion Pvt. Ltd.
+              <br /> All rights reserved
             </p>
           </Col>
         </Row>
