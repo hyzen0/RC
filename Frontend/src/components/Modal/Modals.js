@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, ModalBody, Row, Col, ModalHeader } from "reactstrap";
-import { FcGoogle, FcLock } from "react-icons/fc";
+import { FcGoogle } from "react-icons/fc";
 import Forms from "../Forms/Forms";
 
 const Modals = () => {
@@ -32,7 +32,13 @@ const Modals = () => {
         <ModalBody>
           <Row className="text-center my-3 ">
             <Col xs={12}>
-              <FcLock size={60} />
+              <img
+                src={require("./auth.svg")}
+                alt="..."
+                className="img-fluid"
+                width="200"
+                height="200"
+              />
             </Col>
             <Col xs={12}>
               <h3>Sign In</h3>

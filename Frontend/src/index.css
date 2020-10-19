@@ -44,7 +44,7 @@ input#password.form-control {
 input#email.form-control:focus,
 input#password.form-control:focus {
   border: none;
-  border-bottom: 3px solid #4791db;
+  border-bottom: 3px solid #6c63ff;
   box-shadow: none;
   outline: none;
 }
