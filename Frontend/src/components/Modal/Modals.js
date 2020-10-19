@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, ModalBody, Row, Col } from "reactstrap";
+import { Modal, ModalBody, Row, Col, ModalHeader } from "reactstrap";
 import { FcGoogle, FcLock } from "react-icons/fc";
 import Forms from "../Forms/Forms";
 
@@ -22,6 +22,13 @@ const Modals = () => {
         centered
         style={{ borderRadius: "50px" }}
       >
+        <ModalHeader
+          toggle={toggle}
+          style={{
+            border: "none",
+            padding: "0.5rem 1rem",
+          }}
+        />
         <ModalBody>
           <Row className="text-center my-3 ">
             <Col xs={12}>

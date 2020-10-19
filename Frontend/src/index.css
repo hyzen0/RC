@@ -9,7 +9,10 @@ body {
   font-weight: 500;
   padding: 0.5rem 0px;
 }
-
+button.close:focus {
+  outline: none;
+  box-shadow: none;
+}
 div .modal-content {
   border-radius: 10px;
 }
