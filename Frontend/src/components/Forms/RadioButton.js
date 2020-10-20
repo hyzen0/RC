@@ -1,6 +1,5 @@
 import React from "react";
-import { Field, ErrorMessage } from "formik";
-import TextError from "./TextError";
+import { Field } from "formik";
 
 const RadioButton = (props) => {
   const { htmlFor, label, name } = props;
@@ -19,7 +18,6 @@ const RadioButton = (props) => {
         <Field type="radio" name={name} value="Female" className="mr-1" />
         Female
       </label>
-      <ErrorMessage name={name} component={TextError} />
     </div>
   );
 };
