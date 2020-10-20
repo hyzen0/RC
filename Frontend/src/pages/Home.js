@@ -27,8 +27,8 @@ const Home = () => {
           </Col>
         </Row>
       </Container>
-      <BookSection />
       <SchoolSection />
+      <BookSection />
     </>
   );
 };

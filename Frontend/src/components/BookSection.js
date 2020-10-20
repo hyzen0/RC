@@ -3,17 +3,10 @@ import { Container, Row, Col } from "reactstrap";
 
 const BookSection = () => {
   return (
-    <section style={{ backgroundColor: "#F8F8FF" }}>
+    <section>
       <Container>
-        <Row className="py-4" style={{ minHeight: "70vh" }}>
-          <Col md={5}>
-            <img
-              src={require("../assets/cards.svg")}
-              alt="booksection"
-              className="img-fluid py-5 px-3"
-            />
-          </Col>
-          <Col md={7} className="my-auto pt-sm-2">
+        <Row className="py-3">
+          <Col md={7} className="my-auto pt-sm-3 order-2 order-md-1">
             <h3>Searching For Books?</h3>
             <p className="text-muted" style={{ fontSize: "1.3em" }}>
               Buy, sell and donate books across India.
@@ -21,6 +14,13 @@ const BookSection = () => {
             <a href="/books" className="btn buttons shadow-sm">
               View Books &#8594;
             </a>
+          </Col>
+          <Col md={5} className="order-1 order-md-2">
+            <img
+              src={require("../assets/cards.svg")}
+              alt="booksection"
+              className="img-fluid py-3 px-3"
+            />
           </Col>
         </Row>
       </Container>
