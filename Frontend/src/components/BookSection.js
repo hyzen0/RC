@@ -6,7 +6,7 @@ const BookSection = () => {
     <section>
       <Container>
         <Row className="py-3">
-          <Col md={7} className="my-auto pt-sm-3 order-2 order-md-1">
+          <Col md={7} className="my-auto pt-5 order-2 order-md-1">
             <h3>Searching For Books?</h3>
             <p className="text-muted" style={{ fontSize: "1.3em" }}>
               Buy, sell and donate books across India.

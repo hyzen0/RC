@@ -13,7 +13,7 @@ const SchoolSection = () => {
               className="img-fluid py-3 px-3"
             />
           </Col>
-          <Col md={7} className="my-auto pt-sm-3">
+          <Col md={7} className="my-auto pt-5">
             <h3>Looking For Best School?</h3>
             <p className="text-muted" style={{ fontSize: "1.3em" }}>
               Compare, see reviews of schools across India to find the ones that
