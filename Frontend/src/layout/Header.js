@@ -62,6 +62,7 @@ const Header = () => {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>Your Profile</DropdownItem>
+                  <DropdownItem>Logout</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
             </Nav>
