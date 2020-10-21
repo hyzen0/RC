@@ -12,6 +12,7 @@ import {
   ChevronRight,
   FilterList,
 } from "@material-ui/icons";
+import Ratings from "../Ratings";
 
 const tableicons = {
   SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
@@ -51,6 +52,7 @@ const Schools = () => {
               { title: "State", field: "state" },
               { title: "City", field: "city" },
               { title: "Board", field: "board" },
+              { title: "Ratings", field: "rating" },
             ]}
             data={[
               {
@@ -58,6 +60,7 @@ const Schools = () => {
                 state: "Uttar Pradesh",
                 city: "Meerut",
                 board: "CBSE",
+                rating: <Ratings />,
                 imgUrl:
                   "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
               },
@@ -66,6 +69,7 @@ const Schools = () => {
                 state: "J&K",
                 city: "Jammu",
                 board: "ICSE",
+                rating: <Ratings />,
                 imgUrl:
                   "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
               },
@@ -74,6 +78,7 @@ const Schools = () => {
                 state: "Uttar Pradesh",
                 city: "Bijnor",
                 board: "ICSE",
+                rating: <Ratings />,
                 imgUrl:
                   "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
               },
@@ -82,6 +87,7 @@ const Schools = () => {
                 state: "Uttar Pradesh",
                 city: "Noida",
                 board: "CBSE",
+                rating: <Ratings />,
                 imgUrl:
                   "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
               },
@@ -90,6 +96,7 @@ const Schools = () => {
                 state: "Uttarakhand",
                 city: "Dehradun",
                 board: "CBSE",
+                rating: <Ratings />,
                 imgUrl:
                   "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
               },
@@ -98,6 +105,7 @@ const Schools = () => {
                 state: "Uttar Pradesh",
                 city: "Meerut",
                 board: "CBSE",
+                rating: <Ratings />,
                 imgUrl:
                   "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
               },
@@ -106,6 +114,7 @@ const Schools = () => {
                 state: "Uttar Pradesh",
                 city: "Meerut",
                 board: "CBSE",
+                rating: <Ratings />,
                 imgUrl:
                   "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
               },

@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import Fields from "./Fields";
 import SubmitButton from "./SubmitButton";
 import RadioButton from "./RadioButton";
+import axios from "axios";
 
 const initialValues = {
   name: "",
@@ -13,8 +14,14 @@ const initialValues = {
 };
 
 const onSubmit = (values, onSubmitProps) => {
-  console.log(values);
+  alert(JSON.stringify(values));
   onSubmitProps.setSubmitting(false);
+  // axios
+  //   .post("http://localhost:5000/api/auth/register", values)
+  //   .then((res) => history.push("/"))
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 };
 
 const validationSchema = Yup.object({
@@ -24,7 +31,7 @@ const validationSchema = Yup.object({
     .required("Required!")
     .min(6, "Password too short - should be of 6 characters.")
     .max(15, "Password can have maximum 15 characters!"),
-  gender: Yup.string().required("Required!"),
+  gender: Yup.string(),
 });
 
 const RegisterForm = () => {
@@ -62,7 +69,7 @@ const RegisterForm = () => {
               name="password"
               placeholder="AbKeyw"
             />
-            <RadioButton htmlFor="gender" label="Gender*" name="gender" />
+            <RadioButton htmlFor="gender" label="Gender" name="gender" />
             <SubmitButton
               buttonName="REGISTER"
               disabled={!formik.isValid || formik.isSubmitting}

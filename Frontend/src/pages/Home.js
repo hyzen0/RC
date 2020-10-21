@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <>
       <Container>
-        <Row style={{ minHeight: "85vh" }}>
+        <Row className="py-5">
           <Col
             md={6}
             className="my-auto text-center order-2 order-md-1 pt-sm-2"

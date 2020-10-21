@@ -58,7 +58,7 @@ const Header = () => {
                 toggle={toggles}
               >
                 <DropdownToggle nav caret>
-                  Hello, Username
+                  Hello
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>Your Profile</DropdownItem>
