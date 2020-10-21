@@ -1,6 +1,7 @@
 body {
   margin: 0;
 }
+/* Styling for navbar  */
 .navbar {
   box-shadow: 0px 2px 3px #292b2c34;
 }
@@ -9,6 +10,28 @@ body {
   font-weight: 500;
   padding: 0.5rem 0px;
 }
+
+/* Changes in table component */
+.MTableToolbar-title-9 h6 {
+  font-size: 1.5em;
+  color: #000;
+}
+.MTableToolbar-actions-8 div div span button:focus {
+  outline: none;
+}
+table thead tr th .MuiTableSortLabel-icon {
+  opacity: 1;
+}
+div span .MuiButtonBase-root {
+  outline: none;
+}
+div div .MuiTypography-root.MuiTypography-caption {
+  font-size: 1rem;
+  color: red;
+  font-weight: bold;
+}
+
+/* Styling for all buttons  */
 button.close:focus {
   outline: none;
   box-shadow: none;
@@ -30,6 +53,8 @@ div .buttons:focus {
   box-shadow: none;
   outline: none;
 }
+
+/* Styling for form fields */
 label {
   font-weight: 500;
 }
