@@ -59,13 +59,16 @@ app.use("/api/profile", profile);
 app.get(
   "/google",
   passport.authenticate("google", {
-    scope: ["profile", "email"],
+    scope: ["https://www.googleapis.com/auth/plus.login"],
   })
 );
 
 app.get(
-  "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/failed" }),
+  "auth/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "/failed",
+    successRedirect: "/",
+  }),
   (req, res) => {
     res.json({
       name: req.user.displayName,

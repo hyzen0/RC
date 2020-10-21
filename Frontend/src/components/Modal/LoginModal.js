@@ -11,8 +11,8 @@ const LoginModal = () => {
 
   const responseSuccessGoogle = res => {
     Axios({
-      method: "POST",
-      url: "http://localhost:5000/api/auth/google/callback",
+      method: "GET",
+      url: "http://localhost:5000/google",
       data: { tokenId: res.tokenId },
     })
       .then(res => {
