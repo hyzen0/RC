@@ -3,7 +3,6 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Fields from "./Fields";
 import SubmitButton from "./SubmitButton";
-import axios from "axios";
 
 const initialValues = {
   email: "",
@@ -37,7 +36,7 @@ const LoginForm = () => {
       onSubmit={onSubmit}
       validateOnMount
     >
-      {(formik) => {
+      {formik => {
         return (
           <Form className="form-group">
             <Fields

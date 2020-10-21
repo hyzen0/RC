@@ -4,6 +4,10 @@ const bcrypt = require("bcryptjs");
 const jsonwt = require("jsonwebtoken");
 const passport = require("passport");
 const key = require("../../setup/myurl");
+const { OAuth2Client } = require("google-auth-library");
+const client = new OAuth2Client(
+  "204747813298-4a065sn8m1rdgo2gq2n4gtmab8mg193l.apps.googleusercontent.com"
+);
 
 //@type GET
 //@route /api/auth
@@ -110,5 +114,41 @@ router.get(
     });
   }
 );
+
+router.post("/google/callback", (req, res) => {
+  const { tokenId } = req.body;
+  client
+    .verifyIdToken({
+      idToken: tokenId,
+      audience:
+        "204747813298-4a065sn8m1rdgo2gq2n4gtmab8mg193l.apps.googleusercontent.com",
+    })
+    .then(res => {
+      const { email_verified, name, email } = response.payload;
+
+      if (email_verified) {
+        return res
+          .status(400)
+          .json({ emailerror: "Email is already registered in our system" });
+      } else {
+        const newPerson = new Person({
+          name: req.body.name,
+          email: req.body.email,
+          password: req.body.password,
+        });
+        // Encrypt password using bcrypt
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newPerson.password, salt, (err, hash) => {
+            if (err) throw err;
+            newPerson.password = hash;
+            newPerson
+              .save()
+              .then(person => res.json(person))
+              .catch(err => console.log(err));
+          });
+        });
+      }
+    });
+});
 
 module.exports = router;

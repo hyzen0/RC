@@ -1,11 +1,29 @@
 import React, { useState } from "react";
 import { Modal, ModalBody, Row, Col, ModalHeader } from "reactstrap";
-import { FcGoogle } from "react-icons/fc";
+
 import LoginForm from "../Forms/LoginForm";
+import GoogleLogin from "react-google-login";
+import Axios from "axios";
 
 const LoginModal = () => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
+
+  const responseSuccessGoogle = res => {
+    Axios({
+      method: "POST",
+      url: "http://localhost:5000/api/auth/google/callback",
+      data: { tokenId: res.tokenId },
+    })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const responseErrorGoogle = res => {
+    console.log(res);
+  };
 
   return (
     <>
@@ -50,10 +68,14 @@ const LoginModal = () => {
           </Row>
           <Row>
             <Col xs={12} className="text-center">
-              <small className="font-weight-bold">Connect with</small>
-              <a href="/" className="btn" style={{ lineHeight: "0" }}>
-                <FcGoogle size={25} />
-              </a>
+              <GoogleLogin
+                clientId="204747813298-4a065sn8m1rdgo2gq2n4gtmab8mg193l.apps.googleusercontent.com"
+                buttonText="Login with Google"
+                onSuccess={responseSuccessGoogle}
+                onFailure={responseErrorGoogle}
+                cookiePolicy={"single_host_origin"}
+              />
+              ,
             </Col>
           </Row>
         </ModalBody>
