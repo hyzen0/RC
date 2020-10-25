@@ -9,19 +9,19 @@ const LoginModal = () => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
-  const responseSuccessGoogle = res => {
+  const responseSuccessGoogle = (res) => {
     Axios({
       method: "GET",
-      url: "http://localhost:5000/google",
+      url: "https://cors-anywhere.herokuapp.com/http://localhost:5000/google",
       data: { tokenId: res.tokenId },
     })
-      .then(res => {
+      .then((res) => {
         console.log(res);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
-  const responseErrorGoogle = res => {
+  const responseErrorGoogle = (res) => {
     console.log(res);
   };
 
