@@ -27,11 +27,8 @@ const LoginModal = () => {
 
   return (
     <>
-      <button
-        onClick={toggle}
-        className="btn buttons mt-2 mx-2 shadow-sm font-weight-bold px-3"
-      >
-        Sign In
+      <button onClick={toggle} className="btn buttons mt-2 mx-2">
+        Sign In &nbsp; &#8594;
       </button>
       <Modal
         isOpen={modal}

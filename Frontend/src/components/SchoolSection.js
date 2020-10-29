@@ -3,7 +3,7 @@ import { Container, Row, Col } from "reactstrap";
 
 const SchoolSection = () => {
   return (
-    <section style={{ backgroundColor: "#F8F8FF" }}>
+    <section style={{ backgroundColor: "rgb(250,248,246)" }}>
       <Container>
         <Row className="py-3">
           <Col md={5}>
@@ -19,8 +19,8 @@ const SchoolSection = () => {
               Compare, see reviews of schools across India to find the ones that
               suit you best.
             </p>
-            <a href="/schools" className="btn buttons shadow-sm">
-              Nearby Schools &#8594;
+            <a href="/schools" className="btn buttons">
+              Nearby Schools&nbsp; &#8594;
             </a>
           </Col>
         </Row>

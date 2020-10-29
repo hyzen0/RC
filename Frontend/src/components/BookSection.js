@@ -11,8 +11,8 @@ const BookSection = () => {
             <p className="text-muted" style={{ fontSize: "1.3em" }}>
               Buy, sell and donate books across India.
             </p>
-            <a href="/books" className="btn buttons shadow-sm">
-              View Books &#8594;
+            <a href="/books" className="btn buttons">
+              View Books&nbsp; &#8594;
             </a>
           </Col>
           <Col md={5} className="order-1 order-md-2">

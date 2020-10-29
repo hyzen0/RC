@@ -41,12 +41,20 @@ div .modal-content {
 }
 
 div .buttons {
-  border-radius: 2px;
-  border: 1px solid black;
+  display: inline-block;
+  font-family: Inter, "Arial sans-serif";
+  font-size: 18px;
+  padding: 10px 25px;
+  background-color: #6552ff;
+  border: 1px solid #6552ff;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  transition: all 0.2s ease 0s;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 25px 0px;
+  font-weight: 500;
 }
 div .buttons:hover {
-  transition: scale(1.1);
-  background-color: black;
   color: white;
 }
 div .buttons:focus {

@@ -8,11 +8,8 @@ const RegisterModal = () => {
 
   return (
     <>
-      <button
-        onClick={toggle}
-        className="btn buttons mt-2 mx-2 shadow-sm font-weight-bold px-3"
-      >
-        Register
+      <button onClick={toggle} className="btn buttons mt-2 mx-2">
+        Register &nbsp; &#8594;
       </button>
       <Modal
         isOpen={modal}
