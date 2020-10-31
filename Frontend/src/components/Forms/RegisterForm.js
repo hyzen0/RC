@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import Fields from "./Fields";
 import SubmitButton from "./SubmitButton";
 import RadioButton from "./RadioButton";
-import axios from "axios";
 
 const initialValues = {
   name: "",
@@ -16,12 +15,6 @@ const initialValues = {
 const onSubmit = (values, onSubmitProps) => {
   alert(JSON.stringify(values));
   onSubmitProps.setSubmitting(false);
-  // axios
-  //   .post("http://localhost:5000/api/auth/register", values)
-  //   .then((res) => history.push("/"))
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
 };
 
 const validationSchema = Yup.object({

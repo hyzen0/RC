@@ -8,17 +8,10 @@ const initialValues = {
   email: "",
   password: "",
 };
+
 const onSubmit = (values, onSubmitProps) => {
   alert(JSON.stringify(values));
   onSubmitProps.setSubmitting(false);
-  // axios
-  //   .post("http://localhost:5000/api/auth/login", values)
-  //   .then((res) => {
-  //     alert(res.data.message);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
 };
 
 const validationSchema = Yup.object({
@@ -36,7 +29,7 @@ const LoginForm = () => {
       onSubmit={onSubmit}
       validateOnMount
     >
-      {formik => {
+      {(formik) => {
         return (
           <Form className="form-group">
             <Fields

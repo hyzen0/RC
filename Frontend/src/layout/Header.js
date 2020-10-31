@@ -13,6 +13,7 @@ import {
   Container,
 } from "reactstrap";
 import { MdClear, MdDehaze } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,9 +32,14 @@ const Header = () => {
 
   return (
     <>
-      <Navbar light expand="sm" className="py-2">
+      <Navbar light expand="sm" className="">
         <Container>
-          <NavbarBrand href="/">Right Companion</NavbarBrand>
+          <Link to="/">
+            <NavbarBrand className="font-weight-bold">
+              Right Companion
+            </NavbarBrand>
+          </Link>
+
           {/* Navbar Toggle */}
           <span
             className="d-sm-none d-md-none d-lg-none d-xl-none"
@@ -46,10 +52,24 @@ const Header = () => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/">Home</NavLink>
+                <NavLink to="/" tag={Link}>
+                  Home
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/about">About Us</NavLink>
+                <NavLink to="/about" tag={Link}>
+                  About Us
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="/schools" tag={Link}>
+                  Schools
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="/blog" tag={Link}>
+                  Blog
+                </NavLink>
               </NavItem>
               <Dropdown
                 isOpen={dropDownOpen}

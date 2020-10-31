@@ -1,19 +1,23 @@
 import React from "react";
 import { Row, Col } from "reactstrap";
-import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import { Facebook, Instagram, Twitter, LinkedIn } from "@material-ui/icons";
 
 const socialLinks = [
   {
     href: "/",
-    icon: <FaFacebook />,
+    icon: <Facebook />,
   },
   {
     href: "/",
-    icon: <FaTwitter />,
+    icon: <Twitter />,
   },
   {
     href: "/",
-    icon: <FaInstagram />,
+    icon: <Instagram />,
+  },
+  {
+    href: "/",
+    icon: <LinkedIn />,
   },
 ];
 
@@ -29,6 +33,8 @@ const FooterSocial = () => {
             href={socialLink.href}
             className="d-block mx-2 text-white"
             key={index}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {socialLink.icon}
           </a>

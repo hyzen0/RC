@@ -1,36 +1,37 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const showLinks = [
   {
-    id: 1,
     href: "/",
     linkText: "Home",
   },
   {
-    id: 2,
     href: "/about",
     linkText: "About Us",
   },
   {
-    id: 3,
     href: "/schools",
     linkText: "Schools",
   },
   {
-    id: 4,
     href: "/books",
     linkText: "Books",
+  },
+  {
+    href: "/blog",
+    linkText: "Blog",
   },
 ];
 
 const FooterLink = () => {
   return (
     <ul className="nav mx-md-auto d-flex justify-content-center">
-      {showLinks.map((showLink) => (
-        <li className="nav-item" key={showLink.id}>
-          <a className="nav-link text-white" href={showLink.href}>
+      {showLinks.map((showLink, index) => (
+        <li className="nav-item" key={index}>
+          <Link to={showLink.href} className="nav-link text-white">
             {showLink.linkText}
-          </a>
+          </Link>
         </li>
       ))}
     </ul>

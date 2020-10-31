@@ -1,25 +1,26 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
+import { Link } from "react-router-dom";
 
 const BookSection = () => {
   return (
     <section>
       <Container>
-        <Row className="py-3">
-          <Col md={7} className="my-auto pt-5 order-2 order-md-1">
-            <h3>Searching For Books?</h3>
-            <p className="text-muted" style={{ fontSize: "1.3em" }}>
+        <Row className="d-flex justify-content-center">
+          <Col md={6} className="pt-4 my-auto text-center order-2 order-md-1">
+            <h2>Searching For Books?</h2>
+            <p className="text-muted" style={{ fontSize: "18px" }}>
               Buy, sell and donate books across India.
             </p>
-            <a href="/books" className="btn buttons">
+            <Link to="/books" className="btn buttons">
               View Books&nbsp; &#8594;
-            </a>
+            </Link>
           </Col>
-          <Col md={5} className="order-1 order-md-2">
+          <Col md={6} className="order-1 order-md-2">
             <img
               src={require("../assets/cards.svg")}
               alt="booksection"
-              className="img-fluid py-3 px-3"
+              className="img-fluid"
             />
           </Col>
         </Row>
