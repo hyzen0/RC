@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Collapse,
   Navbar,
@@ -12,10 +12,12 @@ import {
   DropdownItem,
   Container,
 } from "reactstrap";
-import { MdClear, MdDehaze } from "react-icons/md";
+import { Menu, Close } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import UserContext from "../components/context/UserContext";
 
 const Header = () => {
+  const context = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
   const [dropDownOpen, setDropDownOpen] = useState(false);
 
@@ -34,11 +36,9 @@ const Header = () => {
     <>
       <Navbar light expand="sm" className="">
         <Container>
-          <Link to="/">
-            <NavbarBrand className="font-weight-bold">
-              Right Companion
-            </NavbarBrand>
-          </Link>
+          <NavbarBrand className="font-weight-bold" href="/">
+            Right Companion
+          </NavbarBrand>
 
           {/* Navbar Toggle */}
           <span
@@ -46,7 +46,7 @@ const Header = () => {
             onClick={toggle}
             style={{ outline: "none", boxShadow: "none", fontSize: "1.8em" }}
           >
-            {isOpen ? <MdClear /> : <MdDehaze />}
+            {!isOpen ? <Menu /> : <Close />}
           </span>
           {/* Navbar items */}
           <Collapse isOpen={isOpen} navbar>
@@ -71,20 +71,31 @@ const Header = () => {
                   Blog
                 </NavLink>
               </NavItem>
-              <Dropdown
-                isOpen={dropDownOpen}
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}
-                toggle={toggles}
-              >
-                <DropdownToggle nav caret>
-                  Hello
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>Your Profile</DropdownItem>
-                  <DropdownItem>Logout</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
+              {context.user ? (
+                <Dropdown
+                  isOpen={dropDownOpen}
+                  onMouseEnter={onMouseEnter}
+                  onMouseLeave={onMouseLeave}
+                  toggle={toggles}
+                >
+                  <DropdownToggle nav caret>
+                    Hello, {context.user?.username}
+                  </DropdownToggle>
+                  <DropdownMenu right>
+                    <DropdownItem>Your Profile</DropdownItem>
+                    <DropdownItem
+                      tag={Link}
+                      onClick={() => {
+                        context.setUser(null);
+                      }}
+                    >
+                      Logout
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              ) : (
+                ""
+              )}
             </Nav>
           </Collapse>
         </Container>

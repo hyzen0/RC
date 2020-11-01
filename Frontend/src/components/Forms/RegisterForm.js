@@ -4,30 +4,57 @@ import * as Yup from "yup";
 import Fields from "./Fields";
 import SubmitButton from "./SubmitButton";
 import RadioButton from "./RadioButton";
-
-const initialValues = {
-  name: "",
-  email: "",
-  password: "",
-  gender: "",
-};
-
-const onSubmit = (values, onSubmitProps) => {
-  alert(JSON.stringify(values));
-  onSubmitProps.setSubmitting(false);
-};
-
-const validationSchema = Yup.object({
-  name: Yup.string().required("Required!"),
-  email: Yup.string().email("Invalid email format").required("Required!"),
-  password: Yup.string()
-    .required("Required!")
-    .min(6, "Password too short - should be of 6 characters.")
-    .max(15, "Password can have maximum 15 characters!"),
-  gender: Yup.string(),
-});
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const RegisterForm = () => {
+  const history = useHistory();
+
+  //initial value for fields
+  const initialValues = {
+    name: "",
+    email: "",
+    password: "",
+    gender: "",
+  };
+
+  //validating form fields
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Required!"),
+    email: Yup.string().email("Invalid email format").required("Required!"),
+    password: Yup.string()
+      .required("Required!")
+      .min(6, "Password too short - should be of 6 characters.")
+      .max(15, "Password can have maximum 15 characters!"),
+    gender: Yup.string(),
+  });
+
+  const onSubmit = (values, onSubmitProps) => {
+    onSubmitProps.setSubmitting(false);
+
+    //registering user
+    fetch("/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("User Registered");
+        if (data.emailerror) {
+          toast(data.emailerror, {
+            type: "error",
+          });
+        } else {
+          toast("Successfully Registered!", {
+            type: "success",
+          });
+          history.push("/signin");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <Formik
       initialValues={initialValues}
