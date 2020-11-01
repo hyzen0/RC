@@ -4,6 +4,9 @@ import * as Yup from "yup";
 import Fields from "./Fields";
 import SubmitButton from "./SubmitButton";
 import RadioButton from "./RadioButton";
+import axios from "axios";
+import { Alert } from "reactstrap";
+import { Redirect } from "react-router-dom";
 
 const initialValues = {
   name: "",
@@ -13,8 +16,21 @@ const initialValues = {
 };
 
 const onSubmit = (values, onSubmitProps) => {
-  alert(JSON.stringify(values));
+  // alert(JSON.stringify(values));
   onSubmitProps.setSubmitting(false);
+
+  //registering user
+  axios
+    .post("/api/auth/register", values)
+    .then((data) => {
+      console.log(data);
+      if (data.emailerror) {
+        return <Alert color="danger">{data.emailerror}</Alert>;
+      } else {
+        return <Redirect to="/signin" />;
+      }
+    })
+    .catch((error) => console.log(error.response));
 };
 
 const validationSchema = Yup.object({
