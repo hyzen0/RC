@@ -12,7 +12,7 @@ import {
   DropdownItem,
   Container,
 } from "reactstrap";
-import { MdClear, MdDehaze } from "react-icons/md";
+import { Menu, Close } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import UserContext from "../components/context/UserContext";
 
@@ -46,7 +46,7 @@ const Header = () => {
             onClick={toggle}
             style={{ outline: "none", boxShadow: "none", fontSize: "1.8em" }}
           >
-            {isOpen ? <MdClear /> : <MdDehaze />}
+            {!isOpen ? <Menu /> : <Close />}
           </span>
           {/* Navbar items */}
           <Collapse isOpen={isOpen} navbar>

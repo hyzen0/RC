@@ -3,18 +3,21 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Fields from "./Fields";
 import SubmitButton from "./SubmitButton";
-import axios from "axios";
-import { Redirect } from "react-router-dom";
 import UserContext from "../context/UserContext";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const context = useContext(UserContext);
+  const history = useHistory();
 
+  //initial value for fields
   const initialValues = {
     email: "",
     password: "",
   };
 
+  //validating form fields
   const validationSchema = Yup.object({
     email: Yup.string().email("Invalid email format").required("Required!"),
     password: Yup.string()
@@ -23,29 +26,28 @@ const LoginForm = () => {
   });
 
   const onSubmit = (values, onSubmitProps) => {
-    // alert(JSON.stringify(values));
     onSubmitProps.setSubmitting(false);
 
     //login user
-    axios({
+    fetch("/api/auth/login", {
       method: "POST",
-      url: "/api/auth/login",
       headers: { Authorization: localStorage.getItem("jwt") },
-      data: values,
+      body: JSON.stringify(values),
     })
-      .then((res) => {
-        console.log(res);
-        localStorage.setItem("jwt", JSON.stringify(res.data.token));
-        context.setUser({
-          email: res.user.email,
-        });
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.email) {
+          toast(data.email, {
+            type: "error",
+          });
+        } else {
+          localStorage.setItem("jwt", JSON.stringify(data.token));
+          history.push("/");
+        }
       })
       .catch((err) => console.log(err));
   };
-
-  if (context.user?.email) {
-    return <Redirect to="/" />;
-  }
 
   return (
     <Formik

@@ -7,16 +7,23 @@ import Signin from "./pages/Signin";
 import Register from "./pages/Register";
 import About from "./pages/About";
 import Blogs from "./pages/Blogs";
-
 import Schools from "./components/Table/Schools";
-
 import UserContext from "./components/context/UserContext";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 const App = () => {
   const [user, setUser] = useState(null);
 
   return (
     <Router>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        pauseOnHover={false}
+        pauseOnFocusLoss={false}
+      />
       <UserContext.Provider value={{ user, setUser }}>
         <Header />
         <Switch>
