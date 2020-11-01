@@ -70,7 +70,7 @@ router.post("/login", (req, res) => {
         .compare(password, person.password)
         .then(isCorrect => {
           if (isCorrect) {
-            //res.json({ authentiction: "Approved" });
+            res.json({ authentiction: "Approved" });
             //use payload and create token for user
             const payload = {
               id: person.id,
