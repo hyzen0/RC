@@ -13,13 +13,19 @@ import {
   Container,
 } from "reactstrap";
 import { Menu, Close } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import UserContext from "../components/context/UserContext";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const context = useContext(UserContext);
+  const history = useHistory();
+
   const [isOpen, setIsOpen] = useState(false);
   const [dropDownOpen, setDropDownOpen] = useState(false);
+
+  const toggles = () => setDropDownOpen((prevState) => !prevState); //dropdown for logout and profile section
+  const toggle = () => setIsOpen(!isOpen); //for navbar opening in mobile
 
   const onMouseEnter = () => {
     setDropDownOpen(true);
@@ -28,9 +34,14 @@ const Header = () => {
   const onMouseLeave = () => {
     setDropDownOpen(false);
   };
-  const toggles = () => setDropDownOpen((prevState) => !prevState);
 
-  const toggle = () => setIsOpen(!isOpen);
+  //logout user
+  const handleLogout = () => {
+    context.setUser(null);
+    localStorage.clear();
+    toast("We Hope To See you Again!");
+    history.push("/");
+  };
 
   return (
     <>
@@ -71,6 +82,7 @@ const Header = () => {
                   Blog
                 </NavLink>
               </NavItem>
+              {/* set user in navbar */}
               {context.user ? (
                 <Dropdown
                   isOpen={dropDownOpen}
@@ -79,18 +91,11 @@ const Header = () => {
                   toggle={toggles}
                 >
                   <DropdownToggle nav caret>
-                    Hello, {context.user?.username}
+                    Hello, {context.id}
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem>Your Profile</DropdownItem>
-                    <DropdownItem
-                      tag={Link}
-                      onClick={() => {
-                        context.setUser(null);
-                      }}
-                    >
-                      Logout
-                    </DropdownItem>
+                    <DropdownItem onClick={handleLogout}>Logout</DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
               ) : (

@@ -34,19 +34,21 @@ const LoginForm = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
         if (data.email) {
           toast(data.email, {
             type: "error",
           });
         } else {
-          localStorage.setItem("jwt", JSON.stringify(data.token));
+          context.setUser({
+            token: localStorage.setItem("jwt", JSON.stringify(data.token)),
+          });
           history.push("/");
         }
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -56,7 +58,7 @@ const LoginForm = () => {
       onSubmit={onSubmit}
       validateOnMount
     >
-      {formik => {
+      {(formik) => {
         return (
           <Form className="form-group">
             <Fields
