@@ -61,9 +61,8 @@ router.post(
           name: req.body.name,
           text: req.body.text,
         };
-        blog.comments.unshift(newComment);
-
-        blog
+        blog.comments
+          .unshift(newComment)
           .save()
           .then(blog => res.json(blog))
           .catch(err => console.log(err));
@@ -89,7 +88,11 @@ route.post(
                 likes => likes.user.toString() === req.user.id.toString()
               ).length > 0
             ) {
-              return res.status(400).json({ noLike: "user already liked" });
+              return blog.likes
+                .pop({ user: req.user.id })
+                .save()
+                .then(blog => res.json(blog))
+                .catch(err => console.log(err));
             }
 
             blog.likes
