@@ -8,6 +8,7 @@ const cookieSession = require("cookie-session");
 
 const auth = require("./routes/api/auth");
 const profile = require("./routes/api/profile");
+const blogs = require("./routes/api/blogs");
 
 const app = express();
 

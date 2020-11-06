@@ -75,7 +75,7 @@ router.post(
 //@route /api/blogs/likes/:id
 //@desc route for likes
 //@access PRIVATE
-route.post(
+router.post(
   "likes/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
