@@ -1,7 +1,7 @@
 import React from "react";
 import { Field } from "formik";
 
-const RadioButton = (props) => {
+const RadioButton = props => {
   const { htmlFor, label, name } = props;
 
   return (

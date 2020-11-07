@@ -12,6 +12,7 @@ import UserContext from "./components/context/UserContext";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import PrivateRoutes from "./auth/helper/PrivateRoutes";
 
 const App = () => {
   const [user, setUser] = useState(null);
