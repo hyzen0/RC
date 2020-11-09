@@ -9,17 +9,23 @@ const ProfileSchema = new Schema({
   username: {
     type: String,
     required: true,
+    max: 50,
   },
-  parent: [
-    {
-      relation: {
-        type: String,
-      },
-      state: {
-        type: String,
-      },
+  state: {
+    type: String,
+  },
+  social: {
+    facebook: {
+      type: String,
     },
-  ],
+    instagram: {
+      type: String,
+    },
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = Profile = mongoose.model("myProfile", ProfileSchema);

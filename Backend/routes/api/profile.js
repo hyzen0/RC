@@ -41,6 +41,12 @@ router.post(
     const profileValues = {};
     profileValues.user = req.user.id;
     if (req.body.username) profileValues.username = req.body.username;
+    if (req.body.state) profileValues.state = req.body.state;
+
+    //get social links
+    profileValues.social = {};
+    if (req.body.instagram) profileValues.social.instagram = req.body.instagram;
+    if (req.body.facebook) profileValues.social.facebook = req.body.facebook;
 
     //DATABASE
     Profile.findOne({ user: req.user.id })
@@ -121,61 +127,6 @@ router.delete(
           .catch(err => console.log(err));
       })
       .catch(err => console.log(err));
-  }
-);
-
-//@type POST
-//@route /api/profile/parent
-//@desc route for adding parent's information
-//@access PRIVATE
-
-router.post(
-  "/parent",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Profile.findOne({ user: req.user.id })
-      .then(profile => {
-        if (!profile) {
-          res.status(404).json({ usernnotfound: "user not found" });
-        }
-        const newParent = {
-          relation: req.body.relation,
-          state: req.body.state,
-        };
-        profile.parent.unshiftt(newParent);
-        profile
-          .save()
-          .then(profile => res.json(profile))
-          .catch(err => console.log(err));
-      })
-      .catch(err => console.log(err));
-  }
-);
-
-//@type DELETE
-//@route /api/profile/parent/:p_id
-//@desc route for deletingparent's information
-//@access PRIVATE
-
-router.delete(
-  "/parent/:p_id",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Profile.findOne({ user: req.user.id }).then(profile => {
-      if (!profile) {
-        res.status(404).json({ notfound: "not found" });
-      }
-      const removethis = profile.parent
-        .map(item => item.id)
-        .indexOf(req.params.p_id);
-
-      profile.parent.splice(removethis, 1);
-
-      profile
-        .save()
-        .then(profile => res.json(profile))
-        .catch(err => console.log(err));
-    });
   }
 );
 
