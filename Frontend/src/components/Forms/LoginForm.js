@@ -18,6 +18,7 @@ const Login = () => {
     didRedirect: false,
   });
 
+<<<<<<< HEAD
   const {
     name,
     email,
@@ -52,6 +53,33 @@ const Login = () => {
             ...values,
             loading: false,
           });
+=======
+  const onSubmit = (values, onSubmitProps) => {
+    onSubmitProps.setSubmitting(false);
+
+    //login user
+    fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.email || data.passworderror) {
+          toast(data.email || data.passworderror, {
+            type: "error",
+          });
+        } else {
+          context.setUser({
+            token: data.token,
+            name: data.person.name,
+          });
+          localStorage.setItem("jwt", JSON.stringify(data.token));
+          history.push("/");
+          toast("Successfully Logged In!", {
+            type: "success",
+          });
+>>>>>>> d3aefbc5607546d55e7e865f86cfe42946b84576
         }
       })
       .catch(e => console.log(e));

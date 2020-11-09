@@ -20,6 +20,7 @@ const Register = () => {
 
   const { name, email, password, error, success } = values;
 
+<<<<<<< HEAD
   const handelChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
@@ -37,13 +38,32 @@ const Register = () => {
             email: "",
             password: "",
             success: true,
+=======
+    //registering user
+    fetch("/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.emailerror) {
+          toast(data.emailerror, {
+            type: "error",
+>>>>>>> d3aefbc5607546d55e7e865f86cfe42946b84576
           });
+          console.log(data.emailerror);
         } else {
           setValues({
             ...values,
             error: true,
             success: false,
           });
+<<<<<<< HEAD
+=======
+          console.log("User Registered");
+          history.push("/signin");
+>>>>>>> d3aefbc5607546d55e7e865f86cfe42946b84576
         }
       })
       .catch(e => console.log(e));

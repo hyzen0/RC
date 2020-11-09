@@ -91,7 +91,7 @@ const Header = () => {
                   toggle={toggles}
                 >
                   <DropdownToggle nav caret>
-                    Hello, {context.id}
+                    Hello, {context.user.name}
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem>Your Profile</DropdownItem>

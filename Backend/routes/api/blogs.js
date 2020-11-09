@@ -20,8 +20,8 @@ const { route } = require("./auth");
 router.get("/", (req, res) => {
   Blog.find()
     .sort({ date: "desc" })
-    .then(blogs => res.json(blogs))
-    .catch(err => res.json({ noBlog: " No blogs to display" + err }));
+    .then((blogs) => res.json(blogs))
+    .catch((err) => res.json({ noBlog: " No blogs to display" + err }));
 });
 
 //@type POST
@@ -40,8 +40,8 @@ router.post(
     });
     newBlog
       .save()
-      .then(blog => req.json(blog))
-      .catch(err => console.log("Unable to push blog to database" + err));
+      .then((blog) => req.json(blog))
+      .catch((err) => console.log("Unable to push blog to database" + err));
   }
 );
 
@@ -55,7 +55,7 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Blog.findById(req.params.id)
-      .then(blog => {
+      .then((blog) => {
         const newComment = {
           user: req.user.id,
           name: req.body.name,
@@ -64,10 +64,10 @@ router.post(
         blog.comments
           .unshift(newComment)
           .save()
-          .then(blog => res.json(blog))
-          .catch(err => console.log(err));
+          .then((blog) => res.json(blog))
+          .catch((err) => console.log(err));
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 );
 
@@ -80,30 +80,30 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id })
-      .then(profile => {
+      .then((profile) => {
         Blog.findById(req.params.id)
-          .then(blog => {
+          .then((blog) => {
             if (
               blog.likes.filter(
-                likes => likes.user.toString() === req.user.id.toString()
+                (likes) => likes.user.toString() === req.user.id.toString()
               ).length > 0
             ) {
               return blog.likes
                 .pop({ user: req.user.id })
                 .save()
-                .then(blog => res.json(blog))
-                .catch(err => console.log(err));
+                .then((blog) => res.json(blog))
+                .catch((err) => console.log(err));
             }
 
             blog.likes
               .unshift({ user: req.user.id })
               .save()
-              .then(blog => res.json(blog))
-              .catch(err => console.log(err));
+              .then((blog) => res.json(blog))
+              .catch((err) => console.log(err));
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 );
 

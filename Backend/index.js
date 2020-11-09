@@ -9,6 +9,10 @@ const cookieSession = require("cookie-session");
 const auth = require("./routes/api/auth");
 const profile = require("./routes/api/profile");
 const blogs = require("./routes/api/blogs");
+<<<<<<< HEAD
+=======
+const schools = require("./routes/api/schools");
+>>>>>>> d3aefbc5607546d55e7e865f86cfe42946b84576
 
 const app = express();
 
@@ -18,7 +22,7 @@ const db = require("./setup/myurl").mongoURL;
 mongoose
   .connect(db)
   .then(() => console.log("Connected"))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
@@ -57,6 +61,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", auth);
 app.use("/api/profile", profile);
 app.use("/api/blogs", blogs);
+app.use("/api/schools", schools);
 
 app.get(
   "/google",

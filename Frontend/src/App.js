@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Footer from "./layout/Footer";
 import Header from "./layout/Header";
@@ -16,6 +16,20 @@ import PrivateRoutes from "./auth/helper/PrivateRoutes";
 
 const App = () => {
   const [user, setUser] = useState(null);
+
+  // useEffect(() => {
+  //   fetch("/api/auth/profile", {
+  //     method: "GET",
+  //     headers: { Authorization: localStorage.getItem("jwt") },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setUser({
+  //         name: data.name,
+  //       });
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   return (
     <Router>
