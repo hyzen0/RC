@@ -1,5 +1,5 @@
 const { json } = require("body-parser");
-const { Router } = require("express");
+// const { Router } = require("express");
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
@@ -14,8 +14,8 @@ const School = require("../../models/School");
 //@access PUBLIC
 router.get("/", (req, res) => {
   School.find()
-    .then(schools => res.json(schools))
-    .catch(err => res.json({ noSchool: "no schools to display" }));
+    .then((schools) => res.json(schools))
+    .catch((err) => res.json({ noSchool: "no schools to display" }));
 });
 
 //@type POST
@@ -35,7 +35,9 @@ router.post(
     });
     newSchool
       .save()
-      .then(school => res.json(school))
-      .catch(err => console.log("Unable to push school to database" + err));
+      .then((school) => res.json(school))
+      .catch((err) => console.log("Unable to push school to database" + err));
   }
 );
+
+module.exports = router;

@@ -36,16 +36,20 @@ const LoginForm = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        if (data.email) {
-          toast(data.email, {
+        if (data.email || data.passworderror) {
+          toast(data.email || data.passworderror, {
             type: "error",
           });
         } else {
           context.setUser({
-            token: localStorage.setItem("jwt", JSON.stringify(data.token)),
+            token: data.token,
+            name: data.person.name,
           });
+          localStorage.setItem("jwt", JSON.stringify(data.token));
           history.push("/");
+          toast("Successfully Logged In!", {
+            type: "success",
+          });
         }
       })
       .catch((err) => console.log(err));

@@ -40,12 +40,12 @@ const Schools = () => {
             columns={[
               {
                 title: "Image",
-                field: "imgUrl",
+                field: "picture",
                 filtering: false,
                 sorting: false,
                 export: false,
                 render: (rowData) => (
-                  <img src={rowData.imgUrl} style={{ width: 80 }} alt="..." />
+                  <img src={rowData.picture} style={{ width: 80 }} alt="..." />
                 ),
               },
               { title: "Name", field: "name", filtering: false },
@@ -54,71 +54,86 @@ const Schools = () => {
               { title: "Board", field: "board" },
               { title: "Ratings", field: "rating" },
             ]}
-            data={[
-              {
-                name: "Delhi Public School",
-                state: "Uttar Pradesh",
-                city: "Meerut",
-                board: "CBSE",
-                rating: <Ratings />,
-                imgUrl:
-                  "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
-              },
-              {
-                name: "SP Public School",
-                state: "J&K",
-                city: "Jammu",
-                board: "ICSE",
-                rating: <Ratings />,
-                imgUrl:
-                  "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
-              },
-              {
-                name: "St. Mary's School",
-                state: "Uttar Pradesh",
-                city: "Bijnor",
-                board: "ICSE",
-                rating: <Ratings />,
-                imgUrl:
-                  "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
-              },
-              {
-                name: "Jaypee School",
-                state: "Uttar Pradesh",
-                city: "Noida",
-                board: "CBSE",
-                rating: <Ratings />,
-                imgUrl:
-                  "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
-              },
-              {
-                name: "Doon Public School",
-                state: "Uttarakhand",
-                city: "Dehradun",
-                board: "CBSE",
-                rating: <Ratings />,
-                imgUrl:
-                  "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
-              },
-              {
-                name: "Delhi Public School",
-                state: "Uttar Pradesh",
-                city: "Meerut",
-                board: "CBSE",
-                rating: <Ratings />,
-                imgUrl:
-                  "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
-              },
-              {
-                name: "Delhi Public School",
-                state: "Uttar Pradesh",
-                city: "Meerut",
-                board: "CBSE",
-                rating: <Ratings />,
-                imgUrl:
-                  "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
-              },
-            ]}
+            data={(query) =>
+              new Promise((resolve, reject) => {
+                let url = "/api/schools";
+                // url += "per_page=" + query.pageSize;
+                // url += "&page=" + (query.page + 1);
+                fetch(url)
+                  .then((response) => response.json())
+                  .then((result) => {
+                    resolve({
+                      data: result,
+                      // page: result.page - 1,
+                      // totalCount: result.total,
+                    });
+                  });
+              })
+            }
+            // {
+            //   name: "Delhi Public School",
+            //   state: "Uttar Pradesh",
+            //   city: "Meerut",
+            //   board: "CBSE",
+            //   rating: <Ratings />,
+            //   imgUrl:
+            //     "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
+            // },
+            // {
+            //   name: "SP Public School",
+            //   state: "J&K",
+            //   city: "Jammu",
+            //   board: "ICSE",
+            //   rating: <Ratings />,
+            //   imgUrl:
+            //     "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
+            // },
+            // {
+            //   name: "St. Mary's School",
+            //   state: "Uttar Pradesh",
+            //   city: "Bijnor",
+            //   board: "ICSE",
+            //   rating: <Ratings />,
+            //   imgUrl:
+            //     "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
+            // },
+            // {
+            //   name: "Jaypee School",
+            //   state: "Uttar Pradesh",
+            //   city: "Noida",
+            //   board: "CBSE",
+            //   rating: <Ratings />,
+            //   imgUrl:
+            //     "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
+            // },
+            // {
+            //   name: "Doon Public School",
+            //   state: "Uttarakhand",
+            //   city: "Dehradun",
+            //   board: "CBSE",
+            //   rating: <Ratings />,
+            //   imgUrl:
+            //     "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
+            // },
+            // {
+            //   name: "Delhi Public School",
+            //   state: "Uttar Pradesh",
+            //   city: "Meerut",
+            //   board: "CBSE",
+            //   rating: <Ratings />,
+            //   imgUrl:
+            //     "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
+            // },
+            // {
+            //   name: "Delhi Public School",
+            //   state: "Uttar Pradesh",
+            //   city: "Meerut",
+            //   board: "CBSE",
+            //   rating: <Ratings />,
+            //   imgUrl:
+            //     "https://e7.pngegg.com/pngimages/694/444/png-clipart-computer-icons-school-escuela-school-angle-building.png",
+            // },
+
             options={{
               filtering: true,
               exportButton: true,

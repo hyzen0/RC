@@ -25,7 +25,7 @@ const Person = require("../../models/Person");
 
 router.post("/register", (req, res) => {
   Person.findOne({ email: req.body.email })
-    .then(person => {
+    .then((person) => {
       if (person) {
         return res
           .status(400)
@@ -43,13 +43,13 @@ router.post("/register", (req, res) => {
             newPerson.password = hash;
             newPerson
               .save()
-              .then(person => res.json(person))
-              .catch(err => console.log(err));
+              .then((person) => res.json(person))
+              .catch((err) => console.log(err));
           });
         });
       }
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 });
 
 //@type POST
@@ -62,13 +62,13 @@ router.post("/login", (req, res) => {
   const password = req.body.password;
 
   Person.findOne({ email })
-    .then(person => {
+    .then((person) => {
       if (!person) {
         return res.status(404).json({ email: "Email not found" });
       }
       bcrypt
         .compare(password, person.password)
-        .then(isCorrect => {
+        .then((isCorrect) => {
           if (isCorrect) {
             //res.json({ authentiction: "Approved" });
             //use payload and create token for user
@@ -85,6 +85,12 @@ router.post("/login", (req, res) => {
                 res.json({
                   success: true,
                   token: "Bearer" + token,
+                  //logged in user detail to show it on client side.
+                  person: {
+                    id: person.id,
+                    name: person.name,
+                    email: person.email,
+                  },
                 });
               }
             );
@@ -92,9 +98,9 @@ router.post("/login", (req, res) => {
             res.status(400).json({ passworderror: "Password is not correct" });
           }
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 });
 
 //@type GET

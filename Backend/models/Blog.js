@@ -36,13 +36,13 @@ const BlogSchema = new Schema({
         required: true,
       },
       date: {
-        type: date,
+        type: Date,
         default: Date.now,
       },
     },
   ],
   date: {
-    type: date,
+    type: Date,
     default: Date.now,
   },
 });

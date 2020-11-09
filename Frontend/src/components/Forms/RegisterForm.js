@@ -40,15 +40,16 @@ const RegisterForm = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("User Registered");
         if (data.emailerror) {
           toast(data.emailerror, {
             type: "error",
           });
+          console.log(data.emailerror);
         } else {
           toast("Successfully Registered!", {
             type: "success",
           });
+          console.log("User Registered");
           history.push("/signin");
         }
       })
