@@ -9,10 +9,7 @@ const cookieSession = require("cookie-session");
 const auth = require("./routes/api/auth");
 const profile = require("./routes/api/profile");
 const blogs = require("./routes/api/blogs");
-<<<<<<< HEAD
-=======
 const schools = require("./routes/api/schools");
->>>>>>> d3aefbc5607546d55e7e865f86cfe42946b84576
 
 const app = express();
 
