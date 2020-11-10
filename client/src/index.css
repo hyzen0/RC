@@ -1,0 +1,59 @@
+* {
+  font-family: "Open Sans", sans-serif;
+}
+/* Styling for navbar  */
+.navbar {
+  box-shadow: 0px 2px 3px #292b2c34;
+}
+.navbar-nav .nav-link {
+  text-transform: capitalize !important;
+  font-size: 105%;
+  font-weight: unset;
+}
+
+/* Changes in table component */
+.MTableToolbar-title-9 h6 {
+  font-size: 1.5em;
+  color: #000;
+}
+.MTableToolbar-actions-8 div div span button:focus {
+  outline: none;
+}
+table thead tr th .MuiTableSortLabel-icon {
+  opacity: 1;
+}
+div span .MuiButtonBase-root {
+  outline: none;
+}
+div div .MuiTypography-root.MuiTypography-caption {
+  font-size: 1rem;
+  color: red;
+  font-weight: bold;
+}
+
+/* Styling for form fields */
+label {
+  font-weight: 500;
+}
+
+input#name.form-control,
+input#email.form-control,
+input#password.form-control {
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  border-bottom: 2px solid lightgray;
+}
+
+input#name.form-control:focus,
+input#email.form-control:focus,
+input#password.form-control:focus {
+  border: none;
+  border-bottom: 3px solid #417dfd;
+  box-shadow: none;
+  outline: none;
+}
+
+section {
+  padding: 40px 0px 50px;
+}
