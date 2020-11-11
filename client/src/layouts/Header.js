@@ -13,7 +13,7 @@ import {
   Container,
 } from "reactstrap";
 import { Menu, Close, ExitToAppOutlined } from "@material-ui/icons";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, NavLink as RRNavLink } from "react-router-dom";
 import UserContext from "../components/context/UserContext";
 import { toast } from "react-toastify";
 
@@ -33,6 +33,11 @@ const Header = () => {
 
   const onMouseLeave = () => {
     setDropDownOpen(false);
+  };
+
+  // Profile Route
+  const profileRoute = () => {
+    history.push("/v1/user/profile");
   };
 
   //logout user
@@ -63,22 +68,27 @@ const Header = () => {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink to="/" tag={Link}>
+                <NavLink to="/" tag={RRNavLink} activeClassName="active" exact>
                   Home
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/about" tag={Link}>
+                <NavLink to="/about" tag={RRNavLink} activeClassName="active">
                   About Us
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/school" tag={Link}>
+                <NavLink to="/school" tag={RRNavLink} activeClassName="active">
                   Schools
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/blog" tag={Link}>
+                <NavLink to="/book" tag={RRNavLink} activeClassName="active">
+                  Books
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink to="/blog" tag={RRNavLink} activeClassName="active">
                   Blog
                 </NavLink>
               </NavItem>
@@ -94,7 +104,9 @@ const Header = () => {
                     Hello, {context.user.name}
                   </DropdownToggle>
                   <DropdownMenu right>
-                    <DropdownItem>Your Profile</DropdownItem>
+                    <DropdownItem onClick={profileRoute}>
+                      Your Profile
+                    </DropdownItem>
                     <DropdownItem onClick={handleLogout}>Logout</DropdownItem>
                   </DropdownMenu>
                 </Dropdown>

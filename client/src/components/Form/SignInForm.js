@@ -45,7 +45,7 @@ const SignInForm = () => {
             name: data.person.name,
           });
           localStorage.setItem("jwt", JSON.stringify(data.token));
-          history.push("/");
+          history.push("/v1/user/profile");
           toast("Successfully Logged In!", {
             type: "success",
           });

@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { ExitToAppOutlined, GroupAddOutlined } from "@material-ui/icons";
 
 // Imported pages
-import Book from "./Book";
-import School from "./School";
+import BookSection from "./BookSection";
+import SchoolSection from "./SchoolSection";
 
 // Import Image
 import home from "../assets/home.svg";
@@ -45,8 +45,8 @@ const Home = () => {
           </Col>
         </Row>
       </Container>
-      <School />
-      <Book />
+      <SchoolSection />
+      <BookSection />
     </section>
   );
 };

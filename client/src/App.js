@@ -8,7 +8,10 @@ import Header from "./layouts/Header";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import School from "./pages/School";
+import Book from "./pages/Book";
 import Blog from "./pages/Blog";
+import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound";
 
 // Import Auths
 import SignIn from "./auth/SignIn";
@@ -38,9 +41,17 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
           <Route exact path="/school" component={School} />
+          <Route exact path="/book" component={Book} />
           <Route exact path="/blog" component={Blog} />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
+          {user ? (
+            <Route exact path="/v1/user/profile" component={Profile} />
+          ) : (
+            <Route exact path="*" component={NotFound} />
+          )}
+
+          <Route exact path="*" component={NotFound} />
         </Switch>
         {/* <Footer /> */}
       </UserContext.Provider>
