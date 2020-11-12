@@ -11,6 +11,7 @@ const SignUpForm = () => {
   //initial value for fields
   const initialValues = {
     name: "",
+    username: "",
     email: "",
     password: "",
     gender: "",
@@ -19,10 +20,14 @@ const SignUpForm = () => {
   //validating form fields
   const validationSchema = Yup.object({
     name: Yup.string().required("Required!"),
+    username: Yup.string()
+      .required("Required!")
+      .min(3, "Username too short - should be of minimum 3 characters.")
+      .max(10, "Username can have maximum 10 characters!"),
     email: Yup.string().email("Invalid email format").required("Required!"),
     password: Yup.string()
       .required("Required!")
-      .min(6, "Password too short - should be of 6 characters.")
+      .min(6, "Password too short - should be of minimum 6 characters.")
       .max(15, "Password can have maximum 15 characters!"),
     gender: Yup.string(),
   });
@@ -71,6 +76,14 @@ const SignUpForm = () => {
               id="name"
               name="name"
               placeholder="John Doe"
+            />
+            <Fields
+              htmlFor="username"
+              labels="Username*"
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Jk1"
             />
             <Fields
               htmlFor="email"

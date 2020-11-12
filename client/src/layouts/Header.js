@@ -16,6 +16,7 @@ import { Menu, Close, ExitToAppOutlined } from "@material-ui/icons";
 import { Link, useHistory, NavLink as RRNavLink } from "react-router-dom";
 import UserContext from "../components/context/UserContext";
 import { toast } from "react-toastify";
+import BadgeAvatars from "./BadgeAvatars";
 
 const Header = () => {
   const context = useContext(UserContext);
@@ -50,7 +51,7 @@ const Header = () => {
 
   return (
     <>
-      <Navbar light expand="sm" className="">
+      <Navbar light expand="sm">
         <Container fluid className="px-2">
           <NavbarBrand className="font-weight-bold" href="/">
             <span style={{ color: "#417dfd" }}>Right</span> Companion
@@ -100,8 +101,8 @@ const Header = () => {
                   onMouseLeave={onMouseLeave}
                   toggle={toggles}
                 >
-                  <DropdownToggle nav caret>
-                    Hello, {context.user.name}
+                  <DropdownToggle nav style={{ padding: "0" }}>
+                    <BadgeAvatars name={context.user.name?.charAt(0)} />
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem onClick={profileRoute}>

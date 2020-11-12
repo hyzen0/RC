@@ -42,9 +42,8 @@ const SignInForm = () => {
         } else {
           context.setUser({
             token: data.token,
-            name: data.person.name,
           });
-          localStorage.setItem("jwt", JSON.stringify(data.token));
+          localStorage.setItem("jwt", data.token);
           history.push("/v1/user/profile");
           toast("Successfully Logged In!", {
             type: "success",

@@ -37,6 +37,7 @@ label {
 }
 
 input#name.form-control,
+input#username.form-control,
 input#email.form-control,
 input#password.form-control {
   padding: 0;
@@ -46,6 +47,7 @@ input#password.form-control {
 }
 
 input#name.form-control:focus,
+input#username.form-control:focus,
 input#email.form-control:focus,
 input#password.form-control:focus {
   border: none;

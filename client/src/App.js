@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Import Layout
@@ -27,11 +27,29 @@ import UserContext from "./components/context/UserContext";
 const App = () => {
   const [user, setUser] = useState(null);
 
+  const token = localStorage.getItem("jwt");
+
+  useEffect(() => {
+    async function fetchUserProfile() {
+      const res = await fetch("/api/auth/profile", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      });
+      const data = await res.json();
+      return data;
+    }
+
+    if (token) {
+      fetchUserProfile().then((data) => setUser({ name: data.name }));
+    }
+  }, [token]);
+
   return (
     <Router>
       <ToastContainer
-        position="top-center"
-        autoClose={3000}
+        position="bottom-left"
+        autoClose={2000}
         pauseOnHover={false}
         pauseOnFocusLoss={false}
       />
