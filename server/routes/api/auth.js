@@ -33,6 +33,7 @@ router.post("/register", (req, res) => {
       } else {
         const newPerson = new Person({
           name: req.body.name,
+          username: req.body.username,
           email: req.body.email,
           password: req.body.password,
         });
@@ -84,13 +85,7 @@ router.post("/login", (req, res) => {
               (err, token) => {
                 res.json({
                   success: true,
-                  token: "Bearer" + token,
-                  //logged in user detail to show it on client side.
-                  person: {
-                    id: person.id,
-                    name: person.name,
-                    email: person.email,
-                  },
+                  token: token,
                 });
               }
             );
@@ -115,6 +110,7 @@ router.get(
     res.json({
       id: req.user.id,
       name: req.user.name,
+      username: req.user.username,
       email: req.user.email,
       profilepic: req.user.profilepic,
     });

@@ -17,7 +17,11 @@ require("./strategies/googleStrategy");
 
 const db = require("./setup/myurl").mongoURL;
 mongoose
-  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
   .then(() => console.log("Connected"))
   .catch((err) => console.log(err));
 
