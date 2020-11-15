@@ -43,7 +43,7 @@ const Header = () => {
   return (
     <>
       <Navbar light expand="sm">
-        <Container fluid className="px-2">
+        <Container fluid="lg" className="px-2">
           <NavbarBrand className="font-weight-bold" href="/">
             <span style={{ color: "#417dfd" }}>Right</span> Companion
           </NavbarBrand>

@@ -15,7 +15,7 @@ const SignUp = () => {
       </Row>
       <Row className="pt-2 justify-content-center align-items-center">
         <Col md={8}>
-          <h3 className="text-center">Sign Up</h3>
+          <h2 className="text-center">Sign Up</h2>
         </Col>
       </Row>
       <Row className="pt-2 justify-content-center align-items-center">
@@ -24,11 +24,13 @@ const SignUp = () => {
         </Col>
       </Row>
       <Row className="justify-content-center pb-3 align-items-center">
-        <Col md={5}>
+        <Col sm={{ size: "auto", offset: 0 }} className="text-center">
           <span className="text-dark">
             <Link to="/">&#8592; back to home</Link>
           </span>
-          <span className="float-right font-weight-bold">
+        </Col>
+        <Col sm={{ size: "auto", offset: 1 }} className="text-center">
+          <span className="font-weight-bold">
             Already have an account?&nbsp;
             <Link to="/signin" className="text-danger">
               Sign In
