@@ -14,7 +14,7 @@ import home from "../assets/home.svg";
 import UserContext from "../components/context/UserContext";
 
 const Home = () => {
-  const context = useContext(UserContext);
+  const { state, dispatch } = useContext(UserContext);
   return (
     <section>
       <Container>
@@ -22,7 +22,7 @@ const Home = () => {
           <Col md={6} className="pt-4 my-auto text-center order-2 order-md-1">
             <h1>Welcome To Right Companion</h1>
 
-            {context.user ? (
+            {state ? (
               ""
             ) : (
               <>

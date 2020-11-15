@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const SignInForm = () => {
-  const context = useContext(UserContext);
+  const { state, dispatch } = useContext(UserContext);
   const history = useHistory();
 
   //initial value for fields
@@ -35,19 +35,17 @@ const SignInForm = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.email || data.passworderror) {
-          toast(data.email || data.passworderror, {
+        if (data.msg) {
+          toast(data.msg, {
             type: "error",
           });
         } else {
-          context.setUser({
-            token: data.token,
-          });
           localStorage.setItem("jwt", data.token);
-          history.push("/v1/user/profile");
+          dispatch({ type: "USER", payload: data.token });
           toast("Successfully Logged In!", {
             type: "success",
           });
+          history.push("/v1/user/profile");
         }
       })
       .catch((err) => console.log(err));

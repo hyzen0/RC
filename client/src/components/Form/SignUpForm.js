@@ -1,7 +1,6 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Fields from "./Fields";
-import RadioButton from "./RadioButton";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -14,7 +13,6 @@ const SignUpForm = () => {
     username: "",
     email: "",
     password: "",
-    gender: "",
   };
 
   //validating form fields
@@ -29,7 +27,6 @@ const SignUpForm = () => {
       .required("Required!")
       .min(6, "Password too short - should be of minimum 6 characters.")
       .max(15, "Password can have maximum 15 characters!"),
-    gender: Yup.string(),
   });
 
   const onSubmit = (values, onSubmitProps) => {
@@ -43,11 +40,11 @@ const SignUpForm = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.emailerror) {
-          toast(data.emailerror, {
+        if (data.msg) {
+          toast(data.msg, {
             type: "error",
           });
-          console.log(data.emailerror);
+          console.log(data.msg);
         } else {
           toast("Successfully Registered!", {
             type: "success",
@@ -101,7 +98,6 @@ const SignUpForm = () => {
               name="password"
               placeholder="AbKeyw"
             />
-            <RadioButton htmlFor="gender" label="Gender" name="gender" />
             <div className="text-center">
               <button
                 type="submit"

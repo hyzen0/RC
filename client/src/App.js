@@ -1,5 +1,10 @@
-import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useEffect, useReducer, useContext } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 // Import Layout
 import Header from "./layouts/Header";
@@ -24,56 +29,63 @@ import "react-toastify/dist/ReactToastify.min.css";
 // Import Context
 import UserContext from "./components/context/UserContext";
 
-const App = () => {
-  const [user, setUser] = useState(null);
+// Import Reducer
+import { reducer, initialState } from "./reducers/userReducer";
 
-  const token = localStorage.getItem("jwt");
+const Routing = () => {
+  const { state, dispatch } = useContext(UserContext);
 
   useEffect(() => {
-    async function fetchUserProfile() {
-      const res = await fetch("/api/auth/profile", {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      fetch("/api/auth/profile", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
-      });
-      const data = await res.json();
-      return data;
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          dispatch({ type: "USER", payload: data });
+        });
+      return <Redirect to="/" />;
     }
-
-    if (token) {
-      fetchUserProfile().then((data) => setUser({ name: data.name }));
-    }
-  }, [token]);
+  }, []);
 
   return (
-    <Router>
-      <ToastContainer
-        position="bottom-left"
-        autoClose={2000}
-        pauseOnHover={false}
-        pauseOnFocusLoss={false}
-      />
-      <UserContext.Provider value={{ user, setUser }}>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/about" component={About} />
-          <Route exact path="/school" component={School} />
-          <Route exact path="/book" component={Book} />
-          <Route exact path="/blog" component={Blog} />
-          <Route exact path="/signin" component={SignIn} />
-          <Route exact path="/signup" component={SignUp} />
-          {user ? (
-            <Route exact path="/v1/user/profile" component={Profile} />
-          ) : (
-            <Route exact path="*" component={NotFound} />
-          )}
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/school" component={School} />
+      <Route path="/book" component={Book} />
+      <Route path="/blog" component={Blog} />
+      <Route path="/signin" component={SignIn} />
+      <Route path="/signup" component={SignUp} />
+      {state ? (
+        <Route path="/v1/user/profile" component={Profile} />
+      ) : (
+        <Redirect to="/signin" />
+      )}
+      {/* <Route path="*" component={NotFound} /> */}
+    </Switch>
+  );
+};
 
-          <Route exact path="*" component={NotFound} />
-        </Switch>
-        {/* <Footer /> */}
-      </UserContext.Provider>
-    </Router>
+const App = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <UserContext.Provider value={{ state, dispatch }}>
+      <Router>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={2000}
+          pauseOnHover={false}
+          pauseOnFocusLoss={false}
+        />
+        <Header />
+        <Routing />
+      </Router>
+    </UserContext.Provider>
   );
 };
 

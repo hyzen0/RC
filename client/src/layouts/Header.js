@@ -9,17 +9,16 @@ import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem,
   Container,
+  DropdownItem,
 } from "reactstrap";
 import { Menu, Close, ExitToAppOutlined } from "@material-ui/icons";
 import { Link, useHistory, NavLink as RRNavLink } from "react-router-dom";
 import UserContext from "../components/context/UserContext";
 import { toast } from "react-toastify";
-import BadgeAvatars from "./BadgeAvatars";
 
 const Header = () => {
-  const context = useContext(UserContext);
+  const { state, dispatch } = useContext(UserContext);
   const history = useHistory();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -28,14 +27,6 @@ const Header = () => {
   const toggles = () => setDropDownOpen((prevState) => !prevState); //dropdown for logout and profile section
   const toggle = () => setIsOpen(!isOpen); //for navbar opening in mobile
 
-  const onMouseEnter = () => {
-    setDropDownOpen(true);
-  };
-
-  const onMouseLeave = () => {
-    setDropDownOpen(false);
-  };
-
   // Profile Route
   const profileRoute = () => {
     history.push("/v1/user/profile");
@@ -43,8 +34,8 @@ const Header = () => {
 
   //logout user
   const handleLogout = () => {
-    context.setUser(null);
     localStorage.clear();
+    dispatch({ type: "CLEAR" });
     toast("We Hope To See you Again!");
     history.push("/");
   };
@@ -94,23 +85,24 @@ const Header = () => {
                 </NavLink>
               </NavItem>
               {/* set user in navbar */}
-              {context.user ? (
-                <Dropdown
-                  isOpen={dropDownOpen}
-                  onMouseEnter={onMouseEnter}
-                  onMouseLeave={onMouseLeave}
-                  toggle={toggles}
-                >
-                  <DropdownToggle nav style={{ padding: "0" }}>
-                    <BadgeAvatars name={context.user.name?.charAt(0)} />
-                  </DropdownToggle>
-                  <DropdownMenu right>
-                    <DropdownItem onClick={profileRoute}>
+              {state ? (
+                <>
+                  <NavItem>
+                    <NavLink
+                      to="/v1/user/profile"
+                      tag={RRNavLink}
+                      activeClassName="active"
+                    >
                       Your Profile
-                    </DropdownItem>
-                    <DropdownItem onClick={handleLogout}>Logout</DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
+                    </NavLink>
+                  </NavItem>
+                  <Dropdown isOpen={dropDownOpen} toggle={toggles}>
+                    <DropdownToggle nav caret style={{ padding: "8px 0" }} />
+                    <DropdownMenu right>
+                      <DropdownItem onClick={handleLogout}>Logout</DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+                </>
               ) : (
                 <>
                   <NavItem>
