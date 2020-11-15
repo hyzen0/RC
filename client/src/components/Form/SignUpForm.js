@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import Fields from "./Fields";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Col, Row } from "reactstrap";
 
 const SignUpForm = () => {
   const history = useHistory();
@@ -66,22 +67,28 @@ const SignUpForm = () => {
       {(formik) => {
         return (
           <Form className="form-group">
-            <Fields
-              htmlFor="name"
-              labels="Fullname*"
-              type="text"
-              id="name"
-              name="name"
-              placeholder="John Doe"
-            />
-            <Fields
-              htmlFor="username"
-              labels="Username*"
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Jk1"
-            />
+            <Row>
+              <Col md={6}>
+                <Fields
+                  htmlFor="name"
+                  labels="Fullname*"
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="John Doe"
+                />
+              </Col>
+              <Col md={6}>
+                <Fields
+                  htmlFor="username"
+                  labels="Username*"
+                  type="text"
+                  id="username"
+                  name="username"
+                  placeholder="Jk1"
+                />
+              </Col>
+            </Row>
             <Fields
               htmlFor="email"
               labels="Email*"
