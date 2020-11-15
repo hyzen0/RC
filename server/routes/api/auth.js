@@ -29,7 +29,7 @@ router.post("/register", (req, res) => {
       if (person) {
         return res
           .status(400)
-          .json({ emailerror: "Email is already registered in our system" });
+          .json({ msg: "Email is already registered in our system" });
       } else {
         const newPerson = new Person({
           name: req.body.name,
@@ -65,7 +65,7 @@ router.post("/login", (req, res) => {
   Person.findOne({ email })
     .then((person) => {
       if (!person) {
-        return res.status(404).json({ email: "Email not found" });
+        return res.status(404).json({ msg: "Email not found" });
       }
       bcrypt
         .compare(password, person.password)
@@ -90,7 +90,7 @@ router.post("/login", (req, res) => {
               }
             );
           } else {
-            res.status(400).json({ passworderror: "Password is not correct" });
+            res.status(400).json({ msg: "Password is not correct" });
           }
         })
         .catch((err) => console.log(err));
@@ -112,7 +112,6 @@ router.get(
       name: req.user.name,
       username: req.user.username,
       email: req.user.email,
-      profilepic: req.user.profilepic,
     });
   }
 );

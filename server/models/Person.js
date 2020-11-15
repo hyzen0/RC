@@ -14,10 +14,6 @@ const PersonSchema = new Schema({
     unique: true,
     trim: true,
   },
-  gender: {
-    type: String,
-    enum: ["Male", "Female"],
-  },
   email: {
     type: String,
     required: true,
@@ -29,11 +25,6 @@ const PersonSchema = new Schema({
   date: {
     type: Date,
     default: Date.now,
-  },
-  profilepic: {
-    type: String,
-    default:
-      "https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg",
   },
 });
 
