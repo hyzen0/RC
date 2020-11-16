@@ -13,15 +13,25 @@ const Profile = require("../../models/Profile");
 const Blog = require("../../models/Blog");
 const { route } = require("./auth");
 
-//@type POST
+//@type GET
 //@route /api/blogs
 //@desc route for showing all blogs
 //@access PUBLIC
 router.get("/", (req, res) => {
   Blog.find()
     .sort({ date: "desc" })
-    .then(blogs => res.json(blogs))
-    .catch(err => res.json({ noBlog: " No blogs to display" + err }));
+    .then((blogs) => res.json(blogs))
+    .catch((err) => res.json({ noBlog: " No blogs to display" + err }));
+});
+
+//@type GET
+//@route /api/blogs/:id
+//@desc route for single blog by id
+//@access PUBLIC
+router.get("/:id", (req, res) => {
+  Blog.findById(req.params.id)
+    .then((blog) => res.json(blog))
+    .catch((err) => res.status(404).json({ noblogfound: "No Blog found" }));
 });
 
 //@type POST
@@ -33,15 +43,20 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const newBlog = new Blog({
-      textone: req.body.textone,
-      texttwo: req.body.texttwo,
       user: req.user.id,
-      name: req.body.name,
+      title: req.body.title,
+      description: req.body.description,
+      coverimg: req.body.coverimg,
     });
     newBlog
       .save()
-      .then(blog => req.json(blog))
-      .catch(err => console.log("Unable to push blog to database" + err));
+      .then((blog) =>
+        res.json({
+          msg: "Blog added successfully!",
+          blog,
+        })
+      )
+      .catch((err) => console.log("Unable to push blog to database" + err));
   }
 );
 
@@ -55,7 +70,7 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Blog.findById(req.params.id)
-      .then(blog => {
+      .then((blog) => {
         const newComment = {
           user: req.user.id,
           name: req.body.name,
@@ -64,10 +79,10 @@ router.post(
         blog.comments
           .unshift(newComment)
           .save()
-          .then(blog => res.json(blog))
-          .catch(err => console.log(err));
+          .then((blog) => res.json(blog))
+          .catch((err) => console.log(err));
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 );
 
@@ -76,34 +91,34 @@ router.post(
 //@desc route for likes
 //@access PRIVATE
 router.post(
-  "likes/:id",
+  "/likes/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id })
-      .then(profile => {
+      .then((profile) => {
         Blog.findById(req.params.id)
-          .then(blog => {
+          .then((blog) => {
             if (
               blog.likes.filter(
-                likes => likes.user.toString() === req.user.id.toString()
+                (likes) => likes.user.toString() === req.user.id.toString()
               ).length > 0
             ) {
               return blog.likes
                 .pop({ user: req.user.id })
                 .save()
-                .then(blog => res.json(blog))
-                .catch(err => console.log(err));
+                .then((blog) => res.json(blog))
+                .catch((err) => console.log(err));
             }
 
-            blog.likes
-              .unshift({ user: req.user.id })
+            blog.likes.unshift({ user: req.user.id });
+            blog
               .save()
-              .then(blog => res.json(blog))
-              .catch(err => console.log(err));
+              .then((blog) => res.json(blog))
+              .catch((err) => console.log(err));
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }
 );
 
