@@ -1,8 +1,11 @@
 const mongoose = require("mongoose");
-const { ObjectId } = mongoose.Schema.Types;
 const Schema = mongoose.Schema;
 
 const BlogSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "myPerson",
+  },
   title: {
     type: String,
     required: true,
@@ -13,18 +16,24 @@ const BlogSchema = new Schema({
   },
   coverimg: {
     type: String,
-    required: true,
   },
-  likes: [{ type: ObjectId, ref: "myPerson" }],
+  likes: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "myPerson",
+      },
+    },
+  ],
   comments: [
     {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "myPerson",
+      },
       text: {
         type: String,
         required: true,
-      },
-      postedBy: {
-        type: ObjectId,
-        ref: "myPerson",
       },
       date: {
         type: Date,
