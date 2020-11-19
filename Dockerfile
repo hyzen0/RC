@@ -4,7 +4,8 @@ COPY package.json .
 RUN mkdir client
 COPY client/package.json client/package.json
 RUN npm i 
-RUN cd client && npm i && npm run build
+RUN cd client && npm i 
+RUN cd client && npm run build
 FROM nginx:1.14.0-alpine
 COPY --from=react_build /app/client/build /usr/share/nginx/html
 RUN rm /etc/nginx/conf.d/default.conf
