@@ -1,7 +1,7 @@
 import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import book from "../assets/book.svg";
-import { ArrowRightAlt } from "@material-ui/icons";
+import { HiArrowNarrowRight } from "react-icons/hi";
 
 const BookSection = () => {
   return (
@@ -14,7 +14,7 @@ const BookSection = () => {
               Buy, sell and donate books across India.
             </p>
             <Link to="/book" className="btn btn-primary">
-              View Books <ArrowRightAlt />
+              View Books <HiArrowNarrowRight fontSize="20" />
             </Link>
           </Col>
           <Col md={6} className="order-1 order-md-2">

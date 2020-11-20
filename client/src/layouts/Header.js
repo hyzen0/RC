@@ -12,7 +12,8 @@ import {
   Container,
   DropdownItem,
 } from "reactstrap";
-import { Menu, Close, ExitToAppOutlined } from "@material-ui/icons";
+import { MdClose, MdMenu } from "react-icons/md";
+import { FiLogIn } from "react-icons/fi";
 import { Link, useHistory, NavLink as RRNavLink } from "react-router-dom";
 import UserContext from "../components/context/UserContext";
 import { toast } from "react-toastify";
@@ -26,11 +27,6 @@ const Header = () => {
 
   const toggles = () => setDropDownOpen((prevState) => !prevState); //dropdown for logout and profile section
   const toggle = () => setIsOpen(!isOpen); //for navbar opening in mobile
-
-  // Profile Route
-  const profileRoute = () => {
-    history.push("/v1/user/profile");
-  };
 
   //logout user
   const handleLogout = () => {
@@ -54,7 +50,7 @@ const Header = () => {
             onClick={toggle}
             style={{ outline: "none", boxShadow: "none", fontSize: "1.8em" }}
           >
-            {!isOpen ? <Menu /> : <Close />}
+            {!isOpen ? <MdMenu /> : <MdClose />}
           </span>
           {/* Navbar items */}
           <Collapse isOpen={isOpen} navbar>
@@ -111,7 +107,7 @@ const Header = () => {
                       tag={Link}
                       className="py-1 mt-1 mx-1 text-white btn btn-primary"
                     >
-                      Sign In <ExitToAppOutlined fontSize="small" />
+                      Sign In <FiLogIn fontSize="20" />
                     </NavLink>
                   </NavItem>
                 </>

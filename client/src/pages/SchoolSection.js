@@ -1,7 +1,7 @@
 import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import school from "../assets/school.svg";
-import { ArrowRightAlt } from "@material-ui/icons";
+import { HiArrowNarrowRight } from "react-icons/hi";
 
 const SchoolSection = () => {
   return (
@@ -20,7 +20,7 @@ const SchoolSection = () => {
               suit you best.
             </p>
             <Link to="/school" className="btn btn-primary">
-              Nearby Schools <ArrowRightAlt />
+              Nearby Schools <HiArrowNarrowRight fontSize="20" />
             </Link>
           </Col>
         </Row>

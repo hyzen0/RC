@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
-import { ExitToAppOutlined, GroupAddOutlined } from "@material-ui/icons";
+import { FiLogIn } from "react-icons/fi";
+import { MdPersonAdd } from "react-icons/md";
 
 // Imported pages
 import BookSection from "./BookSection";
@@ -31,11 +32,11 @@ const Home = () => {
                   className="btn btn-outline-primary mt-2 mx-2"
                 >
                   Sign In &nbsp;
-                  <ExitToAppOutlined />
+                  <FiLogIn fontSize="25" />
                 </Link>
                 <Link to="/signup" className="btn btn-primary mt-2 mx-2">
                   Sign Up &nbsp;
-                  <GroupAddOutlined />
+                  <MdPersonAdd fontSize="25" />
                 </Link>
               </>
             )}
