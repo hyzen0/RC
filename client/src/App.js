@@ -1,3 +1,4 @@
+import { API } from "./backend";
 import { useEffect, useReducer, useContext } from "react";
 import {
   BrowserRouter as Router,
@@ -38,13 +39,13 @@ const Routing = () => {
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
-      fetch("/api/auth/profile", {
+      fetch(`${API}api/auth/profile`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
       })
-        .then((res) => res.json())
-        .then((data) => {
+        .then(res => res.json())
+        .then(data => {
           dispatch({ type: "USER", payload: data });
         });
       return <Redirect to="/" />;

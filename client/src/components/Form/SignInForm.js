@@ -1,3 +1,4 @@
+import { API } from "../../backend";
 import { useContext } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -28,7 +29,7 @@ const SignInForm = () => {
     onSubmitProps.setSubmitting(false);
 
     //login user
-    fetch("/api/auth/login", {
+    fetch(`${API}api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),

@@ -6,6 +6,7 @@ const passport = require("passport");
 const bodyparser = require("body-parser");
 const morgan = require("morgan");
 const cookieSession = require("cookie-session");
+const cors = require("cors");
 
 const auth = require("./routes/api/auth");
 const profile = require("./routes/api/profile");
@@ -26,6 +27,7 @@ mongoose
   .then(() => console.log("Connected"))
   .catch(err => console.log(err));
 
+app.use(cors());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use(morgan("dev"));
