@@ -4,24 +4,10 @@ services:
     build: ./server
     command: npm start
     ports:
-      - "5001:5000"
-    networks:
-      - hyzen
+      - "5000:5000"
   client:
     build: ./client
     ports:
-      - "3000:80"
-      - "3001:9090"
-    networks:
-      - hyzen
-  cache:
-    image: memcached
-    ports:
-      - "11211:11211"
-    command: -m 64
-    networks:
-      - hyzen
-
-networks:
-  hyzen:
-    driver: bridge
+      - "3000:3000"
+    depends_on:
+      - server

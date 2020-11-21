@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const bodyparser = require("body-parser");
+const morgan = require("morgan");
 const cookieSession = require("cookie-session");
 
 const auth = require("./routes/api/auth");
@@ -23,11 +24,11 @@ mongoose
     useCreateIndex: true,
   })
   .then(() => console.log("Connected"))
-  .catch((err) => console.log(err));
+  .catch(err => console.log(err));
 
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
-
+app.use(morgan("dev"));
 // app.use((req, res, next) => {
 //   res.header("Access-Control-Allow-Origin", "*");
 //   res.header("Access-Control-Allow-Headers", "*");

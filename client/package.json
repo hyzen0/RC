@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
+  "proxy": "http://192.168.43.35:5000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.1",
@@ -16,6 +16,7 @@
     "react-scripts": "4.0.0",
     "react-toastify": "^6.1.0",
     "reactstrap": "^8.7.1",
+    "serve": "^11.3.2",
     "web-vitals": "^0.2.4",
     "yup": "^0.29.3"
   },
