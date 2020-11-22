@@ -7,7 +7,7 @@ const Profile = () => {
   const [profile, setProfile] = useState({});
 
   useEffect(() => {
-    fetch("/api/auth/profile", {
+    fetch("http://localhost:5000/api/auth/profile", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },

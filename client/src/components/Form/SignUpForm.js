@@ -1,4 +1,3 @@
-import { API } from "../../backend";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Fields from "./Fields";
@@ -35,13 +34,13 @@ const SignUpForm = () => {
     onSubmitProps.setSubmitting(false);
 
     //registering user
-    fetch(`${API}api/auth/register`, {
+    fetch("http://localhost:5000/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.msg) {
           toast(data.msg, {
             type: "error",
@@ -55,7 +54,7 @@ const SignUpForm = () => {
           history.push("/signin");
         }
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -65,7 +64,7 @@ const SignUpForm = () => {
       onSubmit={onSubmit}
       validateOnMount
     >
-      {formik => {
+      {(formik) => {
         return (
           <Form className="form-group">
             <Row>

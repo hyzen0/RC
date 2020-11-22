@@ -25,21 +25,18 @@ mongoose
     useCreateIndex: true,
   })
   .then(() => console.log("Connected"))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    optionsSuccessStatus: 200,
+    methods: "GET,POST",
+  })
+);
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 app.use(morgan("dev"));
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "*");
-//   if (req.method === "OPTIONS") {
-//     res.header("Access-Control-Allow-Methods", "PUT,POST,PATCH,DELETE,GET");
-//     return res.status(200).json({});
-//   }
-//   next();
-// });
 
 //Cokie middleware
 app.use(
