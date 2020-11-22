@@ -1,4 +1,3 @@
-import { API } from "./backend";
 import { useEffect, useReducer, useContext } from "react";
 import {
   BrowserRouter as Router,
@@ -39,7 +38,7 @@ const Routing = () => {
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
-      fetch(`${API}api/auth/profile`, {
+      fetch("api/auth/profile", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
