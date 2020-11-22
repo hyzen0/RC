@@ -5,8 +5,8 @@ import { FiLogIn } from "react-icons/fi";
 import { MdPersonAdd } from "react-icons/md";
 
 // Imported pages
-import BookSection from "./BookSection";
-import SchoolSection from "./SchoolSection";
+import BookSection from "../components/BookSection";
+import SchoolSection from "../components/SchoolSection";
 
 // Import Image
 import home from "../assets/home.svg";

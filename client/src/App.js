@@ -35,10 +35,11 @@ import { reducer, initialState } from "./reducers/userReducer";
 const Routing = () => {
   const { state, dispatch } = useContext(UserContext);
 
+  const token = localStorage.getItem("jwt");
+
   useEffect(() => {
-    const token = localStorage.getItem("jwt");
     if (token) {
-      fetch("api/auth/profile", {
+      fetch("http://localhost:5000/api/auth/profile", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
@@ -49,23 +50,22 @@ const Routing = () => {
         });
       return <Redirect to="/" />;
     }
-  }, []);
+  }, [token, dispatch]);
 
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/school" component={School} />
-      <Route path="/book" component={Book} />
-      <Route path="/blog" component={Blog} />
-      <Route path="/signin" component={SignIn} />
-      <Route path="/signup" component={SignUp} />
-      {state ? (
+      <Route exact path="/about" component={About} />
+      <Route exact path="/school" component={School} />
+      <Route exact path="/book" component={Book} />
+      <Route exact path="/blog" component={Blog} />
+      <Route exact path="/signin" component={SignIn} />
+      <Route exact path="/signup" component={SignUp} />
+      {token ? (
         <Route path="/v1/user/profile" component={Profile} />
       ) : (
         <Redirect to="/signin" />
       )}
-      {/* <Route path="*" component={NotFound} /> */}
     </Switch>
   );
 };

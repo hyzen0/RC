@@ -19,7 +19,7 @@ const Profile = () => {
 
   return (
     <Container>
-      <Col md={3}></Col>
+      <Col md={3}>{profile.name}</Col>
     </Container>
   );
 };
