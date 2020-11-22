@@ -13,7 +13,6 @@ import {
   DropdownItem,
 } from "reactstrap";
 import { MdClose, MdMenu } from "react-icons/md";
-import { FiLogIn } from "react-icons/fi";
 import { Link, useHistory, NavLink as RRNavLink } from "react-router-dom";
 import UserContext from "../components/context/UserContext";
 import { toast } from "react-toastify";
@@ -38,7 +37,7 @@ const Header = () => {
 
   return (
     <>
-      <Navbar light expand="sm">
+      <Navbar light expand="sm" style={{ backgroundColor: "white" }}>
         <Container fluid="lg" className="px-2">
           <NavbarBrand className="font-weight-bold" href="/">
             <span style={{ color: "#417dfd" }}>Right</span> Companion
@@ -107,7 +106,7 @@ const Header = () => {
                       tag={Link}
                       className="py-1 mt-1 mx-1 text-white btn btn-primary"
                     >
-                      Sign In <FiLogIn fontSize="20" />
+                      Sign In
                     </NavLink>
                   </NavItem>
                 </>
