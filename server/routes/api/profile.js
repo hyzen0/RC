@@ -40,8 +40,8 @@ router.post(
   (req, res) => {
     const profileValues = {};
     profileValues.user = req.user.id;
-    if (req.body.username) profileValues.username = req.body.username;
     if (req.body.state) profileValues.state = req.body.state;
+    if (req.body.contact) profileValues.contact = req.body.contact;
 
     //get social links
     profileValues.social = {};
@@ -60,11 +60,11 @@ router.post(
             .then(profile => res.json(profile))
             .catch(err => console.log("problem with update" + err));
         } else {
-          Profile.findOne({ username: profileValues.username })
+          Profile.findOne({ email: profileValues.email })
             .then(profile => {
               //Username already exist
               if (profile) {
-                res.status(400).json({ username: "username already exist" });
+                res.status(400).json({ email: "email already exist" });
               }
               //save user
               new Profile(profileValues)

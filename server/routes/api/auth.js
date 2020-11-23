@@ -25,7 +25,7 @@ const Person = require("../../models/Person");
 
 router.post("/register", (req, res) => {
   Person.findOne({ email: req.body.email })
-    .then((person) => {
+    .then(person => {
       if (person) {
         return res
           .status(400)
@@ -33,7 +33,6 @@ router.post("/register", (req, res) => {
       } else {
         const newPerson = new Person({
           name: req.body.name,
-          username: req.body.username,
           email: req.body.email,
           password: req.body.password,
         });
@@ -44,13 +43,13 @@ router.post("/register", (req, res) => {
             newPerson.password = hash;
             newPerson
               .save()
-              .then((person) => res.json(person))
-              .catch((err) => console.log(err));
+              .then(person => res.json(person))
+              .catch(err => console.log(err));
           });
         });
       }
     })
-    .catch((err) => console.log(err));
+    .catch(err => console.log(err));
 });
 
 //@type POST
@@ -63,13 +62,13 @@ router.post("/login", (req, res) => {
   const password = req.body.password;
 
   Person.findOne({ email })
-    .then((person) => {
+    .then(person => {
       if (!person) {
         return res.status(404).json({ msg: "Email not found" });
       }
       bcrypt
         .compare(password, person.password)
-        .then((isCorrect) => {
+        .then(isCorrect => {
           if (isCorrect) {
             //res.json({ authentiction: "Approved" });
             //use payload and create token for user
@@ -93,9 +92,9 @@ router.post("/login", (req, res) => {
             res.status(400).json({ msg: "Password is not correct" });
           }
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
     })
-    .catch((err) => console.log(err));
+    .catch(err => console.log(err));
 });
 
 //@type GET
@@ -110,7 +109,6 @@ router.get(
     res.json({
       id: req.user.id,
       name: req.user.name,
-      username: req.user.username,
       email: req.user.email,
     });
   }

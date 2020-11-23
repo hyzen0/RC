@@ -6,11 +6,6 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "myPerson",
   },
-  username: {
-    type: String,
-    required: true,
-    max: 50,
-  },
   state: {
     type: String,
   },
@@ -21,6 +16,9 @@ const ProfileSchema = new Schema({
     instagram: {
       type: String,
     },
+  },
+  contact: {
+    type: String,
   },
   date: {
     type: Date,
