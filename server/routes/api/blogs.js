@@ -2,6 +2,35 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
+const multer = require("multer");
+
+const DIR = "./public/";
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, DIR);
+  },
+  filename: (req, file, cb) => {
+    const fileName = file.originalname.toLowerCase().split(" ").join("-");
+    cb(null, uuidv4() + "-" + fileName);
+  },
+});
+
+var upload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    if (
+      file.mimetype == "image/png" ||
+      file.mimetype == "image/jpg" ||
+      file.mimetype == "image/jpeg"
+    ) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      return cb(new Error("Only .png, .jpg and .jpeg format allowed!"));
+    }
+  },
+});
 
 //Load Person Model
 const Person = require("../../models/Person");
@@ -20,8 +49,8 @@ const { route } = require("./auth");
 router.get("/", (req, res) => {
   Blog.find()
     .sort({ date: "desc" })
-    .then((blogs) => res.json(blogs))
-    .catch((err) => res.json({ noBlog: " No blogs to display" + err }));
+    .then(blogs => res.json(blogs))
+    .catch(err => res.json({ noBlog: " No blogs to display" + err }));
 });
 
 //@type GET
@@ -30,8 +59,8 @@ router.get("/", (req, res) => {
 //@access PUBLIC
 router.get("/:id", (req, res) => {
   Blog.findById(req.params.id)
-    .then((blog) => res.json(blog))
-    .catch((err) => res.status(404).json({ noblogfound: "No Blog found" }));
+    .then(blog => res.json(blog))
+    .catch(err => res.status(404).json({ noblogfound: "No Blog found" }));
 });
 
 //@type POST
@@ -40,23 +69,24 @@ router.get("/:id", (req, res) => {
 //@access PRIVATE
 router.post(
   "/",
+  upload.single("coverImg"),
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const newBlog = new Blog({
       user: req.user.id,
       title: req.body.title,
       description: req.body.description,
-      coverimg: req.body.coverimg,
+      coverImg: url + "/public/" + req.file.filename,
     });
     newBlog
       .save()
-      .then((blog) =>
+      .then(blog =>
         res.json({
           msg: "Blog added successfully!",
           blog,
         })
       )
-      .catch((err) => console.log("Unable to push blog to database" + err));
+      .catch(err => console.log("Unable to push blog to database" + err));
   }
 );
 
@@ -70,7 +100,7 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Blog.findById(req.params.id)
-      .then((blog) => {
+      .then(blog => {
         const newComment = {
           user: req.user.id,
           name: req.body.name,
@@ -79,10 +109,10 @@ router.post(
         blog.comments
           .unshift(newComment)
           .save()
-          .then((blog) => res.json(blog))
-          .catch((err) => console.log(err));
+          .then(blog => res.json(blog))
+          .catch(err => console.log(err));
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   }
 );
 
@@ -95,30 +125,30 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id })
-      .then((profile) => {
+      .then(profile => {
         Blog.findById(req.params.id)
-          .then((blog) => {
+          .then(blog => {
             if (
               blog.likes.filter(
-                (likes) => likes.user.toString() === req.user.id.toString()
+                likes => likes.user.toString() === req.user.id.toString()
               ).length > 0
             ) {
               return blog.likes
                 .pop({ user: req.user.id })
                 .save()
-                .then((blog) => res.json(blog))
-                .catch((err) => console.log(err));
+                .then(blog => res.json(blog))
+                .catch(err => console.log(err));
             }
 
             blog.likes.unshift({ user: req.user.id });
             blog
               .save()
-              .then((blog) => res.json(blog))
-              .catch((err) => console.log(err));
+              .then(blog => res.json(blog))
+              .catch(err => console.log(err));
           })
-          .catch((err) => console.log(err));
+          .catch(err => console.log(err));
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   }
 );
 

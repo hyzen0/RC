@@ -14,7 +14,7 @@ const BlogSchema = new Schema({
     type: String,
     required: true,
   },
-  coverimg: {
+  coverImg: {
     type: String,
   },
   likes: [
