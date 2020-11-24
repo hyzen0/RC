@@ -7,14 +7,14 @@ const Profile = () => {
   const [profile, setProfile] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/auth/profile", {
+    fetch("http://31.220.48.21:5000/api/auth/profile", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
     })
-      .then((res) => res.json())
-      .then((data) => setProfile(data))
-      .catch((err) => console.log(err));
+      .then(res => res.json())
+      .then(data => setProfile(data))
+      .catch(err => console.log(err));
   }, []);
 
   return (
