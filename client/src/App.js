@@ -31,6 +31,7 @@ import UserContext from "./components/context/UserContext";
 
 // Import Reducer
 import { reducer, initialState } from "./reducers/userReducer";
+import { API } from "./backend";
 
 const Routing = () => {
   const { state, dispatch } = useContext(UserContext);
@@ -39,7 +40,7 @@ const Routing = () => {
 
   useEffect(() => {
     if (token) {
-      fetch("http://localhost:5000/api/auth/profile", {
+      fetch(`${API}api/auth/profile`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("jwt"),
         },

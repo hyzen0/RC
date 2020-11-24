@@ -4,6 +4,7 @@ import Fields from "./Fields";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Col, Row } from "reactstrap";
+import { API } from "../../backend";
 
 const SignUpForm = () => {
   const history = useHistory();
@@ -34,13 +35,13 @@ const SignUpForm = () => {
     onSubmitProps.setSubmitting(false);
 
     //registering user
-    fetch("http://localhost:5000/api/auth/register", {
+    fetch(`${API}api/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     })
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         if (data.msg) {
           toast(data.msg, {
             type: "error",
@@ -54,7 +55,7 @@ const SignUpForm = () => {
           history.push("/signin");
         }
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   };
 
   return (
@@ -64,7 +65,7 @@ const SignUpForm = () => {
       onSubmit={onSubmit}
       validateOnMount
     >
-      {(formik) => {
+      {formik => {
         return (
           <Form className="form-group">
             <Row>
