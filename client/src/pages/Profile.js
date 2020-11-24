@@ -1,13 +1,14 @@
 import { useEffect, useContext, useState } from "react";
 import UserContext from "../components/context/UserContext";
 import { Col, Container } from "reactstrap";
+import { API } from "../backend";
 
 const Profile = () => {
   const { state, dispatch } = useContext(UserContext);
   const [profile, setProfile] = useState({});
 
   useEffect(() => {
-    fetch("http://31.220.48.21:5000/api/auth/profile", {
+    fetch(`${API}api/auth/profile`, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
       },

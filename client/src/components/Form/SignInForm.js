@@ -5,6 +5,7 @@ import Fields from "./Fields";
 import UserContext from "../context/UserContext";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import { API } from "../../backend";
 
 const SignInForm = () => {
   const { state, dispatch } = useContext(UserContext);
@@ -28,7 +29,7 @@ const SignInForm = () => {
     onSubmitProps.setSubmitting(false);
 
     //login user
-    fetch("http://31.220.48.21:5000/api/auth/login", {
+    fetch(`${API}api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

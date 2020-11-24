@@ -4,6 +4,7 @@ import Fields from "./Fields";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Col, Row } from "reactstrap";
+import { API } from "../../backend";
 
 const SignUpForm = () => {
   const history = useHistory();
@@ -34,7 +35,7 @@ const SignUpForm = () => {
     onSubmitProps.setSubmitting(false);
 
     //registering user
-    fetch("http://31.220.48.21:5000/api/auth/register", {
+    fetch(`${API}api/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
