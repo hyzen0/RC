@@ -39,7 +39,7 @@ const Routing = () => {
 
   useEffect(() => {
     if (token) {
-      fetch("http://localhost:5000/api/auth/profile", {
+      fetch("http://31.220.48.21:5000/api/auth/profile", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
