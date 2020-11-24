@@ -12,6 +12,6 @@ ENV REACT_APP_BACKEND=http://31.220.48.21:5000/
 
 RUN npm run build 
 
-EXPOSE 3000
+EXPOSE 80
 
-CMD [ "npx", "serve", "-s", "build", "-l", "3000" ]
+CMD [ "npx", "serve", "-s", "build", "-l", "80" ]
