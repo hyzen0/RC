@@ -40,13 +40,13 @@ const Routing = () => {
 
   useEffect(() => {
     if (token) {
-      fetch(`${API}api/auth/profile`, {
+      fetch(`${API}/api/auth/profile`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
       })
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
           dispatch({ type: "USER", payload: data });
         });
       return <Redirect to="/" />;

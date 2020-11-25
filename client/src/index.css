@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 * {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 html {
@@ -10,7 +10,7 @@ html {
 
 body {
   margin: 0;
-  background-color: #fafafa;
+  background-color: white;
 }
 /* Styling for navbar  */
 .navbar {
@@ -18,16 +18,14 @@ body {
 }
 
 .navbar-light .navbar-nav .nav-link {
+  font-size: 1.1em;
   font-weight: normal;
 }
 
 /* Styling for form fields */
-label {
-  font-weight: 500;
-}
 
 input#name.form-control,
-input#username.form-control,
+input#confirmPassword.form-control,
 input#email.form-control,
 input#password.form-control {
   padding: 0;
@@ -37,7 +35,7 @@ input#password.form-control {
 }
 
 input#name.form-control:focus,
-input#username.form-control:focus,
+input#confirmPassword.form-control:focus,
 input#email.form-control:focus,
 input#password.form-control:focus {
   border: none;
@@ -52,25 +50,28 @@ section {
 
 /* Blog Page styling */
 .blog-p {
-  font-size: 90px;
+  font-size: 85px;
   font-weight: lighter;
   color: rgba(0, 0, 0, 0.6);
 }
 
 @media only screen and (max-width: 768px) {
   .blog-p {
-    font-size: 60px;
+    font-size: 55px;
     font-weight: lighter;
+  }
+  div.avatars {
+    text-align: center;
   }
 }
 
 /* Card Styling */
-div.card {
+div.blogcard {
   border-radius: 15px;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-div.card-body {
+div.blog-card-body {
   background: linear-gradient(
     0deg,
     #fafafa 0%,

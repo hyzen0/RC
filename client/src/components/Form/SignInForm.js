@@ -29,7 +29,7 @@ const SignInForm = () => {
     onSubmitProps.setSubmitting(false);
 
     //login user
-    fetch(`${API}api/auth/login`, {
+    fetch(`${API}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,8 +37,8 @@ const SignInForm = () => {
       },
       body: JSON.stringify(values),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.msg) {
           toast(data.msg, {
             type: "error",
@@ -52,7 +52,7 @@ const SignInForm = () => {
           history.push("/v1/user/profile");
         }
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -62,7 +62,7 @@ const SignInForm = () => {
       onSubmit={onSubmit}
       validateOnMount
     >
-      {formik => {
+      {(formik) => {
         return (
           <Form className="form-group">
             <Fields

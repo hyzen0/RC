@@ -25,7 +25,7 @@ mongoose
     useCreateIndex: true,
   })
   .then(() => console.log("Connected"))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 app.use(
   cors({
