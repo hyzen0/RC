@@ -3,7 +3,6 @@ import UserContext from "../components/context/UserContext";
 import { Col, Container, Row } from "reactstrap";
 import Avatars from "../components/Avatars";
 import { MdEmail } from "react-icons/md";
-import { Col, Container } from "reactstrap";
 
 const Profile = () => {
   const { state, dispatch } = useContext(UserContext);
