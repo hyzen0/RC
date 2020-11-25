@@ -8,7 +8,7 @@ RUN npm install --silent
 
 COPY . .
 
-ENV REACT_APP_BACKEND=http://31.220.48.21:5000/
+ENV REACT_APP_BACKEND=http://31.220.48.21:5000
 
 RUN npm run build 
 

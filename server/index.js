@@ -25,11 +25,11 @@ mongoose
     useCreateIndex: true,
   })
   .then(() => console.log("Connected"))
-  .catch((err) => console.log(err));
+  .catch(err => console.log(err));
 
 app.use(
   cors({
-    origin: "http://31.220.48.21:3000",
+    origin: ["http://31.220.48.21:3000", "http://localhost:3000"],
     optionsSuccessStatus: 200,
     methods: "GET,POST",
   })
