@@ -11,7 +11,6 @@ const SignUpForm = () => {
   //initial value for fields
   const initialValues = {
     name: "",
-    username: "",
     email: "",
     password: "",
   };
@@ -19,15 +18,13 @@ const SignUpForm = () => {
   //validating form fields
   const validationSchema = Yup.object({
     name: Yup.string().required("Required!"),
-    username: Yup.string()
-      .required("Required!")
-      .min(3, "Username too short - should be of minimum 3 characters.")
-      .max(10, "Username can have maximum 10 characters!"),
     email: Yup.string().email("Invalid email format").required("Required!"),
     password: Yup.string()
       .required("Required!")
-      .min(6, "Password too short - should be of minimum 6 characters.")
-      .max(15, "Password can have maximum 15 characters!"),
+      .min(6, "Password too short - should be of minimum 6 characters."),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), ""], "Please enter the same password!")
+      .required("Required!"),
   });
 
   const onSubmit = (values, onSubmitProps) => {
@@ -67,28 +64,14 @@ const SignUpForm = () => {
       {(formik) => {
         return (
           <Form className="form-group">
-            <Row>
-              <Col md={6}>
-                <Fields
-                  htmlFor="name"
-                  labels="Fullname*"
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="John Doe"
-                />
-              </Col>
-              <Col md={6}>
-                <Fields
-                  htmlFor="username"
-                  labels="Username*"
-                  type="text"
-                  id="username"
-                  name="username"
-                  placeholder="Jk1"
-                />
-              </Col>
-            </Row>
+            <Fields
+              htmlFor="name"
+              labels="Fullname*"
+              type="text"
+              id="name"
+              name="name"
+              placeholder="John Doe"
+            />
             <Fields
               htmlFor="email"
               labels="Email*"
@@ -97,14 +80,29 @@ const SignUpForm = () => {
               name="email"
               placeholder="johndoe@example.com"
             />
-            <Fields
-              htmlFor="password"
-              labels="Password*"
-              type="password"
-              id="password"
-              name="password"
-              placeholder="AbKeyw"
-            />
+            <Row>
+              <Col md={6}>
+                <Fields
+                  htmlFor="password"
+                  labels="Password*"
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="AbKeyw"
+                />
+              </Col>
+              <Col md={6}>
+                <Fields
+                  htmlFor="confirmPassword"
+                  labels="Confirm Password*"
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  placeholder="AbKeyw"
+                />
+              </Col>
+            </Row>
+
             <div className="text-center">
               <button
                 type="submit"

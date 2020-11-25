@@ -13,14 +13,14 @@ const BlogCard = (props) => {
   const { title, image, author, date } = props;
   return (
     <Col md={4} className="my-3">
-      <Card>
+      <Card className="blogcard">
         <CardImg
           src={image || blog}
           alt={title}
           height="150"
           className="py-2"
         />
-        <CardBody>
+        <CardBody className="blog-card-body">
           <CardTitle tag="h4" className="text-muted">
             {title}
           </CardTitle>

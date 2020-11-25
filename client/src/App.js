@@ -44,8 +44,8 @@ const Routing = () => {
           Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
       })
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
           dispatch({ type: "USER", payload: data });
         });
       return <Redirect to="/" />;
