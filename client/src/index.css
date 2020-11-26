@@ -18,28 +18,29 @@ body {
 }
 
 .navbar-light .navbar-nav .nav-link {
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: normal;
 }
 
 /* Styling for form fields */
+label {
+  font-size: 14px;
+}
 
 input#name.form-control,
-input#confirmPassword.form-control,
+input#password2.form-control,
 input#email.form-control,
 input#password.form-control {
-  padding: 0;
-  border-radius: 0;
-  border: none;
-  border-bottom: 2px solid lightgray;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: small;
 }
 
 input#name.form-control:focus,
-input#confirmPassword.form-control:focus,
+input#password2.form-control:focus,
 input#email.form-control:focus,
 input#password.form-control:focus {
-  border: none;
-  border-bottom: 3px solid #417dfd;
+  border: 2px solid #417dfd;
   box-shadow: none;
   outline: none;
 }

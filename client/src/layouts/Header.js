@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import {
   Collapse,
   Navbar,
@@ -6,34 +6,19 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
   Container,
-  DropdownItem,
 } from "reactstrap";
 import { MdClose, MdMenu } from "react-icons/md";
 import { Link, useHistory, NavLink as RRNavLink } from "react-router-dom";
-import UserContext from "../components/context/UserContext";
 import { toast } from "react-toastify";
+import { isAuth, signout } from "../helpers/auth";
 
 const Header = () => {
-  const { state, dispatch } = useContext(UserContext);
   const history = useHistory();
 
   const [isOpen, setIsOpen] = useState(false);
-  const [dropDownOpen, setDropDownOpen] = useState(false);
 
-  const toggles = () => setDropDownOpen((prevState) => !prevState); //dropdown for logout and profile section
   const toggle = () => setIsOpen(!isOpen); //for navbar opening in mobile
-
-  //logout user
-  const handleLogout = () => {
-    localStorage.clear();
-    dispatch({ type: "CLEAR" });
-    toast("We Hope To See you Again!");
-    history.push("/");
-  };
 
   return (
     <>
@@ -47,10 +32,10 @@ const Header = () => {
           <span
             className="d-sm-none d-md-none d-lg-none d-xl-none"
             onClick={toggle}
-            style={{ outline: "none", boxShadow: "none", fontSize: "1.8em" }}
-          >
+            style={{ outline: "none", boxShadow: "none", fontSize: "1.8em" }}>
             {!isOpen ? <MdMenu /> : <MdClose />}
           </span>
+
           {/* Navbar items */}
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -79,33 +64,38 @@ const Header = () => {
                   Blog
                 </NavLink>
               </NavItem>
+
               {/* set user in navbar */}
-              {state ? (
+              {isAuth() ? (
                 <>
                   <NavItem>
                     <NavLink
-                      to="/v1/user/profile"
+                      to="/users/profile"
                       tag={RRNavLink}
-                      activeClassName="active"
-                    >
+                      activeClassName="active">
                       Your Profile
                     </NavLink>
                   </NavItem>
-                  <Dropdown isOpen={dropDownOpen} toggle={toggles}>
-                    <DropdownToggle nav caret style={{ padding: "8px 0" }} />
-                    <DropdownMenu right>
-                      <DropdownItem onClick={handleLogout}>Logout</DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
+                  <NavItem>
+                    <NavLink
+                      onClick={() => {
+                        signout(() => {
+                          toast("We Hope To See you Again!");
+                          history.push("/");
+                        });
+                      }}
+                      className="py-1 mt-1 mx-1 text-white btn btn-primary">
+                      Logout
+                    </NavLink>
+                  </NavItem>
                 </>
               ) : (
                 <>
                   <NavItem>
                     <NavLink
-                      to="/signin"
+                      to="/login"
                       tag={Link}
-                      className="py-1 mt-1 mx-1 text-white btn btn-primary"
-                    >
+                      className="py-1 mt-1 mx-1 text-white btn btn-primary">
                       Sign In
                     </NavLink>
                   </NavItem>
