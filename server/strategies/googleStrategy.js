@@ -1,6 +1,6 @@
 const passport = require("passport");
 
-const GoogleStrategy = require("passport-google-oauth2").Strategy;
+const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 
 passport.serializeUser(function (user, done) {
   done(null, user);
@@ -16,11 +16,14 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: process.env.GOOGLE_CALLBACK_URL,
-      passReqToCallback: true,
     },
-    (request, acessToken, refreshToken, profile, done) => {
-      console.log(profile);
-      return done(null, profile);
+    (accessToken, refreshToken, profile, done) => {
+      var userData = {
+        email: profile.emails[0].value,
+        name: profile.displayName,
+        token: accessToken,
+      };
+      done(null, userData);
     }
   )
 );

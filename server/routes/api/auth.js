@@ -16,7 +16,7 @@ const client = new OAuth2Client(
 router.get("/", (req, res) => res.json({ test: "Auth is being tested" }));
 
 //Import Schema for Person to Register
-const Person = require("../../models/Person");
+const Person = require("../../models/auth.model");
 
 //@type POST
 //@route /api/auth/register

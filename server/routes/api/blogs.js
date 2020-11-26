@@ -33,7 +33,7 @@ var upload = multer({
 });
 
 //Load Person Model
-const Person = require("../../models/Person");
+const Person = require("../../models/auth.model");
 
 //Load Profile Model
 const Profile = require("../../models/Profile");
