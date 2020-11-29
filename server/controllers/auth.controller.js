@@ -60,7 +60,7 @@ exports.registerController = (req, res) => {
       .send(emailData)
       .then(sent => {
         return res.json({
-          message: `Email has been sent to ${email}`,
+          message: `An email has been sent to ${email}. Please check your Email.`,
         });
       })
       .catch(err => {
@@ -102,7 +102,8 @@ exports.activationController = (req, res) => {
             return res.json({
               success: true,
               message: user,
-              message: "Signup success",
+              message:
+                "Your account is now activated. Redirecting to login page ",
             });
           }
         });
@@ -130,7 +131,7 @@ exports.signinController = (req, res) => {
     }).exec((err, user) => {
       if (err || !user) {
         return res.status(400).json({
-          errors: "User with that email does not exist. Please signup",
+          errors: "No Account Found. Try Signing Up!",
         });
       }
       // authenticate
@@ -207,7 +208,7 @@ exports.forgotPasswordController = (req, res) => {
       (err, user) => {
         if (err || !user) {
           return res.status(400).json({
-            error: "User with that email does not exist",
+            error: "No Account Found. Try Signing Up!",
           });
         }
 
