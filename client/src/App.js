@@ -18,6 +18,7 @@ import Login from "./screens/Login";
 import Register from "./screens/Register";
 import Activate from "./screens/Activate";
 import ForgetPassword from "./screens/ForgetPassword";
+import ResetPassword from "./screens/ResetPassword";
 
 const App = () => {
   return (
@@ -35,6 +36,11 @@ const App = () => {
         <Route exact path="/register" component={Register} />
         <Route exact path="/users/activate/:token" component={Activate} />
         <Route exact path="/users/password/forget" component={ForgetPassword} />
+        <Route
+          exact
+          path="/users/password/reset/:token"
+          component={ResetPassword}
+        />
         {/* <Route exact path="/user/profile" component={Private} /> */}
         <Redirect to="/" />
       </Switch>

@@ -298,7 +298,7 @@ exports.resetPasswordController = (req, res) => {
             (err, user) => {
               if (err || !user) {
                 return res.status(400).json({
-                  errors: "Something went wrong. Try later",
+                  errors: "Something went wrong. Try again later!",
                 });
               }
 
@@ -312,11 +312,12 @@ exports.resetPasswordController = (req, res) => {
               user.save((err, result) => {
                 if (err) {
                   return res.status(400).json({
-                    errors: "Error resetting user password",
+                    errors: "Error resetting user password.",
                   });
                 }
                 res.json({
-                  message: `Great! Now you can login with your new password`,
+                  message:
+                    "Your password is now updated. Redirecting to login page ",
                 });
               });
             }
