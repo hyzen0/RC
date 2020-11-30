@@ -136,7 +136,7 @@ const Login = ({ history }) => {
                     Email
                   </Label>
                   <Input
-                    className="mb-1"
+                    className="mb-1 p-2"
                     id="email"
                     type="email"
                     placeholder="Email"
@@ -147,14 +147,18 @@ const Login = ({ history }) => {
                     Password
                   </Label>
                   <Input
-                    className="mb-1"
+                    className="p-2"
                     id="password"
                     type="password"
                     placeholder="Password"
                     onChange={handleChange("password1")}
                     value={password1}
                   />
+                  <Link to="/users/password/forget" className="">
+                    <small>Forget Password?</small>
+                  </Link>
                 </FormGroup>
+
                 <div className="text-center">
                   <button type="submit" className="btn btn-primary px-4">
                     {textChange}

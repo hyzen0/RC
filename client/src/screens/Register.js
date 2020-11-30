@@ -113,7 +113,7 @@ const Register = () => {
                     Name
                   </Label>
                   <Input
-                    className="mb-1"
+                    className="mb-1 p-2"
                     id="name"
                     type="text"
                     placeholder="Name"
@@ -124,7 +124,7 @@ const Register = () => {
                     Email
                   </Label>
                   <Input
-                    className="mb-1"
+                    className="mb-1 p-2"
                     id="email"
                     type="email"
                     placeholder="Email"
@@ -135,7 +135,7 @@ const Register = () => {
                     Password
                   </Label>
                   <Input
-                    className="mb-1"
+                    className="mb-1 p-2"
                     id="password"
                     type="password"
                     placeholder="Password"
@@ -146,7 +146,7 @@ const Register = () => {
                     Confirm Password
                   </Label>
                   <Input
-                    className="mb-1"
+                    className="mb-1 p-2"
                     id="password2"
                     type="password"
                     placeholder="Confirm Password"

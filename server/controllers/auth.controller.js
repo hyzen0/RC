@@ -208,7 +208,7 @@ exports.forgotPasswordController = (req, res) => {
       (err, user) => {
         if (err || !user) {
           return res.status(400).json({
-            error: "No Account Found. Try Signing Up!",
+            errors: "No Account Found. Try Signing Up!",
           });
         }
 
@@ -243,8 +243,8 @@ exports.forgotPasswordController = (req, res) => {
             if (err) {
               console.log("RESET PASSWORD LINK ERROR", err);
               return res.status(400).json({
-                error:
-                  "Database connection error on user password forgot request",
+                errors:
+                  "Database connection error on user password forgot request.",
               });
             } else {
               sgMail
@@ -252,7 +252,7 @@ exports.forgotPasswordController = (req, res) => {
                 .then(sent => {
                   // console.log('SIGNUP EMAIL SENT', sent)
                   return res.json({
-                    message: `Email has been sent to ${email}. Follow the instruction to activate your account`,
+                    message: `Password reset link has been sent to ${email}. Follow the instruction to reset your password.`,
                   });
                 })
                 .catch(err => {
@@ -287,7 +287,7 @@ exports.resetPasswordController = (req, res) => {
         function (err, decoded) {
           if (err) {
             return res.status(400).json({
-              error: "Expired link. Try again",
+              errors: "Expired link. Try again",
             });
           }
 
@@ -298,7 +298,7 @@ exports.resetPasswordController = (req, res) => {
             (err, user) => {
               if (err || !user) {
                 return res.status(400).json({
-                  error: "Something went wrong. Try later",
+                  errors: "Something went wrong. Try later",
                 });
               }
 
@@ -312,7 +312,7 @@ exports.resetPasswordController = (req, res) => {
               user.save((err, result) => {
                 if (err) {
                   return res.status(400).json({
-                    error: "Error resetting user password",
+                    errors: "Error resetting user password",
                   });
                 }
                 res.json({

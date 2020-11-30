@@ -26,7 +26,7 @@ const Activate = ({ match }) => {
     }
 
     console.log(token, name);
-  }, [match.params]);
+  }, [match.params, formData]);
   const { name, token, show } = formData;
 
   const handleSubmit = e => {
