@@ -17,10 +17,17 @@ connectDB();
 app.use(bodyParser.json());
 // Load routes
 const authRouter = require("./api/auth.route");
+<<<<<<< HEAD
 const userRouter = require("./api/user.route");
 const chatRouter = require("./api/chat.route");
+=======
+const blogRouter = require("./api/blog.route");
+const profileRouter = require("./api/profile.route");
+const schoolRouter = require("./api/school.route");
+const userRouter = require("./api/user.route");
+>>>>>>> master
 
-// Dev Logginf Middleware
+// Dev Logging Middleware
 if (process.env.NODE_ENV === "development") {
   app.use(
     cors({
@@ -32,6 +39,9 @@ if (process.env.NODE_ENV === "development") {
 
 // Use Routes
 app.use("/api", authRouter);
+app.use("/api/blog", blogRouter);
+app.use("/api/profile", profileRouter);
+app.use("/api/school", schoolRouter);
 app.use("/api", userRouter);
 app.use("./api", chatRouter);
 

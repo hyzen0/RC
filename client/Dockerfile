@@ -1,14 +1,14 @@
-FROM node:12.2.0-alpine as react_build
+FROM node:12
 
 WORKDIR /app
 
 COPY package.json .
 
-RUN npm install --silent
+RUN npm install
 
 COPY . .
 
-ENV REACT_APP_BACKEND=http://31.220.48.21:5000/
+ENV REACT_APP_API_URL=http://151.106.112.137:5000
 
 RUN npm run build 
 
