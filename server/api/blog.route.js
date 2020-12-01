@@ -35,10 +35,10 @@ var upload = multer({
 });
 
 //Load Profile Model
-const Profile = require("../../models/Profile");
+const Profile = require("../models/Profile");
 
 //Load Blog Model
-const Blog = require("../../models/Blog");
+const Blog = require("../models/Blog");
 
 //@type GET
 //@route /api/blogs
