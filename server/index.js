@@ -38,7 +38,6 @@ app.use("/api/blog", blogRouter);
 app.use("/api/profile", profileRouter);
 app.use("/api/school", schoolRouter);
 app.use("/api", userRouter);
-app.use("./api", chatRouter);
 
 app.use((req, res) => {
   res.status(404).json({
