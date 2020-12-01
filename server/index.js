@@ -17,15 +17,10 @@ connectDB();
 app.use(bodyParser.json());
 // Load routes
 const authRouter = require("./api/auth.route");
-<<<<<<< HEAD
-const userRouter = require("./api/user.route");
-const chatRouter = require("./api/chat.route");
-=======
 const blogRouter = require("./api/blog.route");
 const profileRouter = require("./api/profile.route");
 const schoolRouter = require("./api/school.route");
 const userRouter = require("./api/user.route");
->>>>>>> master
 
 // Dev Logging Middleware
 if (process.env.NODE_ENV === "development") {
