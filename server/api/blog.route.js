@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
 const passport = require("passport");
 const multer = require("multer");
 const {
@@ -35,15 +34,11 @@ var upload = multer({
   },
 });
 
-//Load Person Model
-const Person = require("../../models/auth.model");
-
 //Load Profile Model
 const Profile = require("../../models/Profile");
 
 //Load Blog Model
 const Blog = require("../../models/Blog");
-const { route } = require("./auth");
 
 //@type GET
 //@route /api/blogs

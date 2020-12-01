@@ -1,20 +1,13 @@
-const { json } = require("body-parser");
-const { Router } = require("express");
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
-const passport = require("passport");
 
 //Load Person Model
-const Person = require("../../models/auth.model");
+const Person = require("../models/auth.model");
 
 //Load Profile Model
-const Profile = require("../../models/Profile");
+const Profile = require("../models/Profile");
 
-const {
-  requireSignin,
-  adminMiddleware,
-} = require("../controllers/auth.controller");
+const { requireSignin } = require("../controllers/auth.controller");
 
 //@type GET
 //@route /api/profile/

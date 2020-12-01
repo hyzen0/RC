@@ -32,9 +32,9 @@ if (process.env.NODE_ENV === "development") {
 
 // Use Routes
 app.use("/api", authRouter);
-app.use("/api", blogRouter);
-app.use("/api", profileRouter);
-app.use("/api", schoolRouter);
+app.use("/api/blog", blogRouter);
+app.use("/api/profile", profileRouter);
+app.use("/api/school", schoolRouter);
 app.use("/api", userRouter);
 
 app.use((req, res) => {

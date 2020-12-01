@@ -1,12 +1,8 @@
-const { json } = require("body-parser");
-// const { Router } = require("express");
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
-const passport = require("passport");
 
 //Load School Model
-const School = require("../../models/School");
+const School = require("../models/School");
 
 const {
   requireSignin,
