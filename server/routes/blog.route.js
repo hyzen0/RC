@@ -3,7 +3,10 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 const multer = require("multer");
-
+const {
+  requireSignin,
+  adminMiddleware,
+} = require("../controllers/auth.controller");
 const DIR = "./public/";
 
 const storage = multer.diskStorage({
@@ -70,7 +73,8 @@ router.get("/:id", (req, res) => {
 router.post(
   "/",
   upload.single("coverImg"),
-  passport.authenticate("jwt", { session: false }),
+  requireSignin,
+  adminMiddleware,
   (req, res) => {
     const newBlog = new Blog({
       user: req.user.id,
