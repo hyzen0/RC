@@ -109,8 +109,11 @@ connectDB();
 // body parser
 app.use(bodyParser.json());
 // Load routes
-const authRouter = require("./routes/auth.route");
-const userRouter = require("./routes/user.route");
+const authRouter = require("./api/auth.route");
+const blogRouter = require("./api/blog.route");
+const profileRouter = require("./api/profile.route");
+const schoolRouter = require("./api/school.route");
+const userRouter = require("./api/user.route");
 
 // Dev Logginf Middleware
 if (process.env.NODE_ENV === "development") {
@@ -124,12 +127,15 @@ if (process.env.NODE_ENV === "development") {
 
 // Use Routes
 app.use("/api", authRouter);
+app.use("/api", blogRouter);
+app.use("/api", profileRouter);
+app.use("/api", schoolRouter);
 app.use("/api", userRouter);
 
 app.use((req, res) => {
   res.status(404).json({
     success: false,
-    msg: "Page not founded",
+    msg: "Page not found",
   });
 });
 
