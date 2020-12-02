@@ -1,24 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const passport = require("passport");
 const multer = require("multer");
+const GridFsStorage = require("multer-gridfs-storage");
 const {
   requireSignin,
   adminMiddleware,
 } = require("../controllers/auth.controller");
 const DIR = "./public/";
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, DIR);
-  },
-  filename: (req, file, cb) => {
-    const fileName = file.originalname.toLowerCase().split(" ").join("-");
-    cb(null, uuidv4() + "-" + fileName);
-  },
-});
+const storage = new GridFsStorage({ url: process.env.MONGO_URI });
 
-var upload = multer({
+const upload = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {
     if (
@@ -70,7 +62,6 @@ router.post("/", upload.single("coverImg"), requireSignin, (req, res) => {
     user: req.user.id,
     title: req.body.title,
     description: req.body.description,
-    coverImg: url + "/public/" + req.file.filename,
   });
   newBlog
     .save()

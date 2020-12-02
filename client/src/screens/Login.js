@@ -92,7 +92,7 @@ const Login = ({ history }) => {
             });
             isAuth() && isAuth().role === "admin"
               ? history.push("/admin")
-              : history.push("/private");
+              : history.push("/user/profile");
             toast.success(`Welcome ${res.data.user.name}!`);
           });
         })
