@@ -70,7 +70,7 @@ const Header = () => {
                 <>
                   <NavItem>
                     <NavLink
-                      to="/users/profile"
+                      to="/user/profile"
                       tag={RRNavLink}
                       activeClassName="active">
                       Your Profile

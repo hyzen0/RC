@@ -53,12 +53,12 @@ section {
 .blog-p {
   font-size: 85px;
   font-weight: lighter;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.65);
 }
 
 @media only screen and (max-width: 768px) {
   .blog-p {
-    font-size: 55px;
+    font-size: 50px;
     font-weight: lighter;
   }
   div.avatars {
@@ -70,6 +70,7 @@ section {
 div.blogcard {
   border-radius: 15px;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.16), 0 1px 6px rgba(0, 0, 0, 0.23);
 }
 
 div.blog-card-body {
@@ -79,10 +80,10 @@ div.blog-card-body {
     rgba(250, 250, 250, 0.96) 25%,
     rgba(250, 250, 250, 0.92) 37%,
     rgba(250, 250, 250, 0.86) 54%,
-    rgba(250, 250, 250, 0.52) 100%
+    rgba(250, 250, 250, 0.76) 100%
   );
   position: relative;
-  top: -80px;
+  top: -75px;
   margin-bottom: -50px;
 }
 h6 span {

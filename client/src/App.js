@@ -14,11 +14,16 @@ import Header from "./layouts/Header";
 
 // Import Screens
 import Home from "./screens/Home";
+import About from "./screens/About";
+import Book from "./screens/Book";
+import School from "./screens/School";
+import Blog from "./screens/Blog";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import Activate from "./screens/Activate";
 import ForgetPassword from "./screens/ForgetPassword";
 import ResetPassword from "./screens/ResetPassword";
+import Profile from "./screens/Profile";
 
 const App = () => {
   return (
@@ -32,6 +37,10 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/school" component={School} />
+        <Route exact path="/book" component={Book} />
+        <Route exact path="/blog" component={Blog} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/users/activate/:token" component={Activate} />
@@ -41,7 +50,7 @@ const App = () => {
           path="/users/password/reset/:token"
           component={ResetPassword}
         />
-        {/* <Route exact path="/user/profile" component={Private} /> */}
+        <Route exact path="/user/profile" component={Profile} />
         <Redirect to="/" />
       </Switch>
     </Router>
