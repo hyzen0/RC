@@ -1,24 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const passport = require("passport");
 const multer = require("multer");
+const GridFsStorage = require("multer-gridfs-storage");
 const {
   requireSignin,
   adminMiddleware,
 } = require("../controllers/auth.controller");
 const DIR = "./public/";
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, DIR);
-  },
-  filename: (req, file, cb) => {
-    const fileName = file.originalname.toLowerCase().split(" ").join("-");
-    cb(null, uuidv4() + "-" + fileName);
-  },
-});
+const storage = new GridFsStorage({ url: process.env.MONGO_URI });
 
-var upload = multer({
+const upload = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {
     if (
@@ -65,90 +57,75 @@ router.get("/:id", (req, res) => {
 //@route /api/blogs/
 //@desc route for submitting blogs
 //@access PRIVATE
-router.post(
-  "/",
-  upload.single("coverImg"),
-  requireSignin,
-  adminMiddleware,
-  (req, res) => {
-    const newBlog = new Blog({
-      user: req.user.id,
-      title: req.body.title,
-      description: req.body.description,
-      coverImg: url + "/public/" + req.file.filename,
-    });
-    newBlog
-      .save()
-      .then(blog =>
-        res.json({
-          msg: "Blog added successfully!",
-          blog,
-        })
-      )
-      .catch(err => console.log("Unable to push blog to database" + err));
-  }
-);
+router.post("/", upload.single("coverImg"), requireSignin, (req, res) => {
+  const newBlog = new Blog({
+    user: req.user.id,
+    title: req.body.title,
+    description: req.body.description,
+  });
+  newBlog
+    .save()
+    .then(blog =>
+      res.json({
+        msg: "Blog added successfully!",
+        blog,
+      })
+    )
+    .catch(err => console.log("Unable to push blog to database" + err));
+});
 
 //@type POST
 //@route /api/blogs/comments/:id
 //@desc route for comments
 //@access PRIVATE
 
-router.post(
-  "/comments/:id",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Blog.findById(req.params.id)
-      .then(blog => {
-        const newComment = {
-          user: req.user.id,
-          name: req.body.name,
-          text: req.body.text,
-        };
-        blog.comments
-          .unshift(newComment)
-          .save()
-          .then(blog => res.json(blog))
-          .catch(err => console.log(err));
-      })
-      .catch(err => console.log(err));
-  }
-);
+router.post("/comments/:id", requireSignin, (req, res) => {
+  Blog.findById(req.params.id)
+    .then(blog => {
+      const newComment = {
+        user: req.user.id,
+        name: req.body.name,
+        text: req.body.text,
+      };
+      blog.comments
+        .unshift(newComment)
+        .save()
+        .then(blog => res.json(blog))
+        .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
+});
 
 //@type POST
 //@route /api/blogs/likes/:id
 //@desc route for likes
 //@access PRIVATE
-router.post(
-  "/likes/:id",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Profile.findOne({ user: req.user.id })
-      .then(profile => {
-        Blog.findById(req.params.id)
-          .then(blog => {
-            if (
-              blog.likes.filter(
-                likes => likes.user.toString() === req.user.id.toString()
-              ).length > 0
-            ) {
-              return blog.likes
-                .pop({ user: req.user.id })
-                .save()
-                .then(blog => res.json(blog))
-                .catch(err => console.log(err));
-            }
-
-            blog.likes.unshift({ user: req.user.id });
-            blog
+router.post("/likes/:id", requireSignin, (req, res) => {
+  Profile.findOne({ user: req.user.id })
+    .then(profile => {
+      Blog.findById(req.params.id)
+        .then(blog => {
+          if (
+            blog.likes.filter(
+              likes => likes.user.toString() === req.user.id.toString()
+            ).length > 0
+          ) {
+            return blog.likes
+              .pop({ user: req.user.id })
               .save()
               .then(blog => res.json(blog))
               .catch(err => console.log(err));
-          })
-          .catch(err => console.log(err));
-      })
-      .catch(err => console.log(err));
-  }
-);
+          }
+
+          blog.likes.unshift({ user: req.user.id });
+          blog
+            .save()
+            .then(blog => res.json(blog))
+            .catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
+});
 
 module.exports = router;

@@ -92,7 +92,7 @@ const Login = ({ history }) => {
             });
             isAuth() && isAuth().role === "admin"
               ? history.push("/admin")
-              : history.push("/private");
+              : history.push("/user/profile");
             toast.success(`Welcome ${res.data.user.name}!`);
           });
         })
@@ -155,7 +155,7 @@ const Login = ({ history }) => {
                     value={password1}
                   />
                   <Link to="/users/password/forget" className="">
-                    <small>Forget Password?</small>
+                    <small>Forgot Password?</small>
                   </Link>
                 </FormGroup>
 

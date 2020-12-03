@@ -24,11 +24,14 @@ router.get("/", (req, res) => {
 //@desc route posting schools
 //@access PRIVATE
 
-router.post("/", requireSignin, adminMiddleware, (req, res) => {
+router.post("/", requireSignin, (req, res) => {
   const newSchool = new School({
-    name: req.body.name,
-    city: req.body.city,
-    state: req.body.state,
+    school_name: req.body.school_name,
+    pincode: req.body.pincode,
+    address: req.body.address,
+    website: req.body.website,
+    mail_id: req.body.mail_id,
+    contact_no: req.body.contact_no,
     board: req.body.board,
   });
   newSchool
