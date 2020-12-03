@@ -57,22 +57,28 @@ router.get("/:id", (req, res) => {
 //@route /api/blogs/
 //@desc route for submitting blogs
 //@access PRIVATE
-router.post("/", upload.single("coverImg"), requireSignin, (req, res) => {
-  const newBlog = new Blog({
-    user: req.user.id,
-    title: req.body.title,
-    description: req.body.description,
-  });
-  newBlog
-    .save()
-    .then(blog =>
-      res.json({
-        msg: "Blog added successfully!",
-        blog,
-      })
-    )
-    .catch(err => console.log("Unable to push blog to database" + err));
-});
+router.post(
+  "/",
+  upload.single("coverImg"),
+  requireSignin,
+  adminMiddleware,
+  (req, res) => {
+    const newBlog = new Blog({
+      user: req.user.id,
+      title: req.body.title,
+      description: req.body.description,
+    });
+    newBlog
+      .save()
+      .then(blog =>
+        res.json({
+          msg: "Blog added successfully!",
+          blog,
+        })
+      )
+      .catch(err => console.log("Unable to push blog to database" + err));
+  }
+);
 
 //@type POST
 //@route /api/blogs/comments/:id
