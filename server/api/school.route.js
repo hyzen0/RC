@@ -24,7 +24,7 @@ router.get("/", (req, res) => {
 //@desc route posting schools
 //@access PRIVATE
 
-router.post("/", requireSignin, (req, res) => {
+router.post("/", requireSignin, adminMiddleware, (req, res) => {
   const newSchool = new School({
     school_name: req.body.school_name,
     pincode: req.body.pincode,
