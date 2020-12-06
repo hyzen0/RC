@@ -5,15 +5,21 @@ import {
   CardImg,
   CardSubtitle,
   CardTitle,
+  CardText,
 } from "reactstrap";
+import { Link } from "react-router-dom";
 import { FcBusinessman } from "react-icons/fc";
+import { HiArrowNarrowRight } from "react-icons/hi";
 import blog from "../assets/replace.svg";
 
 const BlogCard = props => {
-  const { title, image, author = "admin", date } = props;
+  const { title, image, author = "admin", date, description } = props;
+
+  let desc = description.slice(0, 78);
+
   return (
-    <Col md={4} className="my-3">
-      <Card className="blogcard">
+    <Col md={4} className="mt-3">
+      <Card className="blogcard pb-0">
         <CardImg
           src={image || blog}
           alt={title}
@@ -26,8 +32,14 @@ const BlogCard = props => {
           </CardTitle>
           <CardSubtitle tag="p" className="text-muted">
             <FcBusinessman fontSize="20" /> <span>{author}</span> &nbsp;
-            <small>{date}</small>
+            <small>{new Date(date).toDateString()}</small>
           </CardSubtitle>
+          <CardText className="mt-3 text-muted" tag="p">
+            {desc}...
+          </CardText>
+          <Link>
+            Read More <HiArrowNarrowRight fontSize="18" />
+          </Link>
         </CardBody>
       </Card>
       <hr className="d-md-none d-lg-none d-xl-none" />
