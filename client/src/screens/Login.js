@@ -91,9 +91,10 @@ const Login = ({ history }) => {
               textChange: "Signed In",
             });
             isAuth() && isAuth().role === "admin"
-              ? history.push("/admin")
-              : history.push("/user/profile");
+              ? history.push("/admin/")
+              : history.push("/user/profile/");
             toast.success(`Welcome ${res.data.user.name}!`);
+            window.location.reload(true);
           });
         })
         .catch(err => {
@@ -154,7 +155,7 @@ const Login = ({ history }) => {
                     onChange={handleChange("password1")}
                     value={password1}
                   />
-                  <Link to="/users/password/forget" className="">
+                  <Link to="/users/password/forget/" className="">
                     <small>Forgot Password?</small>
                   </Link>
                 </FormGroup>
@@ -179,7 +180,7 @@ const Login = ({ history }) => {
 
               <div className="text-center pt-3">
                 Dont have an account?&nbsp;
-                <Link to="/register" className="text-danger">
+                <Link to="/register/" className="text-danger">
                   Sign Up
                 </Link>
               </div>

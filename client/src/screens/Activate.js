@@ -52,7 +52,7 @@ const Activate = ({ match }) => {
         });
 
         setTimeout(() => {
-          history.push("/login");
+          history.push("/login/");
         }, 3000);
       })
       .catch(err => {
@@ -86,7 +86,9 @@ const Activate = ({ match }) => {
               </Form>
               <hr width="80%" />
               <div className="text-center">
-                <Link to="/login" className="btn btn-outline-primary mt-2 mx-2">
+                <Link
+                  to="/login/"
+                  className="btn btn-outline-primary mt-2 mx-2">
                   <FiLogIn fontSize="25" />
                   &nbsp;Sign In
                 </Link>

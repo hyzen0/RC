@@ -13,7 +13,7 @@ import { HiArrowNarrowRight } from "react-icons/hi";
 import blog from "../assets/replace.svg";
 
 const BlogCard = props => {
-  const { title, image, author = "admin", date, description } = props;
+  const { title, image, author = "admin", date, description, url } = props;
 
   let desc = description.slice(0, 78);
 
@@ -37,7 +37,7 @@ const BlogCard = props => {
           <CardText className="mt-3 text-muted" tag="p">
             {desc}...
           </CardText>
-          <Link>
+          <Link to={`${url}/`} className="mt-auto">
             Read More <HiArrowNarrowRight fontSize="18" />
           </Link>
         </CardBody>

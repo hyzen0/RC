@@ -24,12 +24,12 @@ const Home = () => {
               ) : (
                 <>
                   <Link
-                    to="/login"
+                    to="/login/"
                     className="btn btn-outline-primary mt-2 mx-2">
                     Sign In &nbsp;
                     <FiLogIn fontSize="25" />
                   </Link>
-                  <Link to="/register" className="btn btn-primary mt-2 mx-2">
+                  <Link to="/register/" className="btn btn-primary mt-2 mx-2">
                     Sign Up &nbsp;
                     <MdPersonAdd fontSize="25" />
                   </Link>
@@ -57,7 +57,7 @@ const Home = () => {
                 Compare, see reviews of schools across India to find the ones
                 that suit you best.
               </p>
-              <Link to="/school" className="btn btn-primary">
+              <Link to="/school/" className="btn btn-primary">
                 Nearby Schools <HiArrowNarrowRight fontSize="20" />
               </Link>
             </Col>
@@ -73,7 +73,7 @@ const Home = () => {
               <p className="text-muted" style={{ fontSize: "18px" }}>
                 Buy, sell and donate books across India.
               </p>
-              <Link to="/book" className="btn btn-primary">
+              <Link to="/book/" className="btn btn-primary">
                 View Books <HiArrowNarrowRight fontSize="20" />
               </Link>
             </Col>

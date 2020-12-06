@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 
 // Import Layouts
 import Header from "./layouts/Header";
+import Footer from "./layouts/Footer";
 
 // Import Screens
 import Home from "./screens/Home";
@@ -37,22 +38,28 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/school" component={School} />
-        <Route exact path="/book" component={Book} />
-        <Route exact path="/blog" component={Blog} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/users/activate/:token" component={Activate} />
-        <Route exact path="/users/password/forget" component={ForgetPassword} />
+        <Route exact path="/about/" component={About} />
+        <Route exact path="/school/" component={School} />
+        <Route exact path="/book/" component={Book} />
+        <Route exact path="/blog/" component={Blog} />
+        {/* <Route exact path="/blog/:url/" component={} /> */}
+        <Route exact path="/login/" component={Login} />
+        <Route exact path="/register/" component={Register} />
+        <Route exact path="/users/activate/:token/" component={Activate} />
         <Route
           exact
-          path="/users/password/reset/:token"
+          path="/users/password/forget/"
+          component={ForgetPassword}
+        />
+        <Route
+          exact
+          path="/users/password/reset/:token/"
           component={ResetPassword}
         />
-        <Route exact path="/user/profile" component={Profile} />
+        <Route exact path="/user/profile/" component={Profile} />
         <Redirect to="/" />
       </Switch>
+      <Footer />
     </Router>
   );
 };

@@ -17,7 +17,7 @@ const Blog = () => {
         setBlogs(res.data);
       })
       .catch(err => {
-        console.log(err.response.data.msg);
+        console.log(err.response);
         setIsLoading(true);
       });
   }, []);
@@ -48,6 +48,7 @@ const Blog = () => {
                 description={blog.description}
                 image={blog.coverImg}
                 date={blog.date}
+                url={blog._id}
                 key={k}
               />
             ))}
