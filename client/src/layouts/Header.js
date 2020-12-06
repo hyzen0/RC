@@ -22,9 +22,13 @@ const Header = () => {
 
   return (
     <>
-      <Navbar light expand="sm" style={{ backgroundColor: "white" }}>
-        <Container fluid="lg" className="px-2">
-          <NavbarBrand className="font-weight-bold" href="/">
+      <Navbar
+        light
+        expand="sm"
+        style={{ backgroundColor: "white" }}
+        className="container">
+        <Container>
+          <NavbarBrand href="/">
             <span style={{ color: "#417dfd" }}>Right</span> Companion
           </NavbarBrand>
 
@@ -92,12 +96,11 @@ const Header = () => {
               ) : (
                 <>
                   <NavItem>
-                    <NavLink
+                    <Link
                       to="/login"
-                      tag={Link}
-                      className="py-1 mt-1 mx-1 text-white btn btn-primary">
+                      className="btn btn-outline-primary ml-2 mt-1 nbtn">
                       Sign In
-                    </NavLink>
+                    </Link>
                   </NavItem>
                 </>
               )}

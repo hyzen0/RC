@@ -15,7 +15,7 @@ const Home = () => {
     <>
       <section>
         <Container>
-          <Row className="py-5 d-flex justify-content-center">
+          <Row className="py-md-4 d-flex justify-content-center">
             <Col md={6} className="pt-4 my-auto text-center order-2 order-md-1">
               <h1>Welcome To Right Companion</h1>
 
