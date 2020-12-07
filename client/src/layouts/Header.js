@@ -54,17 +54,17 @@ const Header = () => {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/school" tag={RRNavLink} activeClassName="active">
+                <NavLink to="/school/" tag={RRNavLink} activeClassName="active">
                   Schools
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/book" tag={RRNavLink} activeClassName="active">
+                <NavLink to="/book/" tag={RRNavLink} activeClassName="active">
                   Books
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/blog" tag={RRNavLink} activeClassName="active">
+                <NavLink to="/blog/" tag={RRNavLink} activeClassName="active">
                   Blog
                 </NavLink>
               </NavItem>
@@ -74,7 +74,7 @@ const Header = () => {
                 <>
                   <NavItem>
                     <NavLink
-                      to="/user/profile"
+                      to="/user/profile/"
                       tag={RRNavLink}
                       activeClassName="active">
                       Your Profile
@@ -87,6 +87,7 @@ const Header = () => {
                           toast("We Hope To See you Again!");
                           history.push("/");
                         });
+                        window.location.reload(true);
                       }}
                       className="py-1 mt-1 mx-1 text-white btn btn-primary">
                       Logout
@@ -97,7 +98,7 @@ const Header = () => {
                 <>
                   <NavItem>
                     <Link
-                      to="/login"
+                      to="/login/"
                       className="btn btn-outline-primary ml-2 mt-1 nbtn">
                       Sign In
                     </Link>
