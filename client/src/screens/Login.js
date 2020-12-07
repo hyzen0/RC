@@ -55,8 +55,8 @@ const Login = ({ history }) => {
   const informParent = response => {
     authenticate(response, () => {
       isAuth() && isAuth().role === "admin"
-        ? history.push("/admin")
-        : history.push("/private");
+        ? history.push("/admin/")
+        : history.push("/user/profile/");
     });
   };
 

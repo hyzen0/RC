@@ -72,14 +72,26 @@ const Header = () => {
               {/* set user in navbar */}
               {isAuth() ? (
                 <>
-                  <NavItem>
-                    <NavLink
-                      to="/user/profile/"
-                      tag={RRNavLink}
-                      activeClassName="active">
-                      Your Profile
-                    </NavLink>
-                  </NavItem>
+                  {isAuth().role === "admin" ? (
+                    <NavItem>
+                      <NavLink
+                        to="/admin/"
+                        tag={RRNavLink}
+                        activeClassName="active">
+                        Admin
+                      </NavLink>
+                    </NavItem>
+                  ) : (
+                    <NavItem>
+                      <NavLink
+                        to="/user/profile/"
+                        tag={RRNavLink}
+                        activeClassName="active">
+                        Your Profile
+                      </NavLink>
+                    </NavItem>
+                  )}
+
                   <NavItem>
                     <NavLink
                       onClick={() => {

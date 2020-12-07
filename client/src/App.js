@@ -25,6 +25,11 @@ import Activate from "./screens/Activate";
 import ForgetPassword from "./screens/ForgetPassword";
 import ResetPassword from "./screens/ResetPassword";
 import Profile from "./screens/Profile";
+import Admin from "./screens/Admin";
+
+// Import Protected routes
+import PrivateRoute from "./routes/PrivateRoute";
+import AdminRoute from "./routes/AdminRoute";
 
 const App = () => {
   return (
@@ -56,7 +61,8 @@ const App = () => {
           path="/users/password/reset/:token/"
           component={ResetPassword}
         />
-        <Route exact path="/user/profile/" component={Profile} />
+        <PrivateRoute exact path="/user/profile/" component={Profile} />
+        <AdminRoute exact path="/admin/" component={Admin} />
         <Redirect to="/" />
       </Switch>
       <Footer />
