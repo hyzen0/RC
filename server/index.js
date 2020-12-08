@@ -36,7 +36,7 @@ if (process.env.NODE_ENV === "development") {
 app.use("/api", authRouter);
 app.use("/api/blogs", blogRouter);
 app.use("/api/profile", profileRouter);
-app.use("/api/school", schoolRouter);
+app.use("/api/schools", schoolRouter);
 app.use("/api", userRouter);
 
 app.use((req, res) => {

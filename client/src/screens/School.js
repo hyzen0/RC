@@ -10,17 +10,23 @@ import {
 } from "reactstrap";
 import axios from "axios";
 import search from "../assets/search.svg";
+import empty from "../assets/empty.svg";
 
 const School = () => {
   const [query, setQuery] = useState("");
-  const [detail, setDetail] = useState([]);
+  const [schools, setSchools] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchSchools = async () => {
     try {
-      const { data } = await axios.get();
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/schools/${
+          query.charAt(0).toUpperCase() + query.slice(1)
+        }`
+      );
+      console.log(data);
       setIsLoading(false);
-      setDetail(data);
+      setSchools(data);
     } catch (err) {
       console.log(err);
       setIsLoading(true);
@@ -60,10 +66,23 @@ const School = () => {
         </Row>
       ) : (
         <>
-          {detail === [] ? (
-            <h4 className="text-center mt-5">No School Found in this City!</h4>
+          {schools.length === 0 ? (
+            <Row className="justify-content-center">
+              <Col xs={6} sm={4} md={3} className="pt-5 text-center">
+                <img src={empty} alt="empty" className="img-fluid" />
+                <h3 className="my-3">No School Found!</h3>
+              </Col>
+            </Row>
           ) : (
-            "School fetched"
+            <Row>
+              <Col>
+                {schools.map(school => (
+                  <h1 className="text-dark" key={school._id}>
+                    {school.city} &nbsp; {school.school_name}
+                  </h1>
+                ))}
+              </Col>
+            </Row>
           )}
         </>
       )}

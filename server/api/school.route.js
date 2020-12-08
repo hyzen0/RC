@@ -10,13 +10,16 @@ const {
 } = require("../controllers/auth.controller");
 
 //@type GET
-//@route /api/schools
+//@route /api/schools/:city
 //@desc route for showing all schools
 //@access PUBLIC
-router.get("/", (req, res) => {
-  School.find()
+router.get("/:city", (req, res) => {
+  School.find({ city: req.params.city })
     .then(schools => res.json(schools))
-    .catch(err => res.json({ noSchool: "no schools to display" }));
+    .catch(err => {
+      console.log(err);
+      res.json({ msg: "No School Found!" });
+    });
 });
 
 //@type POST
@@ -33,6 +36,7 @@ router.post("/", requireSignin, adminMiddleware, (req, res) => {
     mail_id: req.body.mail_id,
     contact_no: req.body.contact_no,
     board: req.body.board,
+    city: req.body.city,
   });
   newSchool
     .save()

@@ -38,6 +38,10 @@ a.nbtn {
   font-weight: 500;
 }
 
+.nav-tabs .nav-link {
+  cursor: pointer;
+}
+
 /* Styling for form fields */
 label {
   font-size: 14px;

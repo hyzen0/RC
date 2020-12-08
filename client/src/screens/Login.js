@@ -46,6 +46,7 @@ const Login = ({ history }) => {
       .then(res => {
         console.log(res.data);
         informParent(res);
+        window.location.reload(true);
       })
       .catch(error => {
         console.log("GOOGLE SIGNIN ERROR", error.response);

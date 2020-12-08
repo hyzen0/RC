@@ -18,7 +18,7 @@ const BlogCard = props => {
   let desc = description.slice(0, 78);
 
   return (
-    <Col md={4} className="mt-3">
+    <Col md={4} className="my-3">
       <Card className="blogcard pb-0">
         <CardImg
           src={image || blog}
