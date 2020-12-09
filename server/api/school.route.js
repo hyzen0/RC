@@ -22,6 +22,12 @@ router.get("/:city", (req, res) => {
     });
 });
 
+router.get("/", requireSignin, adminMiddleware, (req, res) => {
+  School.find()
+    .then(schools => res.json(schools))
+    .catch(err => res.status(404).json(err));
+});
+
 //@type POST
 //@route /api/schools
 //@desc route posting schools

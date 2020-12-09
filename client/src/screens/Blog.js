@@ -50,17 +50,8 @@ const Blog = () => {
               </Col>
             </Row>
           ) : (
-            <Row>
-              {blogs.map(blog => (
-                <BlogCard
-                  title={blog.title}
-                  description={blog.description}
-                  image={blog.coverImg}
-                  date={blog.date}
-                  url={blog.title.replace(/ /g, "-").toLowerCase()}
-                  key={blog._id}
-                />
-              ))}
+            <Row className="justify-content-center">
+              <BlogCard blogs={blogs} />
             </Row>
           )}
         </>
