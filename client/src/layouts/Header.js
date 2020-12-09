@@ -49,7 +49,7 @@ const Header = () => {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/about" tag={RRNavLink} activeClassName="active">
+                <NavLink to="/about/" tag={RRNavLink} activeClassName="active">
                   About Us
                 </NavLink>
               </NavItem>
@@ -78,7 +78,7 @@ const Header = () => {
                         to="/admin/"
                         tag={RRNavLink}
                         activeClassName="active">
-                        Admin
+                        Admin DashBoard
                       </NavLink>
                     </NavItem>
                   ) : (

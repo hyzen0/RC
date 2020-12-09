@@ -7,20 +7,29 @@ const SchoolSchema = new Schema({
   },
   pincode: {
     type: Number,
+    default: null,
   },
   address: {
     type: String,
+    default: null,
   },
   website: {
     type: String,
+    default: null,
   },
   mail_id: {
     type: String,
+    default: null,
   },
   contact_no: {
-    type: Number,
+    type: String,
+    default: null,
   },
   board: {
+    type: String,
+    default: null,
+  },
+  city: {
     type: String,
   },
 });
