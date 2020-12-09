@@ -111,6 +111,11 @@ div.blog-card-body {
   top: -30px;
   margin-bottom: -30px;
 }
+
+div.school-card {
+  display: flex;
+  flex-direction: column;
+}
 h6 span {
   font-size: 14.8px;
   font-weight: bold;
@@ -119,4 +124,11 @@ h6 span {
 
 h6 small {
   font-size: 10.24px;
+}
+
+/* Pagination style */
+li.page-link,
+button.page-link:focus {
+  outline: none;
+  box-shadow: none;
 }
