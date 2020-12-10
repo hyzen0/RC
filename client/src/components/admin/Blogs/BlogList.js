@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Row, Col, Spinner, TabPane } from "reactstrap";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import BlogTable from "./BlogTable";
 import Paginations from "../../Paginations";
 import replace from "../../../assets/replace.svg";
 import { MdNoteAdd } from "react-icons/md";
 
-const BlogList = props => {
-  const { tabId } = props;
+const BlogList = ({ tabId }) => {
+  const history = useHistory();
 
   const [blogs, setBlogs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -51,7 +52,10 @@ const BlogList = props => {
         <>
           <Row className="d-flex justify-content-between mt-2 mx-1">
             <h5 className="text-white">Total Blogs: {blogs.length}</h5>
-            <button type="button" className="btn btn-primary px-4 blogBtn">
+            <button
+              type="button"
+              className="btn btn-primary px-4 blogBtn"
+              onClick={() => history.push("/admin/newblog/")}>
               <MdNoteAdd /> Create New Blog
             </button>
           </Row>

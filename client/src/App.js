@@ -63,6 +63,8 @@ const App = () => {
         />
         <PrivateRoute exact path="/user/profile/" component={Profile} />
         <AdminRoute exact path="/admin/" component={AdminPannel} />
+        <AdminRoute exact path="/admin/newschool/" component={AdminPannel} />
+        <AdminRoute exact path="/admin/newblog/" component={AdminPannel} />
         <Redirect to="/" />
       </Switch>
       <Footer />

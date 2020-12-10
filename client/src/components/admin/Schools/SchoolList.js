@@ -10,6 +10,7 @@ import {
   Button,
 } from "reactstrap";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import SchoolTable from "./SchoolTable";
 import Paginations from "../../Paginations";
 import replace from "../../../assets/empty.svg";
@@ -17,6 +18,7 @@ import { MdNoteAdd } from "react-icons/md";
 import { getCookie } from "../../../helpers/auth";
 
 const SchoolList = ({ tabId }) => {
+  const history = useHistory();
   const [query, setQuery] = useState("");
   const [allSchools, setAllSchools] = useState([]);
   const [schools, setSchools] = useState([]);
@@ -82,7 +84,10 @@ const SchoolList = ({ tabId }) => {
             <h5 className="text-white">
               Total Schools in Database: {allSchools.length}
             </h5>
-            <button type="button" className="btn btn-primary px-4 blogBtn">
+            <button
+              type="button"
+              className="btn btn-primary px-4 blogBtn"
+              onClick={() => history.push("/admin/newschool/")}>
               <MdNoteAdd /> Create New School
             </button>
           </Row>
