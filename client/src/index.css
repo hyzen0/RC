@@ -132,3 +132,8 @@ button.page-link:focus {
   outline: none;
   box-shadow: none;
 }
+
+div div .blogBtn:focus {
+  box-shadow: none;
+  outline: none;
+}
