@@ -1,14 +1,5 @@
 import { useState } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Input,
-  Button,
-  InputGroup,
-  InputGroupAddon,
-  Spinner,
-} from "reactstrap";
+import { Container, Row, Col, Button, Spinner } from "reactstrap";
 import axios from "axios";
 import Autosuggest from "react-autosuggest";
 import search from "../assets/search.svg";
