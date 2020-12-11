@@ -137,3 +137,58 @@ div div .blogBtn:focus {
   box-shadow: none;
   outline: none;
 }
+
+/* Auto suggest style */
+.react-autosuggest__container {
+  position: relative;
+}
+
+.react-autosuggest__input {
+  width: 240px;
+  height: 30px;
+  border: 2px solid #aaa;
+  padding: 15px 8px;
+  border-radius: 5px;
+}
+
+.react-autosuggest__input--focused {
+  outline: none;
+  border: 2px solid #417dfd;
+}
+
+.react-autosuggest__input--open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.react-autosuggest__suggestions-container {
+  display: none;
+}
+
+.react-autosuggest__suggestions-container--open {
+  display: block;
+  position: absolute;
+  width: 240px;
+  border: 2px solid #417dfd;
+  background-color: #fff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 2;
+}
+
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 8px 8px;
+}
+
+.react-autosuggest__suggestion--highlighted {
+  background-color: #ddd;
+}

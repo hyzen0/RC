@@ -10,13 +10,40 @@ import {
   Spinner,
 } from "reactstrap";
 import axios from "axios";
+import Autosuggest from "react-autosuggest";
 import search from "../assets/search.svg";
 import empty from "../assets/empty.svg";
+import { Cities } from "../helpers/cities";
 import SchoolCard from "../components/SchoolCard";
 import Paginations from "../components/Paginations";
 
+const escapeRegexCharacters = str => {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+};
+
+const getSuggestions = value => {
+  const escapedValue = escapeRegexCharacters(value.trim());
+
+  if (escapedValue === "") {
+    return [];
+  }
+
+  const regex = new RegExp("^" + escapedValue, "i");
+
+  return Cities.cities.filter(name => regex.test(name.city));
+};
+
+const getSuggestionValue = suggestion => {
+  return suggestion.city;
+};
+
+const renderSuggestion = suggestion => {
+  return <span>{suggestion.city}</span>;
+};
+
 const School = () => {
-  const [query, setQuery] = useState("");
+  const [value, setValue] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
   const [schools, setSchools] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [schoolsPerPage] = useState(6);
@@ -26,24 +53,34 @@ const School = () => {
   const fetchSchools = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/schools/${
-          query.charAt(0).toUpperCase() + query.slice(1)
-        }`
+        `${process.env.REACT_APP_API_URL}/api/schools/${value}`
       );
 
       console.log(data);
       setStates(false);
 
       setTimeout(() => {
-        setQuery("");
+        setValue("");
         setIsLoading(false);
         setSchools(data);
       }, 800);
     } catch (err) {
-      setQuery("");
+      setValue("");
       console.log(err);
       setStates(true);
     }
+  };
+
+  const onChange = (event, { newValue, method }) => {
+    setValue(newValue);
+  };
+
+  const onSuggestionsFetchRequested = ({ value }) => {
+    setSuggestions(getSuggestions(value));
+  };
+
+  const onSuggestionsClearRequested = () => {
+    setSuggestions([]);
   };
 
   // Get current schools
@@ -54,28 +91,29 @@ const School = () => {
   // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
+  const inputProps = {
+    placeholder: "Search with city",
+    value,
+    onChange: onChange,
+  };
+
   return (
     <Container>
-      <Row className="d-flex justify-content-center mt-4">
-        <Col md={6}>
-          <InputGroup>
-            <Input
-              type="text"
-              value={query}
-              onChange={e => setQuery(e.target.value)}
-              id="cities"
-              placeholder="Search with city"
-            />
-
-            <InputGroupAddon addonType="append">
-              <Button
-                onClick={fetchSchools}
-                color="primary"
-                className="ml-2 py-1 px-2">
-                Search
-              </Button>
-            </InputGroupAddon>
-          </InputGroup>
+      <Row className="mt-2 justify-content-center">
+        <Col md={3} className="pt-sm-2 pt-2">
+          <Autosuggest
+            suggestions={suggestions}
+            onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={onSuggestionsClearRequested}
+            getSuggestionValue={getSuggestionValue}
+            renderSuggestion={renderSuggestion}
+            inputProps={inputProps}
+          />
+        </Col>
+        <Col md={2} className="pt-sm-2 pt-2">
+          <Button onClick={fetchSchools} color="primary" className="py-1 px-2">
+            Search
+          </Button>
         </Col>
       </Row>
 
