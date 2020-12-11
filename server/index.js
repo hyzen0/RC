@@ -3,7 +3,6 @@ const morgan = require("morgan");
 const connectDB = require("./config/db");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const http = require("http");
 
 // Config dotev...
 require("dotenv").config();
@@ -21,6 +20,7 @@ const blogRouter = require("./api/blog.route");
 const profileRouter = require("./api/profile.route");
 const schoolRouter = require("./api/school.route");
 const userRouter = require("./api/user.route");
+const ngoRouter = require("./api/ngo.route");
 
 // Dev Logging Middleware
 if (process.env.NODE_ENV === "development") {
@@ -38,6 +38,7 @@ app.use("/api/blogs", blogRouter);
 app.use("/api/profile", profileRouter);
 app.use("/api/schools", schoolRouter);
 app.use("/api", userRouter);
+app.use("/api/ngo", ngoRouter);
 
 app.use((req, res) => {
   res.status(404).json({
@@ -48,10 +49,6 @@ app.use((req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-const server = http.createServer(app);
-const SocketServer = require("./socket");
-SocketServer(server);
-
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });

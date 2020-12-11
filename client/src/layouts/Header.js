@@ -49,8 +49,8 @@ const Header = () => {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink to="/about/" tag={RRNavLink} activeClassName="active">
-                  About Us
+                <NavLink to="/ngo/" tag={RRNavLink} activeClassName="active">
+                  NGO
                 </NavLink>
               </NavItem>
               <NavItem>

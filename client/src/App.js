@@ -15,7 +15,7 @@ import Footer from "./layouts/Footer";
 
 // Import Screens
 import Home from "./screens/Home";
-import About from "./screens/About";
+import Ngo from "./screens/Ngo";
 import Book from "./screens/Book";
 import School from "./screens/School";
 import Blog from "./screens/Blog";
@@ -43,7 +43,7 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/about/" component={About} />
+        <Route exact path="/ngo/" component={Ngo} />
         <Route exact path="/school/" component={School} />
         <Route exact path="/book/" component={Book} />
         <Route exact path="/blog/" component={Blog} />
@@ -63,6 +63,8 @@ const App = () => {
         />
         <PrivateRoute exact path="/user/profile/" component={Profile} />
         <AdminRoute exact path="/admin/" component={AdminPannel} />
+        <AdminRoute exact path="/admin/newschool/" component={AdminPannel} />
+        <AdminRoute exact path="/admin/newblog/" component={AdminPannel} />
         <Redirect to="/" />
       </Switch>
       <Footer />

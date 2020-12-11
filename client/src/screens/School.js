@@ -35,10 +35,12 @@ const School = () => {
       setStates(false);
 
       setTimeout(() => {
+        setQuery("");
         setIsLoading(false);
         setSchools(data);
       }, 800);
     } catch (err) {
+      setQuery("");
       console.log(err);
       setStates(true);
     }

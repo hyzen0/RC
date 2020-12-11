@@ -17,27 +17,11 @@ const BlogSchema = new Schema({
   coverImg: {
     type: String,
   },
-  likes: [
+  request: [
     {
       user: {
         type: Schema.Types.ObjectId,
         ref: "User",
-      },
-    },
-  ],
-  comments: [
-    {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
-      text: {
-        type: String,
-        required: true,
-      },
-      date: {
-        type: Date,
-        default: Date.now,
       },
     },
   ],
@@ -47,4 +31,4 @@ const BlogSchema = new Schema({
   },
 });
 
-module.exports = Blog = mongoose.model("myBlog", BlogSchema);
+module.exports = Blog = mongoose.model("myStudyMaterial", BlogSchema);
