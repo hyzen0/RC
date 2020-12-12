@@ -12,6 +12,7 @@ body {
   margin: 0;
   background-color: white;
 }
+
 /* Styling for navbar  */
 .navbar {
   margin-top: 10px;
@@ -133,6 +134,9 @@ button.page-link:focus {
   box-shadow: none;
 }
 
+/* Buttons styling */
+nav .btn-outline-primary:focus,
+div div div .btn-primary:focus,
 div div .blogBtn:focus {
   box-shadow: none;
   outline: none;
