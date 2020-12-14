@@ -110,12 +110,20 @@ const Login = ({ history }) => {
             color: "danger",
             message: err.response.data.errors,
           });
+
+          setTimeout(() => {
+            setMsg({ color: "", message: "" });
+          }, 3000);
         });
     } else {
       setMsg({
         color: "danger",
         message: "Please fill all fields!",
       });
+
+      setTimeout(() => {
+        setMsg({ color: "", message: "" });
+      }, 3000);
     }
   };
 

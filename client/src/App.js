@@ -26,10 +26,13 @@ import ForgetPassword from "./screens/ForgetPassword";
 import ResetPassword from "./screens/ResetPassword";
 import Profile from "./screens/Profile";
 import AdminPannel from "./screens/AdminPannel";
+import BlogPost from "./components/BlogPost";
 
 // Import Protected routes
 import PrivateRoute from "./routes/PrivateRoute";
 import AdminRoute from "./routes/AdminRoute";
+import BlogCreate from "./components/admin/Blogs/BlogCreate";
+import SchoolCreate from "./components/admin/Schools/SchoolCreate";
 
 const App = () => {
   return (
@@ -47,7 +50,7 @@ const App = () => {
         <Route exact path="/school/" component={School} />
         <Route exact path="/book/" component={Book} />
         <Route exact path="/blog/" component={Blog} />
-        <Route exact path="/blog/:url/" component={Blog} />
+        <Route exact path="/blog/:id/" component={BlogPost} />
         <Route exact path="/login/" component={Login} />
         <Route exact path="/register/" component={Register} />
         <Route exact path="/users/activate/:token/" component={Activate} />
@@ -63,8 +66,8 @@ const App = () => {
         />
         <PrivateRoute exact path="/user/profile/" component={Profile} />
         <AdminRoute exact path="/admin/" component={AdminPannel} />
-        <AdminRoute exact path="/admin/newschool/" component={AdminPannel} />
-        <AdminRoute exact path="/admin/newblog/" component={AdminPannel} />
+        <AdminRoute exact path="/admin/newschool/" component={SchoolCreate} />
+        <AdminRoute exact path="/admin/newblog/" component={BlogCreate} />
         <Redirect to="/" />
       </Switch>
       <Footer />

@@ -11,7 +11,7 @@ const {
 
 //@type GET
 //@route /api/schools/:city
-//@desc route for showing all schools
+//@desc route for showing all schools in particular city
 //@access PUBLIC
 router.get("/:city", (req, res) => {
   School.find({ city: req.params.city })
@@ -22,6 +22,10 @@ router.get("/:city", (req, res) => {
     });
 });
 
+//@type GET
+//@route /api/schools/
+//@desc route for showing all schools
+//@access PRIVATE
 router.get("/", requireSignin, adminMiddleware, (req, res) => {
   School.find()
     .then(schools => res.json(schools))

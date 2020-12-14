@@ -90,22 +90,35 @@ const ResetPassword = ({ match }) => {
               textChange: "Reset",
             });
             console.log(err.response);
+
             setMsg({
               color: "danger",
               message: err.response.data.errors,
             });
+
+            setTimeout(() => {
+              setMsg({ color: "", message: "" });
+            }, 3000);
           });
       } else {
         setMsg({
           color: "warning",
           message: "Password doesn't matches!",
         });
+
+        setTimeout(() => {
+          setMsg({ color: "", message: "" });
+        }, 3000);
       }
     } else {
       setMsg({
         color: "danger",
         message: "Please fill all fields!",
       });
+
+      setTimeout(() => {
+        setMsg({ color: "", message: "" });
+      }, 3000);
     }
   };
 

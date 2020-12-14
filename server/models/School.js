@@ -6,7 +6,7 @@ const SchoolSchema = new Schema({
     type: String,
   },
   pincode: {
-    type: Number,
+    type: String,
     default: null,
   },
   address: {

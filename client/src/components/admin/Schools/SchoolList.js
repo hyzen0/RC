@@ -88,7 +88,7 @@ const SchoolList = ({ tabId }) => {
               type="button"
               className="btn btn-primary px-4 blogBtn"
               onClick={() => history.push("/admin/newschool/")}>
-              <MdNoteAdd /> Create New School
+              <MdNoteAdd /> Add New School
             </button>
           </Row>
           {allSchools.length === 0 ? (

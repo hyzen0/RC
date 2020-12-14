@@ -56,7 +56,7 @@ const BlogList = ({ tabId }) => {
               type="button"
               className="btn btn-primary px-4 blogBtn"
               onClick={() => history.push("/admin/newblog/")}>
-              <MdNoteAdd /> Create New Blog
+              <MdNoteAdd /> Add New Blog
             </button>
           </Row>
 

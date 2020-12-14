@@ -64,6 +64,10 @@ const Register = () => {
               color: "success",
               message: res.data.message,
             });
+
+            setTimeout(() => {
+              setMsg({ color: "", message: "" });
+            }, 4000);
           })
           .catch(err => {
             setFormData({
@@ -79,18 +83,30 @@ const Register = () => {
               color: "danger",
               message: err.response.data.errors,
             });
+
+            setTimeout(() => {
+              setMsg({ color: "", message: "" });
+            }, 3000);
           });
       } else {
         setMsg({
           color: "warning",
           message: "Password doesn't matches!",
         });
+
+        setTimeout(() => {
+          setMsg({ color: "", message: "" });
+        }, 3000);
       }
     } else {
       setMsg({
         color: "danger",
         message: "Please fill all fields!",
       });
+
+      setTimeout(() => {
+        setMsg({ color: "", message: "" });
+      }, 3000);
     }
   };
 
@@ -162,7 +178,7 @@ const Register = () => {
               </Form>
               <div className="text-center pt-3">
                 Already have an account?&nbsp;
-                <Link to="/login" className="text-danger">
+                <Link to="/login/" className="text-danger">
                   Sign In
                 </Link>
               </div>
