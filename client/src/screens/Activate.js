@@ -60,6 +60,10 @@ const Activate = ({ match }) => {
           color: "danger",
           message: err.response.data.errors,
         });
+
+        setTimeout(() => {
+          setMsg({ color: "", message: "" });
+        }, 3000);
       });
   };
 

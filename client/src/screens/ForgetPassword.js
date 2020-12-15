@@ -47,6 +47,10 @@ const ForgetPassword = () => {
             color: "success",
             message: res.data.message,
           });
+
+          setTimeout(() => {
+            setMsg({ color: "", message: "" });
+          }, 5000);
         })
         .catch(err => {
           setFormData({
@@ -59,12 +63,20 @@ const ForgetPassword = () => {
             color: "danger",
             message: err.response.data.errors,
           });
+
+          setTimeout(() => {
+            setMsg({ color: "", message: "" });
+          }, 3000);
         });
     } else {
       setMsg({
         color: "danger",
         message: "Please fill all fields!",
       });
+
+      setTimeout(() => {
+        setMsg({ color: "", message: "" });
+      }, 3000);
     }
   };
 

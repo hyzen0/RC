@@ -12,6 +12,7 @@ body {
   margin: 0;
   background-color: white;
 }
+
 /* Styling for navbar  */
 .navbar {
   margin-top: 10px;
@@ -51,7 +52,16 @@ input#name.form-control,
 input#password2.form-control,
 input#email.form-control,
 input#password.form-control,
-input#cities.form-control {
+input#cities.form-control,
+input#title.form-control,
+input#author.form-control,
+input#image.form-control,
+input#board.form-control,
+input#c_No.form-control,
+input#pin.form-control,
+input#mail_id.form-control,
+input#website.form-control,
+textarea#address.form-control {
   padding: 5px;
   border-radius: 5px;
   font-size: small;
@@ -61,7 +71,16 @@ input#name.form-control:focus,
 input#password2.form-control:focus,
 input#email.form-control:focus,
 input#password.form-control:focus,
-input#cities.form-control:focus {
+input#cities.form-control:focus,
+input#title.form-control:focus,
+input#author.form-control:focus,
+input#image.form-control:focus,
+input#board.form-control:focus,
+input#c_No.form-control:focus,
+input#pin.form-control:focus,
+input#mail_id.form-control:focus,
+input#website.form-control:focus,
+textarea#address.form-control:focus {
   border: 2px solid #417dfd;
   box-shadow: none;
   outline: none;
@@ -84,6 +103,16 @@ section {
     font-size: 50px;
     font-weight: 600;
   }
+}
+
+div .blogAuthor {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 1px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  background-color: rgb(250, 248, 246);
+  border-radius: 8px;
 }
 
 /* Card Styling */
@@ -133,7 +162,15 @@ button.page-link:focus {
   box-shadow: none;
 }
 
+/* Buttons styling */
+nav .btn-outline-primary:focus,
+div div div .btn-primary:focus,
 div div .blogBtn:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+button.close:focus {
   box-shadow: none;
   outline: none;
 }

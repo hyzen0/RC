@@ -17,6 +17,10 @@ const BlogSchema = new Schema({
   coverImg: {
     type: String,
   },
+  author: {
+    type: String,
+    default: "Admin",
+  },
   likes: [
     {
       user: {

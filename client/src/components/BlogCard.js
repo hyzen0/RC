@@ -36,9 +36,7 @@ const BlogCard = ({ blogs }) => {
               <CardText className="mt-3 text-muted" tag="p">
                 {blog.description.slice(0, 78)}...
               </CardText>
-              <Link
-                to={`${blog.title.replace(/ /g, "-").toLowerCase()}/`}
-                className="mt-auto">
+              <Link to={`/blog/${blog._id}/`} className="mt-auto">
                 Read More <HiArrowNarrowRight fontSize="18" />
               </Link>
             </CardBody>
