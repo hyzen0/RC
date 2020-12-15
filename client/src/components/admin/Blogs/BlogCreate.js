@@ -10,6 +10,8 @@ import {
   UncontrolledAlert,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { MdNoteAdd } from "react-icons/md";
 
 const BlogCreate = () => {
@@ -30,6 +32,8 @@ const BlogCreate = () => {
 
   const handleChange = text => e => {
     setFormData({ ...formData, [text]: e.target.value });
+
+    console.log(formData);
   };
 
   return (
@@ -78,6 +82,18 @@ const BlogCreate = () => {
                     placeholder="Blog Cover Image"
                     onChange={handleChange("coverImg")}
                     value={coverImg}
+                  />
+                  <Label for="content" className="mb-1">
+                    Description
+                  </Label>
+                  <CKEditor
+                    editor={ClassicEditor}
+                    data={description}
+                    className="mb-1 p-2"
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      setFormData({ ...formData, description: data });
+                    }}
                   />
                 </FormGroup>
                 <div className="text-center">

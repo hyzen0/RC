@@ -83,7 +83,9 @@ const BlogPost = props => {
           </Row>
 
           <Row className="d-flex justify-content-start mx-1 my-3">
-            <Col>{posts.description}</Col>
+            <Col
+              dangerouslySetInnerHTML={{ __html: posts.description }}
+              tag="div"></Col>
           </Row>
         </>
       )}

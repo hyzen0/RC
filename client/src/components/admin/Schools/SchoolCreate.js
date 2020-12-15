@@ -236,7 +236,7 @@ const SchoolCreate = () => {
                       <Input
                         className="mb-1 p-2"
                         id="mail_id"
-                        type="text"
+                        type="email"
                         placeholder="Enter school mail id"
                         onChange={handleChange("mail_id")}
                         value={mail_id}
@@ -249,7 +249,7 @@ const SchoolCreate = () => {
                       <Input
                         className="mb-1 p-2"
                         id="website"
-                        type="text"
+                        type="url"
                         placeholder="Enter school website"
                         onChange={handleChange("website")}
                         value={website}

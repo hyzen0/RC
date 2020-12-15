@@ -1,21 +1,22 @@
-import { Table } from "reactstrap";
-import { MdEdit, MdDelete } from "react-icons/md";
+import { Button, Table } from "reactstrap";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 const BlogTable = ({ blogs, replace }) => {
   return (
-    <Table bordered hover dark responsive className="table-sm my-4">
+    <Table bordered striped responsive className="mb-2 mt-2" size="sm">
       <thead>
         <tr className="text-center text-warning">
-          <th>Id</th>
+          <th>#</th>
           <th>Image</th>
           <th>Title</th>
           <th>Description</th>
           <th>Likes</th>
           <th>Date</th>
-          <th>Options</th>
+          <th>Actions</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="text-white">
         {blogs.map((blog, i) => (
           <tr key={blog._id} className="text-center">
             <td>{i + 1}</td>
@@ -28,7 +29,10 @@ const BlogTable = ({ blogs, replace }) => {
               />
             </td>
             <td>{blog.title}</td>
-            <td>{blog.description.slice(0, 40)}...</td>
+            <td
+              dangerouslySetInnerHTML={{
+                __html: blog.description.slice(0, 40),
+              }}></td>
             <td>{blog.likes.length}</td>
             <td>
               {new Date(blog.date).toDateString() +
@@ -36,10 +40,14 @@ const BlogTable = ({ blogs, replace }) => {
                 new Date(blog.date).toLocaleTimeString()}
             </td>
 
-            <td className="my-auto">
-              <MdEdit color="#417dfd" size="20" style={{ cursor: "pointer" }} />
+            <td>
+              <Button color="primary" className="py-1 px-2 shadow-sm">
+                <FaEdit size="14" /> Edit
+              </Button>
               &nbsp;&nbsp;
-              <MdDelete color="red" size="20" style={{ cursor: "pointer" }} />
+              <Button color="danger" className="py-1 px-2 shadow-sm">
+                <MdDelete size="14" /> Delete
+              </Button>
             </td>
           </tr>
         ))}
