@@ -229,3 +229,9 @@ button.close:focus {
 .react-autosuggest__suggestion--highlighted {
   background-color: #ddd;
 }
+
+/* Text Editor style */
+.ck-editor__main {
+  max-height: 200px;
+  overflow-y: auto;
+}

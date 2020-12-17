@@ -2,7 +2,7 @@ import { Button, Table } from "reactstrap";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
-const BlogTable = ({ blogs, replace }) => {
+const BlogTable = ({ blogs, replace, history }) => {
   return (
     <Table bordered striped responsive className="mb-2 mt-2" size="sm">
       <thead>
@@ -17,7 +17,7 @@ const BlogTable = ({ blogs, replace }) => {
         </tr>
       </thead>
       <tbody className="text-white">
-        {blogs.map((blog, i) => (
+        {blogs.reverse().map((blog, i) => (
           <tr key={blog._id} className="text-center">
             <td>{i + 1}</td>
             <td>
@@ -31,7 +31,7 @@ const BlogTable = ({ blogs, replace }) => {
             <td>{blog.title}</td>
             <td
               dangerouslySetInnerHTML={{
-                __html: blog.description.slice(0, 40),
+                __html: blog.description.slice(0, 20),
               }}></td>
             <td>{blog.likes.length}</td>
             <td>
@@ -41,11 +41,15 @@ const BlogTable = ({ blogs, replace }) => {
             </td>
 
             <td>
-              <Button color="primary" className="py-1 px-2 shadow-sm">
+              <Button
+                color="primary"
+                size="sm"
+                className="py-1 px-2 shadow-sm"
+                onClick={() => history.push(`/admin/blog/${blog._id}/`)}>
                 <FaEdit size="14" /> Edit
               </Button>
               &nbsp;&nbsp;
-              <Button color="danger" className="py-1 px-2 shadow-sm">
+              <Button color="danger" size="sm" className="py-1 px-2 shadow-sm">
                 <MdDelete size="14" /> Delete
               </Button>
             </td>

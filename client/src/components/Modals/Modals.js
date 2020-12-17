@@ -20,8 +20,6 @@ const Modals = ({ data }) => {
   const toggle = () => setModal(!modal);
 
   const onClick = ({ target: { innerHTML } }) => {
-    console.log(data);
-
     setTimeout(() => {
       setCopied(false);
     }, 5000);

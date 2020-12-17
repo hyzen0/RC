@@ -9,13 +9,12 @@ import {
   Spinner,
   UncontrolledAlert,
 } from "reactstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { MdNoteAdd } from "react-icons/md";
 import axios from "axios";
 import { getCookie } from "../../../helpers/auth";
 
-const SchoolCreate = () => {
-  const history = useHistory();
+const SchoolCreate = ({ history }) => {
   const [msg, setMsg] = useState({ color: "", message: "" });
   const [formData, setFormData] = useState({
     school_name: "",
@@ -110,6 +109,7 @@ const SchoolCreate = () => {
         })
         .catch(err => {
           setFormData({
+            ...formData,
             school_name: "",
             address: "",
             board: "",

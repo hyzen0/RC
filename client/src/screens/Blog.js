@@ -13,7 +13,6 @@ const Blog = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/blogs`)
       .then(res => {
-        console.log(res.data);
         setIsLoading(false);
         setBlogs(res.data);
       })

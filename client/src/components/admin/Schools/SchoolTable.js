@@ -2,7 +2,7 @@ import { Table, Button } from "reactstrap";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
-const SchoolTable = ({ schools }) => {
+const SchoolTable = ({ schools, history }) => {
   return (
     <Table bordered striped responsive className="mb-4 mt-1 table-sm">
       <thead>
@@ -53,11 +53,15 @@ const SchoolTable = ({ schools }) => {
             </td>
 
             <td>
-              <Button color="primary" className="py-1 px-1 shadow-sm">
+              <Button
+                color="primary"
+                size="sm"
+                className="py-1 px-1 shadow-sm"
+                onClick={() => history.push(`/admin/school/${school._id}/`)}>
                 <FaEdit size="14" /> Edit
               </Button>
               &nbsp;&nbsp;
-              <Button color="danger" className="py-1 px-1 shadow-sm">
+              <Button color="danger" size="sm" className="py-1 px-1 shadow-sm">
                 <MdDelete size="14" /> Delete
               </Button>
             </td>
