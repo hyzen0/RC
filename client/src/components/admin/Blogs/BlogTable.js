@@ -10,7 +10,6 @@ const BlogTable = ({ blogs, replace, history }) => {
           <th>#</th>
           <th>Image</th>
           <th>Title</th>
-          <th>Description</th>
           <th>Likes</th>
           <th>Date</th>
           <th>Actions</th>
@@ -29,10 +28,6 @@ const BlogTable = ({ blogs, replace, history }) => {
               />
             </td>
             <td>{blog.title}</td>
-            <td
-              dangerouslySetInnerHTML={{
-                __html: blog.description.slice(0, 20),
-              }}></td>
             <td>{blog.likes.length}</td>
             <td>
               {new Date(blog.date).toDateString() +
