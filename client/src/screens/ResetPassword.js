@@ -32,6 +32,7 @@ const ResetPassword = ({ match }) => {
     if (token) {
       setFormData({ ...formData, token });
     }
+    // eslint-disable-next-line
   }, [match.params]);
 
   const handleChange = text => e => {
