@@ -37,7 +37,7 @@ const BlogCard = ({ blogs }) => {
                 className="mt-3 text-muted"
                 tag="p"
                 dangerouslySetInnerHTML={{
-                  __html: blog.description.slice(0, 30),
+                  __html: blog.description.slice(0, 20),
                 }}
               />
               <Link to={`/blog/${blog._id}/`} className="mt-auto">
