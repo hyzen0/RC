@@ -154,7 +154,7 @@ const SchoolList = ({ tabId }) => {
                     />
                   </Row>
                   <Row className="d-flex justify-content-center">
-                    <SchoolTable schools={currentSchools} />
+                    <SchoolTable schools={currentSchools} history={history} />
                   </Row>
                 </>
               )}

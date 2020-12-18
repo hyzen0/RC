@@ -9,13 +9,12 @@ import {
   Spinner,
   UncontrolledAlert,
 } from "reactstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { MdNoteAdd } from "react-icons/md";
 import axios from "axios";
 import { getCookie } from "../../../helpers/auth";
 
-const SchoolCreate = () => {
-  const history = useHistory();
+const SchoolCreate = ({ history }) => {
   const [msg, setMsg] = useState({ color: "", message: "" });
   const [formData, setFormData] = useState({
     school_name: "",
@@ -110,6 +109,7 @@ const SchoolCreate = () => {
         })
         .catch(err => {
           setFormData({
+            ...formData,
             school_name: "",
             address: "",
             board: "",
@@ -236,7 +236,7 @@ const SchoolCreate = () => {
                       <Input
                         className="mb-1 p-2"
                         id="mail_id"
-                        type="text"
+                        type="email"
                         placeholder="Enter school mail id"
                         onChange={handleChange("mail_id")}
                         value={mail_id}
@@ -249,7 +249,7 @@ const SchoolCreate = () => {
                       <Input
                         className="mb-1 p-2"
                         id="website"
-                        type="text"
+                        type="url"
                         placeholder="Enter school website"
                         onChange={handleChange("website")}
                         value={website}

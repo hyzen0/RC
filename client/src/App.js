@@ -33,6 +33,8 @@ import PrivateRoute from "./routes/PrivateRoute";
 import AdminRoute from "./routes/AdminRoute";
 import BlogCreate from "./components/admin/Blogs/BlogCreate";
 import SchoolCreate from "./components/admin/Schools/SchoolCreate";
+import BlogEdit from "./components/admin/Blogs/BlogEdit";
+import SchoolEdit from "./components/admin/Schools/SchoolEdit";
 
 const App = () => {
   return (
@@ -67,7 +69,9 @@ const App = () => {
         <PrivateRoute exact path="/user/profile/" component={Profile} />
         <AdminRoute exact path="/admin/" component={AdminPannel} />
         <AdminRoute exact path="/admin/newschool/" component={SchoolCreate} />
+        <AdminRoute exact path="/admin/school/:id/" component={SchoolEdit} />
         <AdminRoute exact path="/admin/newblog/" component={BlogCreate} />
+        <AdminRoute exact path="/admin/blog/:id/" component={BlogEdit} />
         <Redirect to="/" />
       </Switch>
       <Footer />

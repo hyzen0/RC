@@ -9,10 +9,14 @@ import {
   Spinner,
   UncontrolledAlert,
 } from "reactstrap";
+import axios from "axios";
 import { Link } from "react-router-dom";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { MdNoteAdd } from "react-icons/md";
+import { getCookie } from "../../../helpers/auth";
 
-const BlogCreate = () => {
+const BlogCreate = ({ history }) => {
   const [msg, setMsg] = useState({ color: "", message: "" });
   const [formData, setFormData] = useState({
     title: "",
@@ -32,6 +36,95 @@ const BlogCreate = () => {
     setFormData({ ...formData, [text]: e.target.value });
   };
 
+  const handleSubmit = e => {
+    const token = getCookie("token");
+    e.preventDefault();
+    if (title && description) {
+      setFormData({
+        ...formData,
+        btnText: (
+          <>
+            <Spinner color="light" size="sm" /> Adding...
+          </>
+        ),
+      });
+
+      axios
+        .post(
+          `${process.env.REACT_APP_API_URL}/api/blogs/`,
+          {
+            title,
+            description,
+            coverImg,
+            author,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then(res => {
+          setFormData({
+            ...formData,
+            title: "",
+            description: "",
+            author: "",
+            coverImg: "",
+            btnText: "Added",
+          });
+
+          setMsg({
+            color: "success",
+            message: (
+              <>
+                {res.data.msg}! Redirecting to Admin Dashboard&nbsp;
+                <Spinner color="success" size="sm" />
+              </>
+            ),
+          });
+
+          setTimeout(() => {
+            history.push("/admin/");
+          }, 3000);
+        })
+        .catch(err => {
+          setFormData({
+            ...formData,
+            title: "",
+            description: "",
+            author: "Admin",
+            coverImg: "",
+            btnText: (
+              <>
+                <MdNoteAdd /> Add Blog
+              </>
+            ),
+          });
+
+          console.log(err.response);
+
+          setMsg({
+            color: "danger",
+            message: err.response.data,
+          });
+
+          setTimeout(() => {
+            setMsg({ color: "", message: "" });
+          }, 3000);
+        });
+    } else {
+      setMsg({
+        color: "danger",
+        message: "Please fill all the fields!",
+      });
+
+      setTimeout(() => {
+        setMsg({ color: "", message: "" });
+      }, 3000);
+    }
+  };
+
   return (
     <section className="container-fluid">
       <Row className="justify-content-center align-items-center">
@@ -44,7 +137,7 @@ const BlogCreate = () => {
           <Row>
             <Col>
               <h2 className="text-center">Add New Blog</h2>
-              <Form>
+              <Form onSubmit={handleSubmit}>
                 <FormGroup>
                   <Label for="title" className="mb-1">
                     Title
@@ -78,6 +171,18 @@ const BlogCreate = () => {
                     placeholder="Blog Cover Image"
                     onChange={handleChange("coverImg")}
                     value={coverImg}
+                  />
+                  <Label for="content" className="mb-1">
+                    Description
+                  </Label>
+                  <CKEditor
+                    editor={ClassicEditor}
+                    data={description}
+                    className="mb-1 p-2"
+                    onChange={(event, editor) => {
+                      const data = editor.getData();
+                      setFormData({ ...formData, description: data });
+                    }}
                   />
                 </FormGroup>
                 <div className="text-center">

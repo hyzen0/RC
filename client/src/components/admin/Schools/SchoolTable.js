@@ -1,21 +1,22 @@
-import { Table } from "reactstrap";
-import { MdEdit, MdDelete } from "react-icons/md";
+import { Table, Button } from "reactstrap";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
-const SchoolTable = ({ schools }) => {
+const SchoolTable = ({ schools, history }) => {
   return (
-    <Table bordered hover dark responsive className="table-sm mb-4 mt-1">
+    <Table bordered striped responsive className="mb-4 mt-1 table-sm">
       <thead>
         <tr className="text-center text-warning">
-          <th>Id</th>
+          <th>#</th>
           <th>School Name</th>
           <th>Address</th>
           <th>City</th>
           <th>Board</th>
           <th>Mail Id</th>
-          <th>Options</th>
+          <th>Actions</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="text-white">
         {schools.map((school, i) => (
           <tr key={school._id} className="text-center">
             <td>{i + 1}</td>
@@ -51,10 +52,18 @@ const SchoolTable = ({ schools }) => {
               )}
             </td>
 
-            <td className="my-auto">
-              <MdEdit color="#417dfd" size="20" style={{ cursor: "pointer" }} />
+            <td>
+              <Button
+                color="primary"
+                size="sm"
+                className="py-1 px-1 shadow-sm"
+                onClick={() => history.push(`/admin/school/${school._id}/`)}>
+                <FaEdit size="14" /> Edit
+              </Button>
               &nbsp;&nbsp;
-              <MdDelete color="red" size="20" style={{ cursor: "pointer" }} />
+              <Button color="danger" size="sm" className="py-1 px-1 shadow-sm">
+                <MdDelete size="14" /> Delete
+              </Button>
             </td>
           </tr>
         ))}

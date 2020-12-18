@@ -29,13 +29,17 @@ const BlogCard = ({ blogs }) => {
                 {blog.title}
               </CardTitle>
               <CardSubtitle tag="p" className="text-muted">
-                <FcBusinessman fontSize="20" />{" "}
+                <FcBusinessman fontSize="20" />
                 <span>{(blog.author = "admin")}</span> &nbsp;
                 <small>{new Date(blog.date).toDateString()}</small>
               </CardSubtitle>
-              <CardText className="mt-3 text-muted" tag="p">
-                {blog.description.slice(0, 78)}...
-              </CardText>
+              <CardText
+                className="mt-3 text-muted"
+                tag="p"
+                dangerouslySetInnerHTML={{
+                  __html: blog.description.slice(0, 30),
+                }}
+              />
               <Link to={`/blog/${blog._id}/`} className="mt-auto">
                 Read More <HiArrowNarrowRight fontSize="18" />
               </Link>

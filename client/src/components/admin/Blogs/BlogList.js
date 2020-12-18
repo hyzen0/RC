@@ -70,7 +70,11 @@ const BlogList = ({ tabId }) => {
           ) : (
             <>
               <Row className="justify-content-center">
-                <BlogTable blogs={currentBlogs} replace={replace} />
+                <BlogTable
+                  blogs={currentBlogs}
+                  replace={replace}
+                  history={history}
+                />
               </Row>
               <Row className="justify-content-center">
                 <Col>

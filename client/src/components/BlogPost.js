@@ -13,7 +13,7 @@ const BlogPost = props => {
       const { data } = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/blogs/${props.match.params.id}`
       );
-      console.log(data);
+
       setIsLoading(false);
       setPosts(data);
     };
@@ -32,7 +32,7 @@ const BlogPost = props => {
         </Row>
       ) : (
         <>
-          <Row className="d-flex justify-content-start mx-1">
+          <Row className="d-flex justify-content-center mx-1">
             <h1
               className="mt-3"
               style={{
@@ -82,8 +82,12 @@ const BlogPost = props => {
             </Col>
           </Row>
 
-          <Row className="d-flex justify-content-start mx-1 my-3">
-            <Col>{posts.description}</Col>
+          <Row className="d-flex justify-content-center mx-1 my-3">
+            <Col
+              tag="div"
+              dangerouslySetInnerHTML={{ __html: posts.description }}
+              style={{ fontSize: "18px", lineHeight: "29px", color: "#110d1d" }}
+            />
           </Row>
         </>
       )}
