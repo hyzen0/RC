@@ -35,6 +35,9 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // Use Routes
+app.use("/", res => {
+  console.log("working");
+});
 app.use("/api", authRouter);
 app.use("/api/blogs", blogRouter);
 app.use("/api/profile", profileRouter);
