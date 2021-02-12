@@ -32,6 +32,6 @@ router.put(
 );
 router.put("/resetpassword", resetPasswordValidator, resetPasswordController);
 
-// Google and Facebook Login
+// Google
 router.post("/googlelogin", googleController);
 module.exports = router;

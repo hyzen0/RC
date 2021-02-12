@@ -16,6 +16,7 @@ connectDB();
 
 // body parser
 app.use(bodyParser.json());
+
 // Load routes
 const authRouter = require("./api/auth.route");
 const blogRouter = require("./api/blog.route");
@@ -26,11 +27,7 @@ const ngoRouter = require("./api/ngo.route");
 
 // Dev Logging Middleware
 if (process.env.NODE_ENV === "development") {
-  app.use(
-    cors({
-      origin: process.env.CLIENT_URL,
-    })
-  );
+  app.use(cors());
   app.use(morgan("dev"));
 }
 

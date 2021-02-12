@@ -331,11 +331,12 @@ const client = new OAuth2Client(process.env.GOOGLE_CLIENT);
 // Google Login
 exports.googleController = (req, res) => {
   const { idToken } = req.body;
+  console.log("1");
 
   client
     .verifyIdToken({ idToken, audience: process.env.GOOGLE_CLIENT })
     .then(response => {
-      // console.log('GOOGLE LOGIN RESPONSE',response)
+      console.log("GOOGLE LOGIN RESPONSE", response);
       const { email_verified, name, email } = response.payload;
       if (email_verified) {
         User.findOne({ email }).exec((err, user) => {
