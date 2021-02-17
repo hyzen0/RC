@@ -18,7 +18,7 @@ import { FiLogIn } from "react-icons/fi";
 import login from "../assets/login.svg";
 
 const clientId =
-  "412097255221-o3dhnimsfbg7v73400brqn2ms1ksitvb.apps.googleusercontent.com";
+  "594668924560-p1bn7a6rqdqlcu547hsu0hlrlu53qlln.apps.googleusercontent.com";
 
 const Login = ({ history }) => {
   const [msg, setMsg] = useState({ color: "", message: "" });
